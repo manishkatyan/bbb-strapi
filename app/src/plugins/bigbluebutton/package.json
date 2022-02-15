@@ -7,7 +7,13 @@
     "description": "Description of bigbluebutton plugin",
     "kind": "plugin"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.26.0",
+    "fast-xml-parser": "^4.0.3",
+    "hash.js": "^1.1.7",
+    "jsonwebtoken": "^8.5.1",
+    "querystring": "^0.2.1"
+  },
   "author": {
     "name": "A Strapi developer"
   },

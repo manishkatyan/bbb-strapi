@@ -9,6 +9,7 @@ import React, { memo } from "react";
 
 import BigBlueButton from "../BigBlueButton/BigBlueButton";
 
+import { getClass } from '../Utils/apiCalls'
 const HomePage = () => {
   return (
     <div>
