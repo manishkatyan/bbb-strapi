@@ -36,7 +36,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
           </ModalHeader>
           <ModalBody>
             <Grid gap={5}>
-              <GridItem col={12}>
+              <GridItem col={11}>
                 <Box padding={2}>
                   <TextInput
                     placeholder="Enter a class Name"
@@ -49,7 +49,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
 
               <GridItem col={5}>
                 <Box padding={2}>
-                  <Typography variant="beta">Moderator Access Code</Typography>
+                  <Typography variant="delta">Moderator Access Code</Typography>
                 </Box>
               </GridItem>
               <GridItem col={5}>
@@ -75,7 +75,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={5}>
                 <Box padding={2}>
-                  <Typography variant="beta">Viewer Access Code</Typography>
+                  <Typography variant="delta">Viewer Access Code</Typography>
                 </Box>
               </GridItem>
               <GridItem col={5}>
@@ -101,7 +101,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">
+                  <Typography variant="delta">
                     Requires moderator approval to join
                   </Typography>
                 </Box>
@@ -117,7 +117,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">
+                  <Typography variant="delta">
                     Allow any user to start session
                   </Typography>
                 </Box>
@@ -133,7 +133,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">Mute viewers on join</Typography>
+                  <Typography variant="delta">Mute viewers on join</Typography>
                 </Box>
               </GridItem>
               <GridItem col={2}>
