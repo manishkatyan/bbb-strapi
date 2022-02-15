@@ -70,13 +70,13 @@ const ClassTable = () => {
               <Td>
                 <Box>
                   <Typography textColor="neutral800">
-                    Moderator :
+                    Moderator&nbsp;:&nbsp;
                     {entry.moderatorAccesCode ? entry.moderatorAccesCode : "NA"}
                   </Typography>
                 </Box>
                 <Box>
                   <Typography textColor="neutral800">
-                    Viewer :
+                    Viewer&nbsp;:&nbsp;
                     {entry.viewerAccessCode ? entry.viewerAccessCode : "NA"}
                   </Typography>
                 </Box>
