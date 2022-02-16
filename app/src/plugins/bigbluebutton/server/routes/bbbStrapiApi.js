@@ -33,17 +33,17 @@ module.exports = {
         {
             method: 'GET',
             path: '/session/:id',
-            handler: 'classController.findOne',
+            handler: 'sessionController.findOne',
         },
         {
             method: 'POST',
             path: '/session',
-            handler: 'classController.create',
+            handler: 'sessionController.create',
         },
         {
             method: 'DELETE',
             path: '/session/:id',
-            handler: 'classController.delete',
+            handler: 'sessionController.delete',
         },
         // bbb action routes
 
