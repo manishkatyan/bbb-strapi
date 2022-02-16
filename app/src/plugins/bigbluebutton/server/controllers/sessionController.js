@@ -2,17 +2,17 @@ module.exports = ({ strapi }) => ({
 
     async find(ctx) {
         params = ctx.query
-        res = await strapi.query("plugin::bigbluebutton.session").findMany({ where: { params } })
+        res = await strapi.query("plugin::bigbluebutton.session").findMany({ populate: true })
         ctx.body = res;
     },
     async findOne(ctx) {
         const { id } = ctx.params
-        res = strapi.query("plugin::bigbluebutton.session").findOne({ where: { id } });
+        res = strapi.query("plugin::bigbluebutton.session").findOne({ id, populate: true });
         ctx.body = res;
     },
     async create(ctx) {
-        await strapi.query("plugin::bigbluebutton.session").create({ data: ctx.request.body })
-        ctx.body = ctx.request.body
+        res = await strapi.query("plugin::bigbluebutton.session").create({ data: ctx.request.body, populate: true })
+        ctx.body = res
     },
     async delete(ctx) {
         const { id } = ctx.params

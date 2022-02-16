@@ -19,6 +19,11 @@ module.exports = {
             handler: 'classController.create',
         },
         {
+            method: 'PUT',
+            path: '/class/:id',
+            handler: 'classController.update',
+        },
+        {
             method: 'DELETE',
             path: '/class/:id',
             handler: 'classController.delete',
