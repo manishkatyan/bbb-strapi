@@ -13,14 +13,15 @@ const bbb = {
 };
 
 module.exports = ({ strapi }) => ({
-  async create(classId, params) {
+  async create(classUID, params) {
     const meetingParams = params;
     const url = constructUrl(bbb, "create", meetingParams);
     try {
+      const bbbClass = await strapi.query('plugin::bigbluebutton.class').findOne({uid: classUID})
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
       if (parsedResponse.returncode === 'SUCCESS' && parsedResponse.internalMeetingID) {
-        await strapi.query('plugin:bigbluebutton.session').create({ data: { bbbRecordId: parsedResponse.internalMeetingID, isRecorded: meetingParams.record, isRecoringAvailable: false, class: classId } })
+        await strapi.query('plugin::bigbluebutton.session').create({ data: { bbbRecordId: parsedResponse.internalMeetingID, isRecorded: meetingParams.record, isRecoringAvailable: false, class: bbbClass.id } })
       }
       return parsedResponse;
     } catch (error) {
@@ -37,9 +38,25 @@ module.exports = ({ strapi }) => ({
     const params = {
       meetingID: meetingID,
     };
-    const url = constructUrl(bbb, "isMeetingRunning", params);
-    const response = await axios.get(url);
-    return parseXml(response.data).running;
+    try {
+      const url = constructUrl(bbb, "isMeetingRunning", params);
+      const response = await axios.get(url);
+      return parseXml(response.data).running;
+    } catch (error) {
+      console.log(error);
+      return { returncode: "FAILED" };
+    }
+  },
+  async end(meetingID, password) {
+    const url = constructUrl(bbb, "end", {meetingID, password});
+    try {
+      const response = await axios.get(url);
+      const parsedResponse = parseXml(response.data);
+      return parsedResponse;
+    } catch (error) {
+      console.log(error);
+      return { returncode: "FAILED" };
+    }
   },
   // updateRecodingStatus: async (token) => {
   //   const decodedToken = jwt.verify(token, bbb.salt);

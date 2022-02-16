@@ -12,7 +12,8 @@
     "fast-xml-parser": "^4.0.3",
     "hash.js": "^1.1.7",
     "jsonwebtoken": "^8.5.1",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "randomstring": "^1.2.2"
   },
   "author": {
     "name": "A Strapi developer"

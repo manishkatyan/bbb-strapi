@@ -1,7 +1,9 @@
+var generateUID = require("randomstring");
+
 module.exports = ({ strapi }) => ({
     async find(ctx) {
         params = ctx.query
-        res = await strapi.query("plugin::bigbluebutton.class").findMany({ populate: true })
+        res = await strapi.query("plugin::bigbluebutton.class").findMany({where: params}, {populate:true})
         ctx.body = res;
     },
     async findOne(ctx) {
@@ -14,9 +16,11 @@ module.exports = ({ strapi }) => ({
         res = await strapi.query("plugin::bigbluebutton.class").findMany({ id }, { data: ctx.request.body, populate: true })
         ctx.body = res;
     },
-
     async create(ctx) {
-        res = await strapi.query("plugin::bigbluebutton.class").create({ data: ctx.request.body, populate: true })
+        const uid = generateUID({length: 4, charset: 'alphabetic'} )
+        params =  ctx.request.body
+        params.uid = uid
+        res = await strapi.query("plugin::bigbluebutton.class").create({ data: params, populate: true })
         ctx.body = res
     },
     async delete(ctx) {

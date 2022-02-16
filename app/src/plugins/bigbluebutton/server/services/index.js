@@ -1,6 +1,6 @@
 'use strict';
 
-const bbbServices = require('./bbbService');
+const bbbService = require('./bbbService');
 module.exports = {
-  bbbServices,
+  bbbService,
 };

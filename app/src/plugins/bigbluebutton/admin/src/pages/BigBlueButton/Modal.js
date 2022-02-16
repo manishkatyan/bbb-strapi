@@ -13,12 +13,24 @@ import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { Switch } from "@strapi/design-system/Switch";
 
 const Modal = ({ isVisible, handleClose, handleCreate }) => {
+  const [className, setClassName] = useState('')
   const [moderatorChecked, setModeratorChecked] = useState(false);
+  const [moderatorAccessCode, setmoderatorAccessCode] = useState(false);
   const [viewerChecked, setViewerChecked] = useState(false);
+  const [viewerAccessCode, setviewerAccessCode] = useState(false);
   const [moderatorApproval, setModeratorApproval] = useState(false);
   const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
-
+  const classCreateData = {
+    className,
+    moderatorAccessCode,
+    viewerAccessCode,
+    bbbSetting: {
+      moderatorApproval,
+      anyUserStart,
+      muteViewerjoin
+    }
+  }
   return (
     <>
       {isVisible && (
@@ -42,7 +54,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     placeholder="Enter a class Name"
                     aria-label="Class"
                     name="className"
-                    onChange={() => {}}
+                    onChange={(e) => {setClassName(e.target.value)}}
                   />
                 </Box>
               </GridItem>
@@ -59,7 +71,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
-                    onChange={() => {}}
+                    onChange={(e) => {setmoderatorAccessCode(e.target.value)}}
                     size="S"
                   />
                 </Box>
@@ -85,7 +97,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
-                    onChange={() => {}}
+                    onChange={(e) => {setviewerAccessCode(e.target.value)}}
                     size="S"
                   />
                 </Box>

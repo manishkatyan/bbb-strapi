@@ -54,7 +54,7 @@ module.exports = {
 
         {
             method: "POST",
-            path: "/class/bbb/start/:classId",
+            path: "/class/bbb/start/:uid",
             handler: "bbbController.startBBB",
         },
         {
@@ -66,6 +66,11 @@ module.exports = {
             method: "GET",
             path: "/class/bbb/status/:meetingId",
             handler: "bbbController.isMeetingRunning",
+        },
+        {
+            method: "POST",
+            path: "/class/bbb/end",
+            handler: "bbbController.endMeeting",
         },
 
     ],
