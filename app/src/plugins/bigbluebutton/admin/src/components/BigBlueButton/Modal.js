@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ModalLayout,
   ModalBody,
@@ -18,6 +18,25 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
   const [moderatorApproval, setModeratorApproval] = useState(false);
   const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
+  const [moderatorAccessCode, setModeratorAccessCode] = useState("");
+  const [viewerAccessCode, setViewerAccessCode] = useState("");
+
+  useEffect(() => {
+    if (moderatorChecked && !moderatorAccessCode) {
+      const accessCode = Math.random().toString().substring(2, 6);
+      const code = parseInt(accessCode);
+      setModeratorAccessCode(code);
+    } else if (!moderatorChecked) {
+      setModeratorAccessCode("");
+    }
+    if (viewerChecked && !viewerAccessCode) {
+      const accessCode = Math.random().toString().substring(2, 6);
+      const code = parseInt(accessCode);
+      setViewerAccessCode(code);
+    } else if (!viewerChecked) {
+      setViewerAccessCode("");
+    }
+  }, [moderatorChecked, viewerChecked]);
 
   return (
     <>
@@ -59,6 +78,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
+                    value={moderatorAccessCode}
                     onChange={() => {}}
                     size="S"
                   />
@@ -85,6 +105,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
+                    value={viewerAccessCode}
                     onChange={() => {}}
                     size="S"
                   />

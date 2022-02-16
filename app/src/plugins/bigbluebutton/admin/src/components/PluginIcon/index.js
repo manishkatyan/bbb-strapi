@@ -4,9 +4,9 @@
  *
  */
 
-import React from 'react';
-import Puzzle from '@strapi/icons/Puzzle';
+import React from "react";
+import Microphone from "@strapi/icons/Microphone";
 
-const PluginIcon = () => <Puzzle />;
+const PluginIcon = () => <Microphone />;
 
 export default PluginIcon;
