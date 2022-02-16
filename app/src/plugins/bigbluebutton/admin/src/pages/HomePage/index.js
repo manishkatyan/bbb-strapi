@@ -7,7 +7,7 @@
 import React, { memo } from "react";
 // import PropTypes from 'prop-types';
 
-import BigBlueButton from "../BigBlueButton/BigBlueButton";
+import BigBlueButton from "../../components/BigBlueButton/BigBlueButton";
 
 import { getClass } from '../Utils/apiCalls'
 const HomePage = () => {

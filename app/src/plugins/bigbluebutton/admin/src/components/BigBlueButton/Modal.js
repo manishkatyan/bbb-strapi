@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ModalLayout,
   ModalBody,
@@ -21,6 +21,9 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
   const [moderatorApproval, setModeratorApproval] = useState(false);
   const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
+  const [moderatorAccessCode, setModeratorAccessCode] = useState("");
+  const [viewerAccessCode, setViewerAccessCode] = useState("");
+
   const classCreateData = {
     className,
     moderatorAccessCode,
@@ -31,6 +34,25 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
       muteViewerjoin
     }
   }
+
+  useEffect(() => {
+    if (moderatorChecked && !moderatorAccessCode) {
+      const accessCode = Math.random().toString().substring(2, 6);
+      const code = parseInt(accessCode);
+      setModeratorAccessCode(code);
+    } else if (!moderatorChecked) {
+      setModeratorAccessCode("");
+    }
+    if (viewerChecked && !viewerAccessCode) {
+      const accessCode = Math.random().toString().substring(2, 6);
+      const code = parseInt(accessCode);
+      setViewerAccessCode(code);
+    } else if (!viewerChecked) {
+      setViewerAccessCode("");
+    }
+  }, [moderatorChecked, viewerChecked]);
+
+
   return (
     <>
       {isVisible && (
@@ -48,7 +70,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
           </ModalHeader>
           <ModalBody>
             <Grid gap={5}>
-              <GridItem col={12}>
+              <GridItem col={11}>
                 <Box padding={2}>
                   <TextInput
                     placeholder="Enter a class Name"
@@ -61,7 +83,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
 
               <GridItem col={5}>
                 <Box padding={2}>
-                  <Typography variant="beta">Moderator Access Code</Typography>
+                  <Typography variant="delta">Moderator Access Code</Typography>
                 </Box>
               </GridItem>
               <GridItem col={5}>
@@ -72,6 +94,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
                     onChange={(e) => {setmoderatorAccessCode(e.target.value)}}
+                    value={moderatorAccessCode}
                     size="S"
                   />
                 </Box>
@@ -87,7 +110,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={5}>
                 <Box padding={2}>
-                  <Typography variant="beta">Viewer Access Code</Typography>
+                  <Typography variant="delta">Viewer Access Code</Typography>
                 </Box>
               </GridItem>
               <GridItem col={5}>
@@ -98,6 +121,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
                     onChange={(e) => {setviewerAccessCode(e.target.value)}}
+                    value={viewerAccessCode}
                     size="S"
                   />
                 </Box>
@@ -113,7 +137,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">
+                  <Typography variant="delta">
                     Requires moderator approval to join
                   </Typography>
                 </Box>
@@ -129,7 +153,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">
+                  <Typography variant="delta">
                     Allow any user to start session
                   </Typography>
                 </Box>
@@ -145,7 +169,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="beta">Mute viewers on join</Typography>
+                  <Typography variant="delta">Mute viewers on join</Typography>
                 </Box>
               </GridItem>
               <GridItem col={2}>

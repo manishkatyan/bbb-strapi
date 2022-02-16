@@ -10,12 +10,11 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-documentation": "^4.0.7",
+    "@strapi/icons": "0.0.1-alpha.76",
     "@strapi/plugin-i18n": "4.0.7",
     "@strapi/plugin-users-permissions": "4.0.7",
     "@strapi/strapi": "4.0.7",
-    "lodash": "^4.17.21",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "5.0.2"
   },
   "author": {
     "name": "A Strapi developer"

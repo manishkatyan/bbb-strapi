@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@strapi/design-system/Box";
 import { Table, Thead, Tbody, Tr, Td, Th } from "@strapi/design-system/Table";
 import { Typography } from "@strapi/design-system/Typography";
@@ -6,10 +6,10 @@ import { Flex } from "@strapi/design-system/Flex";
 import { VisuallyHidden } from "@strapi/design-system/VisuallyHidden";
 import { Button } from "@strapi/design-system/Button";
 import { IconButton } from "@strapi/design-system/IconButton";
-import Code from "@strapi/icons/Code";
 import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
 import Link from "@strapi/icons/Link";
+import ConfirmDialog from "./ConfirmDialog";
 
 const ClassTable = () => {
   const ROW_COUNT = 6;
@@ -34,6 +34,17 @@ const ClassTable = () => {
       viewerAccessCode: 456784,
     },
   ];
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleCloseDialog = () => {
+    setIsVisible(false);
+  };
+
+  const handleDeleteClass = (id) => {
+    console.log("delete ====>", id);
+    setIsVisible(false);
+  };
 
   return (
     <Box padding={8} paddingTop={5} background="neutral100">
@@ -70,13 +81,13 @@ const ClassTable = () => {
               <Td>
                 <Box>
                   <Typography textColor="neutral800">
-                    Moderator :
+                    Moderator&nbsp;:&nbsp;
                     {entry.moderatorAccesCode ? entry.moderatorAccesCode : "NA"}
                   </Typography>
                 </Box>
                 <Box>
                   <Typography textColor="neutral800">
-                    Viewer :
+                    Viewer&nbsp;:&nbsp;
                     {entry.viewerAccessCode ? entry.viewerAccessCode : "NA"}
                   </Typography>
                 </Box>
@@ -102,10 +113,18 @@ const ClassTable = () => {
                 <Flex>
                   <Box paddingLeft={1}>
                     <IconButton
-                      onClick={() => console.log("delete")}
+                      onClick={() => setIsVisible(true)}
                       label="Delete"
                       noBorder
                       icon={<Trash />}
+                      data-toggle="dialog"
+                      data-target={`#delete${entry.id}`}
+                    />
+                    <ConfirmDialog
+                      dialogId={`delete${entry.id}`}
+                      isVisible={isVisible}
+                      handleClose={handleCloseDialog}
+                      handleDelete={() => handleDeleteClass(entry.id)}
                     />
                   </Box>
                 </Flex>
