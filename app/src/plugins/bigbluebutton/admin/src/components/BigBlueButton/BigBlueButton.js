@@ -1,4 +1,5 @@
-import React, { useState, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
+import { Loader } from '@strapi/design-system/Loader';
 import { Box } from "@strapi/design-system/Box";
 import { Typography } from "@strapi/design-system/Typography";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
@@ -9,11 +10,8 @@ import ClassTable from "./Table";
 
 const BigBlueButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  const handleCloseModal = () => setIsVisible((prev) => !prev);
-
+  const handleCloseModal = () => {setIsVisible((prev) => !prev);console.log("Close")};
   const handleCreateClass = () => setIsVisible((prev) => !prev);
-
   return (
     <>
       <Box>
@@ -25,13 +23,7 @@ const BigBlueButton = () => {
         <Box padding={3}>
           <Divider />
         </Box>
-        <Grid
-          gap={{
-            desktop: 5,
-            tablet: 2,
-            mobile: 1,
-          }}
-        >
+        <Grid >
           <GridItem padding={1} col={7} xs={12}></GridItem>
           <GridItem padding={1} col={3} xs={12}></GridItem>
           <GridItem padding={1} col={2} xs={12}>
@@ -45,7 +37,6 @@ const BigBlueButton = () => {
             />
           </GridItem>
         </Grid>
-
         <ClassTable />
       </Box>
     </>

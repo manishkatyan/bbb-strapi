@@ -1,4 +1,4 @@
-var generateUID = require("randomstring");
+const generateUID = require("randomstring");
 
 module.exports = ({ strapi }) => ({
     async find(ctx) {
@@ -17,7 +17,7 @@ module.exports = ({ strapi }) => ({
         ctx.body = res;
     },
     async create(ctx) {
-        const uid = generateUID({length: 4, charset: 'alphabetic'} )
+        const uid = generateUID.generate({length: 4, charset: 'alphabetic'} )
         params =  ctx.request.body
         params.uid = uid
         res = await strapi.query("plugin::bigbluebutton.class").create({ data: params, populate: true })

@@ -11,18 +11,17 @@ import { Box } from "@strapi/design-system/Box";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { Switch } from "@strapi/design-system/Switch";
+import { createClass } from "../../utils/apiCalls";
 
 const Modal = ({ isVisible, handleClose, handleCreate }) => {
   const [className, setClassName] = useState('')
   const [moderatorChecked, setModeratorChecked] = useState(false);
-  const [moderatorAccessCode, setmoderatorAccessCode] = useState(false);
+  const [moderatorAccessCode, setModeratorAccessCode] = useState('');
   const [viewerChecked, setViewerChecked] = useState(false);
-  const [viewerAccessCode, setviewerAccessCode] = useState(false);
+  const [viewerAccessCode, setViewerAccessCode] = useState('');
   const [moderatorApproval, setModeratorApproval] = useState(false);
   const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
-  const [moderatorAccessCode, setModeratorAccessCode] = useState("");
-  const [viewerAccessCode, setViewerAccessCode] = useState("");
 
   const classCreateData = {
     className,
@@ -35,7 +34,15 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
     }
   }
 
+  async function handleCreateClass(data){
+    const res = await createClass(data)
+    if (res.status === 200){
+      handleClose()
+    }
+  }
+
   useEffect(() => {
+
     if (moderatorChecked && !moderatorAccessCode) {
       const accessCode = Math.random().toString().substring(2, 6);
       const code = parseInt(accessCode);
@@ -93,7 +100,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
-                    onChange={(e) => {setmoderatorAccessCode(e.target.value)}}
+                    onChange={(e) => {setModeratorAccessCode(e.target.value)}}
                     value={moderatorAccessCode}
                     size="S"
                   />
@@ -120,7 +127,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
-                    onChange={(e) => {setviewerAccessCode(e.target.value)}}
+                    onChange={(e) => {setViewerAccessCode(e.target.value)}}
                     value={viewerAccessCode}
                     size="S"
                   />
@@ -191,7 +198,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
             }
             endActions={
               <>
-                <Button onClick={handleCreate}>Create</Button>
+                <Button onClick={() => {handleCreateClass(classCreateData)}}>Create</Button>
               </>
             }
           />
