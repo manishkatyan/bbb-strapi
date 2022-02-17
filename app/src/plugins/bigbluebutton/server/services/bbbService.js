@@ -17,7 +17,7 @@ module.exports = ({ strapi }) => ({
     const meetingParams = params;
     const url = constructUrl(bbb, "create", meetingParams);
     try {
-      const bbbClass = await strapi.query('plugin::bigbluebutton.class').findOne({uid: classUID})
+      const bbbClass = await strapi.query('plugin::bigbluebutton.class').findOne({ uid: classUID })
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
       if (parsedResponse.returncode === 'SUCCESS' && parsedResponse.internalMeetingID) {
@@ -48,7 +48,7 @@ module.exports = ({ strapi }) => ({
     }
   },
   async end(meetingID, password) {
-    const url = constructUrl(bbb, "end", {meetingID, password});
+    const url = constructUrl(bbb, "end", { meetingID, password });
     try {
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);

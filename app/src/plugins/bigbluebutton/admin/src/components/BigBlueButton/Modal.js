@@ -27,16 +27,17 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
     className,
     moderatorAccessCode,
     viewerAccessCode,
-    bbbSetting: {
+    bbbSettings: {
       moderatorApproval,
       anyUserStart,
       muteViewerjoin
     }
   }
 
-  async function handleCreateClass(data){
+
+  async function handleCreateClass(data) {
     const res = await createClass(data)
-    if (res.status === 200){
+    if (res.status === 200) {
       handleClose()
     }
   }
@@ -57,9 +58,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
     } else if (!viewerChecked) {
       setViewerAccessCode("");
     }
-  }, [moderatorChecked, viewerChecked]);
-
-
+  }, [moderatorChecked, viewerChecked, isVisible]);
   return (
     <>
       {isVisible && (
@@ -83,7 +82,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     placeholder="Enter a class Name"
                     aria-label="Class"
                     name="className"
-                    onChange={(e) => {setClassName(e.target.value)}}
+                    onChange={(e) => { setClassName(e.target.value) }}
                   />
                 </Box>
               </GridItem>
@@ -100,7 +99,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
-                    onChange={(e) => {setModeratorAccessCode(e.target.value)}}
+                    onChange={(e) => { setModeratorAccessCode(e.target.value) }}
                     value={moderatorAccessCode}
                     size="S"
                   />
@@ -127,7 +126,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
-                    onChange={(e) => {setViewerAccessCode(e.target.value)}}
+                    onChange={(e) => { setViewerAccessCode(e.target.value) }}
                     value={viewerAccessCode}
                     size="S"
                   />
@@ -198,7 +197,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
             }
             endActions={
               <>
-                <Button onClick={() => {handleCreateClass(classCreateData)}}>Create</Button>
+                <Button onClick={() => { handleCreateClass(classCreateData) }}>Create</Button>
               </>
             }
           />

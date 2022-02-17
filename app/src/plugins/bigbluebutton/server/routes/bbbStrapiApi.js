@@ -54,22 +54,22 @@ module.exports = {
 
         {
             method: "POST",
-            path: "/class/bbb/start/:uid",
+            path: "/class/start/:uid",
             handler: "bbbController.startBBB",
         },
         {
             method: "POST",
-            path: "/class/bbb/join",
+            path: "/class/join",
             handler: "bbbController.joinBBB",
         },
         {
             method: "GET",
-            path: "/class/bbb/status/:meetingId",
+            path: "/class/status/:meetingId",
             handler: "bbbController.isMeetingRunning",
         },
         {
             method: "POST",
-            path: "/class/bbb/end",
+            path: "/class/end",
             handler: "bbbController.endMeeting",
         },
 

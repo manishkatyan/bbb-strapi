@@ -7,7 +7,7 @@ import { Typography } from "@strapi/design-system/Typography";
 import { Button } from "@strapi/design-system/Button";
 import Trash from "@strapi/icons/Trash";
 
-const ConfirmDialog = ({ dialogId, isVisible, handleClose, handleDelete,}) => {
+const ConfirmDialog = ({ dialogId, isVisible, handleClose, handleDelete, }) => {
   return (
     <>
       <Dialog

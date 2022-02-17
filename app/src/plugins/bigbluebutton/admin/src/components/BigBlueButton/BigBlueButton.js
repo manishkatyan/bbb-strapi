@@ -1,5 +1,4 @@
 import React, { useState, useEffect, memo } from "react";
-import { Loader } from '@strapi/design-system/Loader';
 import { Box } from "@strapi/design-system/Box";
 import { Typography } from "@strapi/design-system/Typography";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
@@ -7,11 +6,22 @@ import { Button } from "@strapi/design-system/Button";
 import { Divider } from "@strapi/design-system/Divider";
 import Modal from "./Modal";
 import ClassTable from "./Table";
+import { getClass } from "../../utils/apiCalls";
 
 const BigBlueButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const handleCloseModal = () => {setIsVisible((prev) => !prev);console.log("Close")};
-  const handleCreateClass = () => setIsVisible((prev) => !prev);
+  const [action, setAction] = useState('');
+  const [classData, setClassData] = useState([]);
+  const handleCloseModal = () => { setIsVisible(false); console.log("Close") };
+  const handleCreateClass = () => setIsVisible(true);
+  const deleteAction = () => { setAction('delete') }
+
+  useEffect(async () => {
+    const res = await getClass()
+    if (res.status === 200) {
+      setClassData(res.data)
+    }
+  }, [isVisible, action]);
   return (
     <>
       <Box>
@@ -37,7 +47,8 @@ const BigBlueButton = () => {
             />
           </GridItem>
         </Grid>
-        <ClassTable />
+
+        {classData && classData.length > 0 ? <ClassTable classData={classData} deleteAction={deleteAction} /> : ""}
       </Box>
     </>
   );
