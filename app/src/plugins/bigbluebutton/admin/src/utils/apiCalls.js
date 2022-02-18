@@ -12,7 +12,9 @@ export async function getClassById(classId) {
 }
 
 export async function createClass(classCreateData) {
+    console.log("classCreateData: ", classCreateData)
     const response = await axios.post(`/api/bigbluebutton/class`, classCreateData)
+    console.log("res: ", response.data)
     return response
 }
 
@@ -26,12 +28,17 @@ export async function deleteClass(classId) {
 export async function startBBB(uid, bbbParams, fullName) {
     const startClassResponse = await axios.post(`/api/bigbluebutton/class/start/${uid}`, bbbParams)
     if (startClassResponse.status === 200) {
-        const joinResponse = await axios.post(`/api/bigbluebutton/class/join/`, {
-            fullName,
-            "meetingID": bbbParams.meetingID,
-            "password": bbbParams.moderatorPW
-        })
+        const joinResponse = await joinBBB(fullName, bbbParams)
         return joinResponse
     }
     return { error: true }
+}
+
+export async function joinBBB(fullName, bbbParams) {
+    const joinResponse = await axios.post(`/api/bigbluebutton/class/join/`, {
+        fullName,
+        "meetingID": bbbParams.meetingID,
+        "password": bbbParams.moderatorPW
+    })
+    return joinResponse
 }

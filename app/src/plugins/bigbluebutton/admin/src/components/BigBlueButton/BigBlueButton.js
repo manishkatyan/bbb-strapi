@@ -10,11 +10,11 @@ import { getClass } from "../../utils/apiCalls";
 
 const BigBlueButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState(0);
   const [classData, setClassData] = useState([]);
-  const handleCloseModal = () => { setIsVisible(false); console.log("Close") };
+  const handleCloseModal = () => { setIsVisible(false); };
   const handleCreateClass = () => setIsVisible(true);
-  const deleteAction = () => { setAction('delete') }
+  const deleteAction = () => { setAction(action + 1) }
 
   useEffect(async () => {
     const res = await getClass()

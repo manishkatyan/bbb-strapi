@@ -10,7 +10,13 @@ import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
 import Link from "@strapi/icons/Link";
 import ConfirmDialog from "./ConfirmDialog";
-import { startBBB, deleteClass } from "../../utils/apiCalls";
+import { startBBB, joinBBB, deleteClass, isClassRunning } from "../../utils/apiCalls";
+
+const runningClass = (bbbId) => {
+  // const running = await isClassRunning(bbbId)
+  return false
+  // return running
+}
 
 const ClassTable = ({ classData, deleteAction }) => {
   const ROW_COUNT = 6;
@@ -24,6 +30,18 @@ const ClassTable = ({ classData, deleteAction }) => {
   const handleCloseDialog = () => {
     setIsVisible(false);
   };
+
+  const handleJoinClass = async (fullName, classParams) => {
+    const data = {
+      fullName,
+      meetingID: classParams.bbbId,
+      password: classParams.moderatorAccessCode ? classParams.moderatorAccessCode : "mp"
+    }
+    const res = await joinBBB(fullName, data)
+    if (res.status === 200) {
+      window.location.replace(res.data.joinURL)
+    }
+  }
 
   const handleStartClass = async (classParams) => {
     const data = {
@@ -94,7 +112,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                   <Box>
                     <Typography textColor="neutral800">
                       Moderator&nbsp;:&nbsp;
-                      {bbbClass.moderatorAccesCode ? bbbClass.moderatorAccesCode : "NA"}
+                      {bbbClass.moderatorAccessCode ? bbbClass.moderatorAccessCode : "NA"}
                     </Typography>
                   </Box>
                   <Box>
@@ -108,11 +126,18 @@ const ClassTable = ({ classData, deleteAction }) => {
                   <Flex>
                     <Box>
                       <Typography textColor="neutral800">
-                        <Button
-                          endIcon={<Play />}
-                          onClick={() => handleStartClass(bbbClass)}>
-                          Start Class
-                        </Button>
+                        {runningClass(bbbClass.bbbId) ? (
+                          <Button
+                            endIcon={<Play />}
+                            onClick={() => handleJoinClass("Admin", bbbClass)}>
+                            Join Class
+                          </Button>) : (
+                          <Button
+                            endIcon={<Play />}
+                            onClick={() => handleStartClass(bbbClass)}>
+                            Start Class
+                          </Button>
+                        )}
                       </Typography>
                     </Box>
 

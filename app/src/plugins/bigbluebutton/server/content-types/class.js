@@ -26,7 +26,7 @@ module.exports = {
         },
         uid: {
             "type": "uid"
-          },
+        },
         bbbId: {
             type: 'string',
             min: 1,

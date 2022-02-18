@@ -35,10 +35,19 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
   }
 
 
+
   async function handleCreateClass(data) {
     const res = await createClass(data)
     if (res.status === 200) {
       handleClose()
+      setClassName('')
+      setModeratorAccessCode('')
+      setModeratorChecked(false)
+      setViewerChecked(false)
+      setViewerAccessCode('')
+      setModeratorApproval(false)
+      setAnyUserStart(false)
+      setMuteViewerJoin(false)
     }
   }
 
