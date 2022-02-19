@@ -18,7 +18,7 @@ const App = () => {
       <Switch>
         <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
         <Route
-          path={`/plugins/${pluginId}/join/:classId`}
+          path={`/plugins/${pluginId}/join/:userRole/:classUid`}
           component={JoinPage}
         />
         <Route component={NotFound} />

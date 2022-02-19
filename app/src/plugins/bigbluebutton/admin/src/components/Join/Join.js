@@ -10,13 +10,16 @@ import { getClassById } from "../../utils/apiCalls";
 import { startBBB } from "../../utils/apiCalls";
 
 const Join = () => {
-  const { classId } = useParams();
+  const { userRole, classUid } = useParams();
 
   useEffect(async () => {
-    const response = await getClassById(classId);
+    const response = await getClassById(classUid);
 
     if (response.status === 200) {
       setClassDetail(response.data);
+      userRole === "moderator"
+        ? setAccessCode(response.data.moderatorAccessCode)
+        : "";
     }
   }, []);
 

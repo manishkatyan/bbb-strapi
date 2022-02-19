@@ -128,7 +128,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                             </Button>
                           ) : (
                             <Link
-                              to={`${url}/join/${bbbClass.id}`}
+                              to={`${url}/join/moderator/${bbbClass.uid}`}
                               style={{ textDecoration: "none" }}
                             >
                               <Button endIcon={<Play />}>Start Class</Button>
