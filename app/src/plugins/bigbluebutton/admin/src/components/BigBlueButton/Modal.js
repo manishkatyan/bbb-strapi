@@ -14,14 +14,17 @@ import { Switch } from "@strapi/design-system/Switch";
 import { createClass } from "../../utils/apiCalls";
 
 const Modal = ({ isVisible, handleClose, handleCreate }) => {
-  const [className, setClassName] = useState('')
+  const [className, setClassName] = useState("");
   const [moderatorChecked, setModeratorChecked] = useState(false);
-  const [moderatorAccessCode, setModeratorAccessCode] = useState('');
+  const [moderatorAccessCode, setModeratorAccessCode] = useState("");
   const [viewerChecked, setViewerChecked] = useState(false);
-  const [viewerAccessCode, setViewerAccessCode] = useState('');
+  const [viewerAccessCode, setViewerAccessCode] = useState("");
   const [moderatorApproval, setModeratorApproval] = useState(false);
   const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
+  const [classNameError, setClassNameError] = useState("");
+  const [moderatorCodeError, setModeratorCodeError] = useState("");
+  const [viewerCodeError, setViewerCodeError] = useState("");
 
   const classCreateData = {
     className,
@@ -30,29 +33,38 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
     bbbSettings: {
       moderatorApproval,
       anyUserStart,
-      muteViewerjoin
-    }
-  }
-
-
+      muteViewerjoin,
+    },
+  };
 
   async function handleCreateClass(data) {
-    const res = await createClass(data)
-    if (res.status === 200) {
-      handleClose()
-      setClassName('')
-      setModeratorAccessCode('')
-      setModeratorChecked(false)
-      setViewerChecked(false)
-      setViewerAccessCode('')
-      setModeratorApproval(false)
-      setAnyUserStart(false)
-      setMuteViewerJoin(false)
+    if (!className && !moderatorAccessCode && !viewerAccessCode) {
+      setClassNameError("Class Name is required");
+      setModeratorCodeError("Moderator Access code is required");
+      setViewerCodeError("Viewer Access code is required");
+    } else if (!className) {
+      setClassNameError("Class Name is required");
+    } else if (!moderatorAccessCode) {
+      setModeratorCodeError("Moderator Access code is required");
+    } else if (!viewerAccessCode) {
+      setViewerCodeError("Viewer Access code is required");
+    } else {
+      const res = await createClass(data);
+      if (res.status === 200) {
+        handleClose();
+        setClassName("");
+        setModeratorAccessCode("");
+        setModeratorChecked(false);
+        setViewerChecked(false);
+        setViewerAccessCode("");
+        setModeratorApproval(false);
+        setAnyUserStart(false);
+        setMuteViewerJoin(false);
+      }
     }
   }
 
   useEffect(() => {
-
     if (moderatorChecked && !moderatorAccessCode) {
       const accessCode = Math.random().toString().substring(2, 6);
       const code = parseInt(accessCode);
@@ -91,7 +103,11 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     placeholder="Enter a class Name"
                     aria-label="Class"
                     name="className"
-                    onChange={(e) => { setClassName(e.target.value) }}
+                    error={classNameError ? classNameError : ""}
+                    onChange={(e) => {
+                      setClassName(e.target.value);
+                      setClassNameError("");
+                    }}
                   />
                 </Box>
               </GridItem>
@@ -108,7 +124,11 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
-                    onChange={(e) => { setModeratorAccessCode(e.target.value) }}
+                    error={moderatorCodeError ? moderatorCodeError : ""}
+                    onChange={(e) => {
+                      setModeratorAccessCode(e.target.value);
+                      setModeratorCodeError("");
+                    }}
                     value={moderatorAccessCode}
                     size="S"
                   />
@@ -119,7 +139,10 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                   <Switch
                     label="Activate moderator access code"
                     selected={moderatorChecked}
-                    onChange={() => setModeratorChecked((s) => !s)}
+                    onChange={() => {
+                      setModeratorChecked((s) => !s);
+                      setModeratorCodeError("");
+                    }}
                   />
                 </Box>
               </GridItem>
@@ -135,7 +158,11 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
-                    onChange={(e) => { setViewerAccessCode(e.target.value) }}
+                    error={viewerCodeError ? viewerCodeError : ""}
+                    onChange={(e) => {
+                      setViewerAccessCode(e.target.value);
+                      setViewerCodeError("");
+                    }}
                     value={viewerAccessCode}
                     size="S"
                   />
@@ -146,7 +173,10 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                   <Switch
                     label="Activate viewer access code"
                     selected={viewerChecked}
-                    onChange={() => setViewerChecked((s) => !s)}
+                    onChange={() => {
+                      setViewerChecked((s) => !s);
+                      setViewerCodeError("");
+                    }}
                   />
                 </Box>
               </GridItem>
@@ -206,7 +236,13 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
             }
             endActions={
               <>
-                <Button onClick={() => { handleCreateClass(classCreateData) }}>Create</Button>
+                <Button
+                  onClick={() => {
+                    handleCreateClass(classCreateData);
+                  }}
+                >
+                  Create
+                </Button>
               </>
             }
           />
