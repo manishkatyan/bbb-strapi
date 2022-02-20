@@ -1,7 +1,6 @@
 "use strict";
 
 module.exports = {
-  type: "content-api",
   routes: [
     {
       method: "GET",
@@ -12,6 +11,11 @@ module.exports = {
       method: "GET",
       path: "/class/:uid",
       handler: "classController.findOne",
+    },
+    {
+      method: "GET",
+      path: "/class/join/invite/:uid",
+      handler: "classController.invite",
     },
     {
       method: "POST",

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Box } from "@strapi/design-system/Box";
+import copy from "copy-to-clipboard";
 import { Table, Thead, Tbody, Tr, Td, Th } from "@strapi/design-system/Table";
 import { Typography } from "@strapi/design-system/Typography";
 import { Flex } from "@strapi/design-system/Flex";
 import { VisuallyHidden } from "@strapi/design-system/VisuallyHidden";
 import { Button } from "@strapi/design-system/Button";
 import { IconButton } from "@strapi/design-system/IconButton";
+import { Alert } from '@strapi/design-system/Alert';
 import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
 import LinkIcon from "./LinkIcon";
@@ -27,19 +29,26 @@ const runningClass = (bbbId) => {
 
 const ClassTable = ({ classData, deleteAction }) => {
   let { url } = useRouteMatch();
-
+  const [showAlert, setShowAlert] = useState(false)
   const ROW_COUNT = 6;
   const COL_COUNT = 10;
   const [isVisible, setIsVisible] = useState(false);
   const [classId, setClassId] = useState(false);
 
-  useEffect(async () => {}, [isVisible, classData]);
+  useEffect(async () => { }, [isVisible, classData]);
 
   const handleCloseDialog = () => {
     setIsVisible(false);
   };
 
-  const handleJoinClass = async (fullName, classParams) => {
+  const handleInvite = (bbbClassdata) => {
+    const url = `${window.location.origin}/bigbluebutton/class/join/invite/${bbbClassdata.uid}`
+    const inviteText = `Join BigBlueButton.\n${url} \nModerator Code: ${bbbClassdata.moderatorAccessCode}\nViewer Code: ${bbbClassdata.viewerAccessCode}`
+    copy(inviteText)
+    setShowAlert(true)
+  }
+
+  const handleJoinClass = async (uid, fullName, classParams) => {
     const data = {
       fullName,
       meetingID: classParams.bbbId,
@@ -47,7 +56,7 @@ const ClassTable = ({ classData, deleteAction }) => {
         ? classParams.moderatorAccessCode
         : "mp",
     };
-    const res = await joinBBB(fullName, data);
+    const res = await joinBBB(uid, fullName, data);
     if (res.status === 200) {
       window.location.replace(res.data.joinURL);
     }
@@ -62,6 +71,7 @@ const ClassTable = ({ classData, deleteAction }) => {
   return (
     <>
       <Box padding={8} paddingTop={5} background="neutral100">
+        {showAlert ? <Alert style={{ marginBottom: "10px;" }} closeLabel="Close alert" variant="success" title="Invite" onClose={() => { setShowAlert(false) }}>Invite link has been copied to Clipboard.</Alert> : ''}
         <Table colCount={COL_COUNT} rowCount={ROW_COUNT}>
           <Thead>
             <Tr>
@@ -122,7 +132,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                           {runningClass(bbbClass.bbbId) ? (
                             <Button
                               endIcon={<Play />}
-                              onClick={() => handleJoinClass("Admin", bbbClass)}
+                              onClick={() => handleJoinClass(bbbClass.uid, "Admin", bbbClass)}
                             >
                               Join Class
                             </Button>
@@ -139,7 +149,7 @@ const ClassTable = ({ classData, deleteAction }) => {
 
                       <Box paddingLeft={2}>
                         <Typography textColor="neutral800">
-                          <Button variant="secondary" endIcon={<LinkIcon />}>
+                          <Button variant="secondary" onClick={() => { handleInvite(bbbClass) }} endIcon={<LinkIcon />}>
                             Invite
                           </Button>
                         </Typography>

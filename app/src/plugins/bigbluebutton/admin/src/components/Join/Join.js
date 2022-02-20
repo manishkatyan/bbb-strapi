@@ -6,14 +6,14 @@ import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Button } from "@strapi/design-system/Button";
 import { Divider } from "@strapi/design-system/Divider";
-import { getClassById } from "../../utils/apiCalls";
+import { getClassByUID } from "../../utils/apiCalls";
 import { startBBB } from "../../utils/apiCalls";
 
 const Join = () => {
   const { userRole, classUid } = useParams();
 
   useEffect(async () => {
-    const response = await getClassById(classUid);
+    const response = await getClassByUID(classUid);
 
     if (response.status === 200) {
       setClassDetail(response.data);

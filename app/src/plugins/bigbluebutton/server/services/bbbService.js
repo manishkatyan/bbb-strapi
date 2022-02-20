@@ -1,4 +1,5 @@
 'use strict';
+
 const axios = require("axios");
 const querystring = require("querystring");
 const crypto = require("hash.js");
@@ -17,9 +18,13 @@ module.exports = ({ strapi }) => ({
     const meetingParams = params;
     const url = constructUrl(bbb, "create", meetingParams);
     try {
-      const bbbClass = await strapi.query('plugin::bigbluebutton.class').findOne({ uid: classUID })
+      const bbbClass = await strapi
+        .query("plugin::bigbluebutton.class")
+        .findOne({ where: { uid: classUID } });
+
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
+
       if (parsedResponse.returncode === 'SUCCESS' && parsedResponse.internalMeetingID) {
         await strapi.query('plugin::bigbluebutton.session').create({ data: { bbbRecordId: parsedResponse.internalMeetingID, isRecorded: meetingParams.record, isRecoringAvailable: false, class: bbbClass.id } })
       }
@@ -29,8 +34,12 @@ module.exports = ({ strapi }) => ({
       return { returncode: "FAILED" };
     }
   },
-  async join(params) {
+  async join(uid, params) {
     const joinMeetingParams = params;
+    const bbbClass = await strapi
+      .query("plugin::bigbluebutton.class")
+      .findOne({ where: { uid } });
+    joinMeetingParams.meetingID = bbbClass.bbbId
     const joinURL = constructUrl(bbb, "join", joinMeetingParams);
     return joinURL;
   },

@@ -1,6 +1,5 @@
 'use strict';
-
 const bbbService = require('./bbbService');
-module.exports = {
+module.exports = ({
   bbbService,
-};
+});
