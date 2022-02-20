@@ -71,7 +71,7 @@ const ClassTable = ({ classData, deleteAction }) => {
   return (
     <>
       <Box padding={8} paddingTop={5} background="neutral100">
-        {showAlert ? <Alert style={{ marginBottom: "10px;" }} closeLabel="Close alert" variant="success" title="Invite" onClose={() => { setShowAlert(false) }}>Invite link has been copied to Clipboard.</Alert> : ''}
+        {showAlert ? <Alert closeLabel="Close alert" variant="success" title="" onClose={() => { setShowAlert(false) }}>Invite link has been copied to Clipboard.</Alert> : ''}
         <Table colCount={COL_COUNT} rowCount={ROW_COUNT}>
           <Thead>
             <Tr>
