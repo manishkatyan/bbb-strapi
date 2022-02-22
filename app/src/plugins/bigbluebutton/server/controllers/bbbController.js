@@ -21,6 +21,20 @@ module.exports = {
         // ctx.redirect(joinMeetingURL)
 
     },
+    validateJoin: async (ctx) => {
+        const { uid } = ctx.params
+        const meetingParams = ctx.request.body
+        const classdata = await strapi
+            .query("plugin::bigbluebutton.class")
+            .findOne({
+                where: { uid }
+            });
+        if (meetingParams.code == classdata.moderatorAccessCode || meetingParams.code == classdata.viewerAccessCode) {
+            ctx.send({ isValid: true }, 200)
+        } else {
+            ctx.send({ isValid: false }, 200)
+        }
+    },
 
     isMeetingRunning: async (ctx) => {
         const { meetingId } = ctx.params

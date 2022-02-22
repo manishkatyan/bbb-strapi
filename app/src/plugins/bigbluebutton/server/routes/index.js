@@ -1,8 +1,5 @@
 'use strict';
 
-// module.exports = {
-//   'content-api': require('./bbbStrapiApi'),
-// };
 module.exports = [
   {
     method: "GET",
@@ -88,6 +85,14 @@ module.exports = [
   },
   {
     method: "POST",
+    path: "/class/auth/join/:uid",
+    handler: "bbbController.validateJoin",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "POST",
     path: "/class/join/:uid",
     handler: "bbbController.joinBBB",
     config: {
@@ -96,7 +101,7 @@ module.exports = [
   },
   {
     method: "GET",
-    path: "/class/join/invite/:uid",
+    path: "/class/join/:uid",
     handler: "classController.invite",
     config: {
       auth: false

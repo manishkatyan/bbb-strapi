@@ -21,12 +21,6 @@ import {
   isClassRunning,
 } from "../../utils/apiCalls";
 
-const runningClass = (bbbId) => {
-  // const running = await isClassRunning(bbbId)
-  return false;
-  // return running
-};
-
 const ClassTable = ({ classData, deleteAction }) => {
   let { url } = useRouteMatch();
   const [showAlert, setShowAlert] = useState(false)
@@ -35,6 +29,7 @@ const ClassTable = ({ classData, deleteAction }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [classId, setClassId] = useState(false);
 
+
   useEffect(async () => { }, [isVisible, classData]);
 
   const handleCloseDialog = () => {
@@ -42,8 +37,8 @@ const ClassTable = ({ classData, deleteAction }) => {
   };
 
   const handleInvite = (bbbClassdata) => {
-    const url = `${window.location.origin}/bigbluebutton/class/join/invite/${bbbClassdata.uid}`
-    const inviteText = `Join BigBlueButton.\n${url} \nModerator Code: ${bbbClassdata.moderatorAccessCode}\nViewer Code: ${bbbClassdata.viewerAccessCode}`
+    const url = `${window.location.origin}/bigbluebutton/class/join/${bbbClassdata.uid}`
+    const inviteText = `Join ${bbbClassdata.className}.\n${url} \nViewer Code: ${bbbClassdata.viewerAccessCode}`
     copy(inviteText)
     setShowAlert(true)
   }
@@ -129,21 +124,12 @@ const ClassTable = ({ classData, deleteAction }) => {
                     <Flex>
                       <Box>
                         <Typography textColor="neutral800">
-                          {runningClass(bbbClass.bbbId) ? (
-                            <Button
-                              endIcon={<Play />}
-                              onClick={() => handleJoinClass(bbbClass.uid, "Admin", bbbClass)}
-                            >
-                              Join Class
-                            </Button>
-                          ) : (
-                            <Link
-                              to={`${url}/join/moderator/${bbbClass.uid}`}
-                              style={{ textDecoration: "none" }}
-                            >
-                              <Button endIcon={<Play />}>Start Class</Button>
-                            </Link>
-                          )}
+                          <Link
+                            to={`${url}/join/moderator/${bbbClass.uid}`}
+                            style={{ textDecoration: "none" }}
+                          >
+                            <Button endIcon={<Play />}>Start Class</Button>
+                          </Link>
                         </Typography>
                       </Box>
 

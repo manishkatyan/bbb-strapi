@@ -35,8 +35,7 @@ module.exports = ({ strapi }) => ({
 
     const filledLayout = _.template(layout)({
       uid: uid,
-      modCode: Buffer.from(classdata.moderatorAccessCode).toString('base64'),
-      attCode: Buffer.from(classdata.viewerAccessCode).toString('base64'),
+      className: classdata.className,
       backendUrl: strapi.config.server.url,
     });
 
