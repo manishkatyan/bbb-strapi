@@ -3,6 +3,8 @@ import pluginPkg from "../../package.json";
 import pluginId from "./pluginId";
 import Initializer from "./components/Initializer";
 import PluginIcon from "./components/PluginIcon";
+import getTrad from "./utils/getTrad";
+// import pluginPermissions from "./permission";
 
 const name = pluginPkg.strapi.name;
 
@@ -30,6 +32,33 @@ export default {
         // },
       ],
     });
+    app.createSettingSection(
+      {
+        id: pluginId,
+        intlLabel: {
+          id: `${pluginId}.plugin.name`,
+          defaultMessage: "BigBlueButton",
+        },
+      },
+      [
+        {
+          intlLabel: {
+            id: `${pluginId}.plugin.name`,
+            defaultMessage: "Configuration",
+          },
+          id: "bigbluebutton-Configuration",
+          to: `/settings/${pluginId}`,
+          // permissions: pluginPermissions.settingsRoles,
+          Component: async () => {
+            const component = await import(
+              /* webpackChunkName: "bigbluebutton-page" */ "./pages/Settings"
+            );
+
+            return component;
+          },
+        },
+      ]
+    );
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
