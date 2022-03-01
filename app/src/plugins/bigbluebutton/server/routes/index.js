@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = [
   {
@@ -6,16 +6,16 @@ module.exports = [
     path: "/class",
     handler: "classController.find",
     config: {
-      auth: false
-    }
+      auth: false,
+    },
   },
   {
     method: "GET",
     path: "/class/:uid",
     handler: "classController.findOne",
     config: {
-      auth: false
-    }
+      auth: false,
+    },
   },
   {
     method: "POST",
@@ -23,7 +23,7 @@ module.exports = [
     handler: "classController.create",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "PUT",
@@ -31,7 +31,7 @@ module.exports = [
     handler: "classController.update",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "DELETE",
@@ -39,22 +39,22 @@ module.exports = [
     handler: "classController.delete",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "GET",
     path: "/session",
     handler: "sessionController.find",
     config: {
-      auth: false
-    }
+      auth: false,
+    },
   },
   {
     method: "GET",
     path: "/session/:id",
     handler: "sessionController.findOne",
     config: {
-      auth: false
+      auth: false,
     },
   },
   {
@@ -63,14 +63,14 @@ module.exports = [
     handler: "sessionController.create",
     config: {
       auth: false,
-    }
+    },
   },
   {
     method: "DELETE",
     path: "/session/:id",
     handler: "sessionController.delete",
     config: {
-      auth: false
+      auth: false,
     },
   },
   // bbb action routes
@@ -96,7 +96,7 @@ module.exports = [
     path: "/class/join/:uid",
     handler: "bbbController.joinBBB",
     config: {
-      auth: false
+      auth: false,
     },
   },
   {
@@ -104,15 +104,15 @@ module.exports = [
     path: "/class/join/:uid",
     handler: "classController.invite",
     config: {
-      auth: false
+      auth: false,
     },
   },
   {
     method: "GET",
-    path: "/class/status/:meetingId",
+    path: "/class/status/:uid",
     handler: "bbbController.isMeetingRunning",
     config: {
-      auth: false
+      auth: false,
     },
   },
   {
@@ -120,7 +120,31 @@ module.exports = [
     path: "/class/end",
     handler: "bbbController.endMeeting",
     config: {
-      auth: false
+      auth: false,
     },
   },
-]
+  {
+    method: "POST",
+    path: "/check/bbb",
+    handler: "bbbController.checkBigBlueButtonUrlAndSecret",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "PUT",
+    path: "/updateSettings",
+    handler: "bbbController.updateSetting",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "GET",
+    path: "/getSettings",
+    handler: "bbbController.getSetting",
+    config: {
+      auth: false,
+    },
+  },
+];

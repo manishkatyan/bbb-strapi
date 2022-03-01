@@ -11,23 +11,24 @@ import { startBBB } from "../../utils/apiCalls";
 
 const Join = () => {
   const { userRole, classUid } = useParams();
+  const [name, setName] = useState("");
+  const [accessCode, setAccessCode] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [codeError, setCodeError] = useState("");
+  const [classDetail, setClassDetail] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(async () => {
     const response = await getClassByUID(classUid);
 
     if (response.status === 200) {
       setClassDetail(response.data);
+
       userRole === "moderator"
         ? setAccessCode(response.data.moderatorAccessCode)
         : "";
     }
   }, []);
-
-  const [name, setName] = useState("");
-  const [accessCode, setAccessCode] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [codeError, setCodeError] = useState("");
-  const [classDetail, setClassDetail] = useState({});
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -40,18 +41,23 @@ const Join = () => {
   };
 
   const handleJoinClass = async (classParams) => {
+    setIsLoading(true);
     if (!name && !accessCode) {
       setNameError("Name is required");
       setCodeError("Access code is required");
+      setIsLoading(false);
     } else if (!name) {
       setNameError("Name is required");
+      setIsLoading(false);
     } else if (!accessCode) {
       setCodeError("Access code is required");
+      setIsLoading(false);
     } else if (
       accessCode !== classParams.moderatorAccessCode &&
       accessCode !== classParams.viewerAccessCode
     ) {
       setCodeError("Please enter valid access code");
+      setIsLoading(false);
     } else {
       const data = {
         name: classParams.className,
@@ -79,6 +85,7 @@ const Join = () => {
       const res = await startBBB(classParams.uid, data, name);
       if (res.status === 200) {
         window.location.replace(res.data.joinURL);
+        setIsLoading(false);
       }
     }
   };
@@ -86,7 +93,9 @@ const Join = () => {
   return (
     <Box>
       <Box paddingTop={8} paddingLeft={8}>
-        <Typography variant="alpha">Join BigBlueButton Class</Typography>
+        <Typography variant="alpha">
+          Join {classDetail.className} Class
+        </Typography>
       </Box>
       <Box padding={3}>
         <Divider />
@@ -131,6 +140,7 @@ const Join = () => {
                 <Box padding={4}>
                   <Button
                     variant="default"
+                    loading={isLoading}
                     onClick={() => handleJoinClass(classDetail)}
                   >
                     Join Class

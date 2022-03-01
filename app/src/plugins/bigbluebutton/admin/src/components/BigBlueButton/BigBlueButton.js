@@ -12,14 +12,18 @@ const BigBlueButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState(0);
   const [classData, setClassData] = useState([]);
-  const handleCloseModal = () => { setIsVisible(false); };
+  const handleCloseModal = () => {
+    setIsVisible(false);
+  };
   const handleCreateClass = () => setIsVisible(true);
-  const deleteAction = () => { setAction(action + 1) }
+  const deleteAction = () => {
+    setAction(action + 1);
+  };
 
   useEffect(async () => {
-    const res = await getClass()
+    const res = await getClass();
     if (res.status === 200) {
-      setClassData(res.data)
+      setClassData(res.data);
     }
   }, [isVisible, action]);
   return (
@@ -29,11 +33,25 @@ const BigBlueButton = () => {
           <Typography variant="alpha">
             Manage BigBlueButton Online Classes
           </Typography>
+          <Box>
+            <Typography variant="omega">
+              Enter your BigBlueButton URL and Secret below to connect to it. In
+              case you don&apos;t have one, create a free trial account &nbsp;
+              <a
+                href="https://higheredlab.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                here
+              </a>
+              .
+            </Typography>
+          </Box>
         </Box>
         <Box padding={3}>
           <Divider />
         </Box>
-        <Grid >
+        <Grid>
           <GridItem padding={1} col={7} xs={12}></GridItem>
           <GridItem padding={1} col={3} xs={12}></GridItem>
           <GridItem padding={1} col={2} xs={12}>
@@ -48,7 +66,11 @@ const BigBlueButton = () => {
           </GridItem>
         </Grid>
 
-        {classData && classData.length > 0 ? <ClassTable classData={classData} deleteAction={deleteAction} /> : ""}
+        {classData && classData.length > 0 ? (
+          <ClassTable classData={classData} deleteAction={deleteAction} />
+        ) : (
+          ""
+        )}
       </Box>
     </>
   );

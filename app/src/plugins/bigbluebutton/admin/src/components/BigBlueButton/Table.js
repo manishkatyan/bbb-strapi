@@ -8,53 +8,33 @@ import { Flex } from "@strapi/design-system/Flex";
 import { VisuallyHidden } from "@strapi/design-system/VisuallyHidden";
 import { Button } from "@strapi/design-system/Button";
 import { IconButton } from "@strapi/design-system/IconButton";
-import { Alert } from '@strapi/design-system/Alert';
+import { Alert } from "@strapi/design-system/Alert";
 import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
 import LinkIcon from "./LinkIcon";
 import ConfirmDialog from "./ConfirmDialog";
 
-import {
-  startBBB,
-  joinBBB,
-  deleteClass,
-  isClassRunning,
-} from "../../utils/apiCalls";
+import { deleteClass } from "../../utils/apiCalls";
 
 const ClassTable = ({ classData, deleteAction }) => {
   let { url } = useRouteMatch();
-  const [showAlert, setShowAlert] = useState(false)
+  const [showAlert, setShowAlert] = useState(false);
   const ROW_COUNT = 6;
   const COL_COUNT = 10;
   const [isVisible, setIsVisible] = useState(false);
   const [classId, setClassId] = useState(false);
 
-
-  useEffect(async () => { }, [isVisible, classData]);
+  useEffect(async () => {}, [isVisible, classData]);
 
   const handleCloseDialog = () => {
     setIsVisible(false);
   };
 
   const handleInvite = (bbbClassdata) => {
-    const url = `${window.location.origin}/bigbluebutton/class/join/${bbbClassdata.uid}`
-    const inviteText = `Join ${bbbClassdata.className}.\n${url} \nViewer Code: ${bbbClassdata.viewerAccessCode}`
-    copy(inviteText)
-    setShowAlert(true)
-  }
-
-  const handleJoinClass = async (uid, fullName, classParams) => {
-    const data = {
-      fullName,
-      meetingID: classParams.bbbId,
-      password: classParams.moderatorAccessCode
-        ? classParams.moderatorAccessCode
-        : "mp",
-    };
-    const res = await joinBBB(uid, fullName, data);
-    if (res.status === 200) {
-      window.location.replace(res.data.joinURL);
-    }
+    const url = `${window.location.origin}/bigbluebutton/class/join/${bbbClassdata.uid}`;
+    const inviteText = `Join ${bbbClassdata.className}.\n${url} \nAccess Code: ${bbbClassdata.viewerAccessCode}`;
+    copy(inviteText);
+    setShowAlert(true);
   };
 
   const handleDeleteClass = async (id) => {
@@ -66,7 +46,22 @@ const ClassTable = ({ classData, deleteAction }) => {
   return (
     <>
       <Box padding={8} paddingTop={5} background="neutral100">
-        {showAlert ? <Alert closeLabel="Close alert" variant="success" title="" onClose={() => { setShowAlert(false) }}>Invite link has been copied to Clipboard.</Alert> : ''}
+        <Box paddingBottom={2}>
+          {showAlert ? (
+            <Alert
+              closeLabel="Close alert"
+              variant="success"
+              title=""
+              onClose={() => {
+                setShowAlert(false);
+              }}
+            >
+              Invite link has been copied to Clipboard.
+            </Alert>
+          ) : (
+            ""
+          )}
+        </Box>
         <Table colCount={COL_COUNT} rowCount={ROW_COUNT}>
           <Thead>
             <Tr>
@@ -135,7 +130,13 @@ const ClassTable = ({ classData, deleteAction }) => {
 
                       <Box paddingLeft={2}>
                         <Typography textColor="neutral800">
-                          <Button variant="secondary" onClick={() => { handleInvite(bbbClass) }} endIcon={<LinkIcon />}>
+                          <Button
+                            variant="secondary"
+                            onClick={() => {
+                              handleInvite(bbbClass);
+                            }}
+                            endIcon={<LinkIcon />}
+                          >
                             Invite
                           </Button>
                         </Typography>
