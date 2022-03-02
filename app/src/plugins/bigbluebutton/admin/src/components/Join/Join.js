@@ -81,6 +81,9 @@ const Join = () => {
       if (classParams.bbbSettings?.muteViewerjoin) {
         data.muteOnStart = true;
       }
+      if (classParams.bbbSettings?.logoUrl) {
+        data.logo = classParams.bbbSettings.logoUrl;
+      }
 
       const res = await startBBB(classParams.uid, data, name);
       if (res.status === 200) {

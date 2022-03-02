@@ -20,11 +20,11 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
   const [viewerChecked, setViewerChecked] = useState(false);
   const [viewerAccessCode, setViewerAccessCode] = useState("");
   const [moderatorApproval, setModeratorApproval] = useState(false);
-  const [anyUserStart, setAnyUserStart] = useState(false);
   const [muteViewerjoin, setMuteViewerJoin] = useState(false);
   const [classNameError, setClassNameError] = useState("");
   const [moderatorCodeError, setModeratorCodeError] = useState("");
   const [viewerCodeError, setViewerCodeError] = useState("");
+  const [logoUrl, setLogoUrl] = useState("");
 
   const classCreateData = {
     className,
@@ -32,8 +32,8 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
     viewerAccessCode,
     bbbSettings: {
       moderatorApproval,
-      anyUserStart,
       muteViewerjoin,
+      logoUrl,
     },
   };
 
@@ -58,7 +58,6 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
         setViewerChecked(false);
         setViewerAccessCode("");
         setModeratorApproval(false);
-        setAnyUserStart(false);
         setMuteViewerJoin(false);
       }
     }
@@ -111,7 +110,25 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                   />
                 </Box>
               </GridItem>
-
+              <GridItem col={5}>
+                <Box padding={2}>
+                  <Typography variant="delta">Paste logo url</Typography>
+                </Box>
+              </GridItem>
+              <GridItem col={6}>
+                <Box padding={2}>
+                  <TextInput
+                    placeholder="https://example.com/logo.png"
+                    aria-label="logoUrl"
+                    name="logoUrl"
+                    onChange={(e) => {
+                      setLogoUrl(e.target.value);
+                    }}
+                    value={logoUrl}
+                    size="S"
+                  />
+                </Box>
+              </GridItem>
               <GridItem col={5}>
                 <Box padding={2}>
                   <Typography variant="delta">Moderator Access Code</Typography>
@@ -193,22 +210,6 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
                     label="Activate moderator approval to join"
                     selected={moderatorApproval}
                     onChange={() => setModeratorApproval((s) => !s)}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={10}>
-                <Box padding={2}>
-                  <Typography variant="delta">
-                    Allow any user to start session
-                  </Typography>
-                </Box>
-              </GridItem>
-              <GridItem col={2}>
-                <Box padding={2}>
-                  <Switch
-                    label="Activate any user start session"
-                    selected={anyUserStart}
-                    onChange={() => setAnyUserStart((s) => !s)}
                   />
                 </Box>
               </GridItem>
