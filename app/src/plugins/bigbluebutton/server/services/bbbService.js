@@ -63,12 +63,8 @@ module.exports = ({ strapi }) => ({
       host,
       salt,
     };
-    // const bbbClass = await strapi
-    //   .query("plugin::bigbluebutton.class")
-    //   .findOne({ where: { uid } });
     joinMeetingParams.meetingID = uid;
     const joinURL = constructUrl(bbb, "join", joinMeetingParams);
-    console.log("join ", joinURL);
     return joinURL;
   },
   async isMeetingRunning(uid) {
@@ -84,15 +80,11 @@ module.exports = ({ strapi }) => ({
         host,
         salt,
       };
-      // const bbbClass = await strapi
-      //   .query("plugin::bigbluebutton.class")
-      //   .findOne({ where: { uid } });
       const params = {
         meetingID: uid,
       };
       const url = constructUrl(bbb, "isMeetingRunning", params);
       const response = await axios.get(url);
-      console.log("is meeting Running", response);
       return parseXml(response.data).running;
     } catch (error) {
       console.log(error);

@@ -61,7 +61,7 @@ const Join = () => {
     } else {
       const data = {
         name: classParams.className,
-        meetingID: classParams.bbbId,
+        meetingID: classParams.uid,
         moderatorPW: classParams.moderatorAccessCode
           ? classParams.moderatorAccessCode
           : "mp",

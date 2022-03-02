@@ -8,7 +8,6 @@
 module.exports = {
   startBBB: async (ctx) => {
     const meetingParams = ctx.request.body;
-    console.log(meetingParams);
     const { uid } = ctx.params;
     const createMeetingResponse = await strapi
       .plugin("bigbluebutton")
