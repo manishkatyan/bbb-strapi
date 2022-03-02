@@ -1,4 +1,3 @@
-const generateUID = require("randomstring");
 const path = require("path");
 const fs = require("fs-extra");
 const koaStatic = require("koa-static");
@@ -65,7 +64,6 @@ module.exports = ({ strapi }) => ({
     ctx.body = res;
   },
   async create(ctx) {
-    const uid = generateUID.generate({ length: 4, charset: "alphabetic" });
     params = ctx.request.body;
     const slug = await strapi
       .plugin("bigbluebutton")
@@ -77,7 +75,6 @@ module.exports = ({ strapi }) => ({
       });
 
     params.uid = slug;
-    params.bbbId = `${params.className.replace(/[\W_]/g, "_")}_${uid}`;
 
     res = await strapi
       .query("plugin::bigbluebutton.class")

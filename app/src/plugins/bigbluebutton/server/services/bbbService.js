@@ -63,11 +63,12 @@ module.exports = ({ strapi }) => ({
       host,
       salt,
     };
-    const bbbClass = await strapi
-      .query("plugin::bigbluebutton.class")
-      .findOne({ where: { uid } });
-    joinMeetingParams.meetingID = bbbClass.bbbId;
+    // const bbbClass = await strapi
+    //   .query("plugin::bigbluebutton.class")
+    //   .findOne({ where: { uid } });
+    joinMeetingParams.meetingID = uid;
     const joinURL = constructUrl(bbb, "join", joinMeetingParams);
+    console.log("join ", joinURL);
     return joinURL;
   },
   async isMeetingRunning(uid) {
@@ -83,14 +84,15 @@ module.exports = ({ strapi }) => ({
         host,
         salt,
       };
-      const bbbClass = await strapi
-        .query("plugin::bigbluebutton.class")
-        .findOne({ where: { uid } });
+      // const bbbClass = await strapi
+      //   .query("plugin::bigbluebutton.class")
+      //   .findOne({ where: { uid } });
       const params = {
-        meetingID: bbbClass.bbbId,
+        meetingID: uid,
       };
       const url = constructUrl(bbb, "isMeetingRunning", params);
       const response = await axios.get(url);
+      console.log("is meeting Running", response);
       return parseXml(response.data).running;
     } catch (error) {
       console.log(error);
@@ -152,18 +154,6 @@ module.exports = ({ strapi }) => ({
       return { returncode: "FAILED" };
     }
   },
-
-  // updateRecodingStatus: async (token) => {
-  //   const decodedToken = jwt.verify(token, bbb.salt);
-  //   const bbbMeetingId = decodedToken.record_id;
-  //   try {
-  //     await strapi
-  //       .query("plugin::bigbluebutton.session")
-  //       .update({ recordingId: bbbMeetingId }, { isRecordingAvailable: true });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
 });
 
 function getChecksum(callName, queryParams, sharedSecret) {
