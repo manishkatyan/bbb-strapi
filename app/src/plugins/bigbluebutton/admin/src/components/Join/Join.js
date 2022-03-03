@@ -61,7 +61,7 @@ const Join = () => {
     } else {
       const data = {
         name: classParams.className,
-        meetingID: classParams.bbbId,
+        meetingID: classParams.uid,
         moderatorPW: classParams.moderatorAccessCode
           ? classParams.moderatorAccessCode
           : "mp",
@@ -80,6 +80,9 @@ const Join = () => {
 
       if (classParams.bbbSettings?.muteViewerjoin) {
         data.muteOnStart = true;
+      }
+      if (classParams.bbbSettings?.logoUrl) {
+        data.logo = classParams.bbbSettings.logoUrl;
       }
 
       const res = await startBBB(classParams.uid, data, name);

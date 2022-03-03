@@ -25,11 +25,7 @@
       "min": 1,
       "configurable": false
     },
-    "bbbId": {
-      "type": "string",
-      "min": 1,
-      "configurable": false
-    },
+
     "moderatorAccessCode": {
       "type": "string",
       "min": 1,

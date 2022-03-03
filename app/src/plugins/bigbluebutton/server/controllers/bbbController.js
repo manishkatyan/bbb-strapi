@@ -93,8 +93,4 @@ module.exports = {
 
     return ctx.send({ ok: true, url, secret });
   },
-  // updateRecordingStatus: async (ctx) => {
-  //     await strapi.services.bigbluebutton.updateRecodingStatus(ctx.request.body.signed_parameters)
-  //     ctx.send({ message: 'Success' }, 200);
-  // }
 };

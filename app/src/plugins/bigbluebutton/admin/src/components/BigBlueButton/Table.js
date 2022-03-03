@@ -93,7 +93,10 @@ const ClassTable = ({ classData, deleteAction }) => {
                   </Td>
 
                   <Td>
-                    <Typography textColor="neutral800">
+                    <Typography
+                      textColor="neutral800"
+                      textTransform="capitalize"
+                    >
                       {bbbClass.className}
                     </Typography>
                   </Td>
