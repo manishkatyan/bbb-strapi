@@ -112,13 +112,13 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               </GridItem>
               <GridItem col={5}>
                 <Box padding={2}>
-                  <Typography variant="delta">Paste logo url</Typography>
+                  <Typography variant="delta">Show Logo </Typography>
                 </Box>
               </GridItem>
               <GridItem col={6}>
                 <Box padding={2}>
                   <TextInput
-                    placeholder="https://example.com/logo.png"
+                    placeholder="https://higheredlab.com/uploads/hel.png"
                     aria-label="logoUrl"
                     name="logoUrl"
                     onChange={(e) => {
