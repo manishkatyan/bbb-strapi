@@ -1,9 +1,9 @@
 {
-  "name": "bigbluebutton",
+  "name": "bigbluebutton-strapi",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "bigbluebutton",
+    "name": "bigbluebutton-strapi",
     "description": "Description of bigbluebutton plugin",
     "kind": "plugin"
   },
