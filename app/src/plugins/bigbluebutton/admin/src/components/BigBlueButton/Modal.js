@@ -24,7 +24,9 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
   const [classNameError, setClassNameError] = useState("");
   const [moderatorCodeError, setModeratorCodeError] = useState("");
   const [viewerCodeError, setViewerCodeError] = useState("");
-  const [logoUrl, setLogoUrl] = useState("");
+  const [logoUrl, setLogoUrl] = useState(
+    "https://higheredlab.com/wp-content/uploads/hel.png"
+  );
 
   const classCreateData = {
     className,
@@ -118,7 +120,7 @@ const Modal = ({ isVisible, handleClose, handleCreate }) => {
               <GridItem col={6}>
                 <Box padding={2}>
                   <TextInput
-                    placeholder="https://higheredlab.com/uploads/hel.png"
+                    placeholder="	https://higheredlab.com/wp-content/uploads/hel.png"
                     aria-label="logoUrl"
                     name="logoUrl"
                     onChange={(e) => {
