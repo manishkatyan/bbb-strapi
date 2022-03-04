@@ -55,7 +55,7 @@ module.exports = {
 
 > Goto Setting > BigBlueButton > Configuration
 
-<img src="/src/plugins/bigbluebutton/assets/bbb-configuration.png" alt="highered-strapi" width="300" height="150" />
+<img src="app/src/plugins/bigbluebutton/assets/bbb-configuration.png" alt="highered-strapi" width="300" height="150" />
 
 - Enter BigBlueButton Url and Secret.
 - click on Save.
