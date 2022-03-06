@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <img src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" width="300" height="150" />
 </p>
@@ -7,7 +5,7 @@
 <div align="center">
   <h1>Strapi v4 - BigBlueButton</h1>
   <p>
-A Strapi plugin for BigBlueButton, allowing you to create and join classes from Strapi CMS
+Start Online Classes on BigBlueButton
 </p>
   
 </div>
@@ -55,7 +53,7 @@ module.exports = {
 
 > Goto Setting > BigBlueButton > Configuration
 
-<img src="app/src/plugins/bigbluebutton/assets/bbb-configuration.png" alt="highered-strapi" width="1000" height="500" />
+<img src="assets/bbb-configuration.png" alt="highered-strapi" width="300" height="150" />
 
 - Enter BigBlueButton Url and Secret.
 - click on Save.
@@ -69,4 +67,3 @@ module.exports = {
 - Moderator easily start classes by one click.
 - Invite students clicking on invite button,which has BigBlueButton Url and acess code to join.
   - Access code is mandatory to student join the class.
-
