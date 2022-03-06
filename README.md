@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1>Strapi v4 - BigBlueButton</h1>
+  <h1> BigBlueButton-strapi</h1>
   <p>
 Start Online Classes on BigBlueButton
 </p>
@@ -17,6 +17,7 @@ Start Online Classes on BigBlueButton
 This plugin requires the following, in order to work correctly:
 
 - Strapi v4 (this plugin is not compatible with v3)
+- BigBlueButton server
 
 ## Installation
 
@@ -41,7 +42,7 @@ $ npm run build && npm run develop
 ```js
 module.exports = {
   // ...
-  bigbluebutton-strapi: {
+  bigbluebutton: {
     enabled: true,
 
   },
@@ -56,14 +57,13 @@ module.exports = {
 <img src="assets/bbb-configuration.png" alt="highered-strapi" width="300" height="150" />
 
 - Enter BigBlueButton Url and Secret.
+- click on verify, if the given Url and Secret is valid it will be verified successfully, otherwise check with entered details.
 - click on Save.
 
-> Note: BigBlueButton Url and Secret should be valid one, to start or join the classes.
 
 ## Features
 
-- Integrate your BigBlueButton like moodle,using BigBlueButton url and secret.
-- Create online classes easily.
+- Create new classes.
 - Moderator easily start classes by one click.
-- Invite students clicking on invite button,which has BigBlueButton Url and acess code to join.
+- Invite students by clicking on invite button,which has BigBlueButton Url and acess code to join.
   - Access code is mandatory to student join the class.
