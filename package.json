@@ -20,6 +20,11 @@
   "author": {
     "name": "A Strapi developer"
   },
+  "homepage": "https://github.com/manishkatyan/bbb-strapi#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manishkatyan/bbb-strapi.git"
+  },
   "maintainers": [
     {
       "name": "A Strapi developer"

@@ -44,7 +44,6 @@ module.exports = {
   // ...
   bigbluebutton: {
     enabled: true,
-
   },
   // ...
 };
@@ -54,12 +53,11 @@ module.exports = {
 
 > Goto Setting > BigBlueButton > Configuration
 
-<img src="assets/bbb-configuration.png" alt="highered-strapi" width="300" height="150" />
+<img src="assets/bbb-configuration.png" alt="highered-strapi" width="1000" height="500" />
 
 - Enter BigBlueButton Url and Secret.
 - click on verify, if the given Url and Secret is valid it will be verified successfully, otherwise check with entered details.
 - click on Save.
-
 
 ## Features
 
