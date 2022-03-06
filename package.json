@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "bigbluebutton-strapi",
+    "name": "bigbluebutton",
     "description": "Description of bigbluebutton plugin",
     "kind": "plugin"
   },
