@@ -31,7 +31,12 @@ After successful installation you have to build a fresh package that includes pl
 
 ```bash
 # with npm
-$ npm run build && npm run develop
+$ npm run build
+$ npm run develop
+
+# with npx
+$ npx strapi  build
+$ npx strapi  develop
 
 ```
 
