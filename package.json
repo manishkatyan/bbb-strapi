@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This is the description of the plugin.",
   "strapi": {
     "name": "bigbluebutton",
@@ -34,5 +34,12 @@
     "node": ">=12.x. <=16.x.x",
     "npm": ">=6.0.0"
   },
+  "keywords": [
+    "strapi",
+    "strapi-plugin",
+    "plugin",
+    "bigbluebutton-strapi",
+    "bigbluebtton"
+  ],
   "license": "MIT"
 }
