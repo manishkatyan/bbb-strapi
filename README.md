@@ -66,6 +66,29 @@ The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi 
 
 Enjoy 🎉
 
+## 🔧 Configuration
+
+In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
+
+<div style="margin: 20px 0" align="center">
+  <img style="width: 100%; height: auto;" src="assets/bbb-configuration.png" alt="bbb-class" />
+</div>
+
+To setup amend default plugin configuration we recommend to put following snippet as part of `config/plugins.js` file. If the file does not exist yet, you have to create it manually.
+
+```js
+module.exports = {
+  // ...
+  bigbluebutton: {
+    enabled: true,
+  },
+  // ...
+};
+```
+
+> _Note_
+> Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
+
 ## 🖐 Requirements
 
 Complete installation requirements are exact same as for Strapi itself and can be found in the documentation under [Installation Requirements](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
@@ -84,30 +107,6 @@ In our minimum support we're following [official Node.js releases timelines](htt
 
 > This plugin is designed for **Strapi v4** and is not working with v3.x.
 > **We recommend always using the latest version of Strapi to start your new projects**.
-
-## 🔧 Configuration
-
-To setup amend default plugin configuration we recommend to put following snippet as part of `config/plugins.js` file. If the file does not exist yet, you have to create it manually.
-
-```js
-module.exports = {
-  // ...
-  bigbluebutton: {
-    enabled: true,
-  },
-  // ...
-};
-```
-
-> _Note_
-> Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
-
-In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
-
-<div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="assets/bbb-configuration.png" alt="bbb-class" />
-  
-</div>
 
 ## 📝 License
 
