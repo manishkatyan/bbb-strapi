@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" width="300" height="150" />
+  <img src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" width="200" height="100" />
 </p>
 
 <div align="center">

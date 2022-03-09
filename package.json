@@ -18,7 +18,8 @@
     "react-copy-to-clipboard": "^5.0.4"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "AsyncWeb Technologies",
+    "url": "https://higheredlab.com/"
   },
   "homepage": "https://github.com/manishkatyan/bbb-strapi#readme",
   "repository": {
@@ -27,7 +28,8 @@
   },
   "maintainers": [
     {
-      "name": "A Strapi developer"
+      "name": "AsyncWeb Technologies",
+      "url": "https://higheredlab.com/"
     }
   ],
   "engines": {
