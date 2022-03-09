@@ -2,13 +2,13 @@
   <img style="width: 150px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
 </div>
 <div align="center">
-  <h1>BigBlueButton-strapi</h1>
+  <h1>BigBlueButton-Strapi</h1>
   <p>Start Online Classes on BigBlueButton</p>
   <a href="https://www.npmjs.com/package/bigbluebutton-strapi">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-strapi?label=npm&logo=npm">
   </a>
   <a href="https://www.npmjs.org/package/bigbluebutton-strapi">
-    <img src="https://img.shields.io/npm/dm/strapi-plugin-comments.svg" alt="Monthly download on NPM" />
+    <img src="https://img.shields.io/npm/dm/bigbluebutton-strapi.svg" alt="Monthly download on NPM" />
   </a>
   
 </div>
@@ -16,7 +16,7 @@
 ---
 
 <div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="assets/bbb-class.png" alt="bbb-class" />
+  <img style="width: 100%; height: auto;" src="assets/bbb-classes.png" alt="bbb-class" />
   <img style="width: 100%; height: auto;" src="assets/bbb-meeting.png" alt="bbb-meeting" />
 </div>
 
@@ -73,7 +73,7 @@ Complete installation requirements are exact same as for Strapi itself and can b
 **Minimum environment requirements**
 
 - Node.js `>=14.x.x`
-- NPM `>=7.x.x`
+- NPM `>=6.x.x`
 
 In our minimum support we're following [official Node.js releases timelines](https://nodejs.org/en/about/releases/).
 
