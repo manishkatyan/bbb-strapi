@@ -66,6 +66,25 @@ The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi 
 
 Enjoy 🎉
 
+## 🖐 Requirements
+
+Complete installation requirements are exact same as for Strapi itself and can be found in the documentation under [Installation Requirements](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
+
+**Minimum environment requirements**
+
+- Node.js `>=14.x.x`
+- NPM `>=6.x.x`
+
+In our minimum support we're following [official Node.js releases timelines](https://nodejs.org/en/about/releases/).
+
+**Supported Strapi versions**:
+
+- Strapi v4.1.2 (recently tested)
+- Strapi v4.x
+
+> This plugin is designed for **Strapi v4** and is not working with v3.x.
+> **We recommend always using the latest version of Strapi to start your new projects**.
+
 ## 🔧 Configuration
 
 In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
@@ -88,25 +107,6 @@ module.exports = {
 
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
-
-## 🖐 Requirements
-
-Complete installation requirements are exact same as for Strapi itself and can be found in the documentation under [Installation Requirements](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
-
-**Minimum environment requirements**
-
-- Node.js `>=14.x.x`
-- NPM `>=6.x.x`
-
-In our minimum support we're following [official Node.js releases timelines](https://nodejs.org/en/about/releases/).
-
-**Supported Strapi versions**:
-
-- Strapi v4.1.2 (recently tested)
-- Strapi v4.x
-
-> This plugin is designed for **Strapi v4** and is not working with v3.x.
-> **We recommend always using the latest version of Strapi to start your new projects**.
 
 ## 📝 License
 
