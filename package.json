@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This is the description of the plugin.",
   "strapi": {
     "name": "bigbluebutton",
@@ -19,6 +19,7 @@
   },
   "author": {
     "name": "AsyncWeb Technologies",
+    "email": "support@higheredlab.com",
     "url": "https://higheredlab.com/"
   },
   "homepage": "https://github.com/manishkatyan/bbb-strapi#readme",
@@ -29,6 +30,7 @@
   "maintainers": [
     {
       "name": "AsyncWeb Technologies",
+      "email": "support@higheredlab.com",
       "url": "https://higheredlab.com/"
     }
   ],

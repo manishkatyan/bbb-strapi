@@ -1,7 +1,6 @@
 "use strict";
 
 const axios = require("axios");
-const querystring = require("querystring");
 const crypto = require("hash.js");
 const { XMLParser } = require("fast-xml-parser");
 const jwt = require("jsonwebtoken");
@@ -127,14 +126,16 @@ module.exports = ({ strapi }) => ({
     const bbbUrl = constructUrl(bbbParams, "create", meetingParams);
 
     function getChecksum(callName, queryParams, sharedSecret) {
+      const paramStringify = new URLSearchParams(queryParams).toString();
       return crypto["sha1"]()
-        .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
+        .update(`${callName}${paramStringify}${sharedSecret}`)
         .digest("hex");
     }
 
     function constructUrl(bbb, action, params) {
       params.checksum = getChecksum(action, params, bbb.salt);
-      return `${bbb.host}/api/${action}?${querystring.encode(params)}`;
+      const paramStringify = new URLSearchParams(params).toString();
+      return `${bbb.host}/api/${action}?${paramStringify}`;
     }
 
     try {
@@ -149,15 +150,16 @@ module.exports = ({ strapi }) => ({
 });
 
 function getChecksum(callName, queryParams, sharedSecret) {
+  const paramStringify = new URLSearchParams(queryParams).toString();
   return crypto["sha1"]()
-    .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
+    .update(`${callName}${paramStringify}${sharedSecret}`)
     .digest("hex");
 }
 
 function constructUrl(bbb, action, params) {
   params.checksum = getChecksum(action, params, bbb.salt);
-
-  return `${bbb.host}/api/${action}?${querystring.encode(params)}`;
+  const paramStringify = new URLSearchParams(params).toString();
+  return `${bbb.host}/api/${action}?${paramStringify}`;
 }
 
 function parseXml(xml) {
