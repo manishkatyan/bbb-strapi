@@ -1,7 +1,7 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "0.0.6",
-  "description": "This is the description of the plugin.",
+  "version": "1.0.0",
+  "description": "Start Online Classes on BigBlueButton.",
   "strapi": {
     "name": "bigbluebutton",
     "description": "Description of bigbluebutton plugin",
