@@ -93,6 +93,11 @@ In this Plugin introduce the intuitive **Settings** page which you can easly acc
   <img style="width: 100%; height: auto;" src="assets/bbb-configuration.png" alt="bbb-class" />
 </div>
 
+- Enter BigBlueButton Url and Secret, if you don't have create free account [here](https://higheredlab.com/).
+- Click on verify it will verify entered BigBlueButton Url and Secret correct or not.
+- Click on Save.
+
+
 To setup amend default plugin configuration we recommend to put following snippet as part of `config/plugins.js` file. If the file does not exist yet, you have to create it manually.
 
 ```js
@@ -110,4 +115,4 @@ module.exports = {
 
 ## 📝 License
 
-[MIT License](LICENSE.md) Copyright (c) [Asyncweb](https://higheredlab.com/) &amp; [Strapi Solutions](https://strapi.io/).
+[MIT License](LICENSE.md) Copyright (c) [Asyncweb](https://higheredlab.com/).
