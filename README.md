@@ -16,11 +16,13 @@
 ---
 
 <div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="assets/bbb-classes.png" alt="bbb-class" />
+  <img style="width: 100%; height: auto;" src="assets/bbb-classes.png" alt="bbb-class" /> <br/>
   <img style="width: 100%; height: auto;" src="assets/bbb-meeting.png" alt="bbb-meeting" />
 </div>
 
 A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facilitate conducting online classes.
+
+<br/><br/>
 
 ## ✨ Features
 
@@ -28,9 +30,13 @@ A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facili
 - **Teachers can easily start classes**
 - **Teachers can invite the students to join class**
 
+<br/><br/>
+
 ## ⚙️ Versions
 
 - **Strapi v4**
+
+<br/><br/>
 
 ## 🖐 Requirements
 
@@ -50,6 +56,8 @@ In our minimum support we're following [official Node.js releases timelines](htt
 
 > This plugin is designed for **Strapi v4** and is not working with v3.x.
 > **We recommend always using the latest version of Strapi to start your new projects**.
+
+<br/><br/>
 
 ## ⏳ Installation
 
@@ -85,6 +93,8 @@ The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi 
 
 Enjoy 🎉
 
+<br/><br/>
+
 ## 🔧 Configuration
 
 In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
@@ -96,7 +106,6 @@ In this Plugin introduce the intuitive **Settings** page which you can easly acc
 - Enter BigBlueButton Url and Secret, if you don't have create free account [here](https://higheredlab.com/).
 - Click on verify it will verify entered BigBlueButton Url and Secret correct or not.
 - Click on Save.
-
 
 To setup amend default plugin configuration we recommend to put following snippet as part of `config/plugins.js` file. If the file does not exist yet, you have to create it manually.
 
@@ -112,6 +121,8 @@ module.exports = {
 
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
+
+<br/><br/>
 
 ## 📝 License
 
