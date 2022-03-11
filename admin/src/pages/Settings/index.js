@@ -135,13 +135,13 @@ const Settings = () => {
           {showAlert ? (
             <Alert
               closeLabel="Close alert"
-              title="Title"
+              title="BigBlueButton"
               variant="success"
               onClose={() => {
                 setShowAlert(false);
               }}
             >
-              BigBlueButton url and secret saved successfully
+              url and secret saved successfully
             </Alert>
           ) : (
             ""
