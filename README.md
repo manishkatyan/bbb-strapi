@@ -22,7 +22,7 @@
 
 A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facilitate conducting online classes.
 
-<br/><br/>
+<br/>
 
 ## ✨ Features
 
@@ -30,13 +30,13 @@ A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facili
 - **Teachers can easily start classes**
 - **Teachers can invite the students to join class**
 
-<br/><br/>
+<br/>
 
 ## ⚙️ Versions
 
 - **Strapi v4**
 
-<br/><br/>
+<br/>
 
 ## 🖐 Requirements
 
@@ -57,7 +57,7 @@ In our minimum support we're following [official Node.js releases timelines](htt
 > This plugin is designed for **Strapi v4** and is not working with v3.x.
 > **We recommend always using the latest version of Strapi to start your new projects**.
 
-<br/><br/>
+<br/>
 
 ## ⏳ Installation
 
@@ -93,7 +93,7 @@ The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi 
 
 Enjoy 🎉
 
-<br/><br/>
+<br/>
 
 ## 🔧 Configuration
 
@@ -122,7 +122,7 @@ module.exports = {
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
 
-<br/><br/>
+<br/>
 
 ## 📝 License
 
