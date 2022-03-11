@@ -1,6 +1,6 @@
 function validateCode() {
   const name = document.getElementById("name").value;
-  const code = btoa(document.getElementById("code").value);
+  const code = document.getElementById("code").value;
   const uid = document.getElementById("classUID").value;
   const validateUrl = "/bigbluebutton/class/auth/join/" + uid;
   const joinUrl = "/bigbluebutton/class/join/" + uid;
@@ -13,7 +13,7 @@ function validateCode() {
     fetch(validateUrl, {
       method: "post", // Default is 'get'
       body: JSON.stringify({
-        code: atob(code),
+        code: code,
       }),
       mode: "cors",
       headers: new Headers({
@@ -24,11 +24,7 @@ function validateCode() {
       .then((json) => {
         if (json.isValid) {
           document.getElementById("codeError").style.display = "none";
-          const runningMeeting = setInterval(() => {
-            joinBBBMeeting();
-          }, 10000);
           document.getElementById("joinbbb").style.display = "none";
-          document.getElementById("meeting").style.display = "block";
           document.getElementById("WaitingButton").style.display = "block";
           function joinBBBMeeting() {
             fetch(isMeetingRunning, {
@@ -45,7 +41,7 @@ function validateCode() {
                     method: "post",
                     body: JSON.stringify({
                       fullName: name,
-                      password: atob(code),
+                      password: code,
                     }),
                     mode: "cors",
                     headers: new Headers({
@@ -66,6 +62,11 @@ function validateCode() {
                 }
               });
           }
+
+          const runningMeeting = setInterval(() => {
+            joinBBBMeeting();
+          }, 10000);
+
           function stopInterval() {
             clearInterval(runningMeeting);
           }
