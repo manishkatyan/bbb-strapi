@@ -26,6 +26,7 @@ module.exports = {
     },
     uid: {
       type: "uid",
+      targetField: "className",
     },
     bbbId: {
       type: "string",
