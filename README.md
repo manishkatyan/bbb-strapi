@@ -3,7 +3,14 @@
 </div>
 <div align="center">
   <h1>BigBlueButton-Strapi</h1>
-  <p>Start Online Classes on BigBlueButton</p>
+  <p>Integrate BigBlueButton for online classes into Strapi CMS</p>
+  
+  <p>[BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.</p>
+  
+  <p>[Strapi](https://strapi.io/) is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first.</p>
+  
+  <p>The BigBlueButton-Strapi plugin enables you to integrate BigBlueButton into Strapi.</p>
+  
   <a href="https://www.npmjs.com/package/bigbluebutton-strapi">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-strapi?label=npm&logo=npm">
   </a>
@@ -20,7 +27,7 @@
   <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-meeting.png" alt="bbb-meeting" />
 </div>
 
-A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facilitate conducting online classes.
+
 
 <br/>
 
