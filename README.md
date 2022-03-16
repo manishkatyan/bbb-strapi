@@ -136,4 +136,4 @@ module.exports = {
 
 [MIT License](LICENSE.md) 
 
-Copyright (c) [Asyncweb](https://higheredlab.com/).
+Copyright (c) [HigherEdLab.com](https://higheredlab.com/).
