@@ -134,7 +134,7 @@ module.exports = {
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
 
-<br/><br/>
+<br/>
 
 ## 📝 License
 
