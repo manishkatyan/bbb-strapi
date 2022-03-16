@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Start Online Classes on BigBlueButton.",
   "strapi": {
     "name": "bigbluebutton",
