@@ -2,7 +2,7 @@
   <img style="width: 120px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
 </div>
 
-#BigBlueButton-Strapi
+# BigBlueButton-Strapi
   
 [BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.
   
