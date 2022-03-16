@@ -1,7 +1,6 @@
 <div align="center" width="150px">
   <img style="width: 120px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
 </div>
-<div>
 
 #BigBlueButton-Strapi
   
@@ -18,6 +17,7 @@ The BigBlueButton-Strapi plugin enables you to integrate BigBlueButton into Stra
 <img src="https://img.shields.io/npm/dm/bigbluebutton-strapi.svg" alt="Monthly download on NPM" />
 </a>
 
+<br/><br/>
 
 ## ✨ Features
 
@@ -30,11 +30,11 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 - **Data Privacy** Get complete control of your students’ data, without ever sharing with any 3rd party
 - **Scale with ease** Use open-source load balancer with multiple BigBlueButton servers to teach 1000s of students simultaneously
 
-<br/><br/><br/>
+<br/><br/>
 
 <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-class.gif" alt="bbb-class" /> <br/>
 
-<br/><br/><br/>
+<br/><br/>
 
 ## ⚙️ Versions
 
