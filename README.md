@@ -1,9 +1,8 @@
 <div align="center" width="150px">
   <img style="width: 100px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
 </div>
-<div align="center">
+<div>
   <h1>BigBlueButton-Strapi</h1>
-  <p>Integrate BigBlueButton for online classes into Strapi CMS</p>
   
   <p>[BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.</p>
   
