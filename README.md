@@ -28,7 +28,7 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 
 <br/><br/>
 
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-class.gif" alt="bbb-class" /> <br/>
+<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi.gif" alt="bbb-class" /> <br/>
 
 <br/><br/>
 
@@ -110,7 +110,7 @@ You can easily configure the BigBlueButton-Strapi plugin to connect with your Bi
 In case you don't have a BigBlueButton server, you can create a [free trial account here](https://higheredlab.com/).
 
 <br/><br/>
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bbb-class" />
+<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bigbluebutton-strapi-config" />
 <br/><br/>
 
 
