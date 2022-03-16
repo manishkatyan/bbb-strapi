@@ -21,15 +21,6 @@
 
 ---
 
-<div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-classes.png" alt="bbb-class" /> <br/>
-  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-meeting.png" alt="bbb-meeting" />
-</div>
-
-
-
-<br/>
-
 ## ✨ Features
 
 BigBlueButton offers you everything you need for your online classes: HD audio/video conference, whiteboard, chat, slides, polling, raise hand and breakout rooms. Specifically,
@@ -40,6 +31,13 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 - **Branding** Build and promote your online classes with your brand, url, logo and theme
 - **Data Privacy** Get complete control of your students’ data, without ever sharing with any 3rd party
 - **Scale with ease** Use open-source load balancer with multiple BigBlueButton servers to teach 1000s of students simultaneously
+
+<br/>
+
+<div style="margin: 20px 0" align="center">
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-classes.png" alt="bbb-class" /> <br/>
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-meeting.png" alt="bbb-meeting" />
+</div>
 
 <br/>
 
