@@ -1,5 +1,5 @@
 <div align="center" width="120px">
-  <img style="width: 120px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
+  <img style="width: 120px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel_icon.png" alt="highered-strapi" />
 </div>
 
 # BigBlueButton-Strapi
