@@ -31,20 +31,12 @@ const BigBlueButton = () => {
       <Box>
         <Box paddingTop={8} paddingLeft={8}>
           <Typography variant="alpha">
-            Manage BigBlueButton Online Classes
+            Start BigBlueButton Online Classes
           </Typography>
           <Box>
             <Typography variant="omega">
-              Enter your BigBlueButton URL and Secret below to connect to it. In
-              case you don&apos;t have one, create a free trial account &nbsp;
-              <a
-                href="https://higheredlab.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                here
-              </a>
-              .
+              Create and start a BigBlueButton online class, and invite others.
+              to join in
             </Typography>
           </Box>
         </Box>
