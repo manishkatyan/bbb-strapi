@@ -62,49 +62,48 @@ We are following the [official Node.js releases timelines](https://nodejs.org/en
 - Strapi v4.1.2 (recently tested)
 - Strapi v4.x
 
-> The BigBlueButton-Strapi plugin is designed for **Strapi v4.x**. 
-> 
->  It won't work with Strapi v3.x.
->  
+> The BigBlueButton-Strapi plugin is designed for **Strapi v4.x**. It won't work with Strapi v3.x.
 
 
 ## ⏳ Installation
 
-(Use **npm** to install this plugin within your Strapi project (recommended). [Install npm with these docs](https://docs.npmjs.com/cli/v6/commands/npm-install).)
+Use **npm** to install this plugin within your Strapi project (recommended). 
+
+[Refer to this doc to install npm](https://docs.npmjs.com/cli/v6/commands/npm-install)
 
 ```bash
 npm i bigbluebutton-strapi
 ```
 
-After successful installation you've to build a fresh package that includes plugin UI. To archive that simply use:
+After successful installation you would need to build a fresh package that includes the BigBlueButton-Strapi plugin UI. Please execute the commands below:
 
 ```bash
-# with npm
+# with npm (option 1)
 $ npm run build
 $ npm run develop
 
-# with npx
+# with npx (option 2)
 $ npx strapi  build
 $ npx strapi  develop
 ```
 
-or just run Strapi in the development mode with `--watch-admin` option:
+Alternatively, you can run Strapi in the development mode with `--watch-admin` option:
 
 ```bash
-# with npm
+# with npm (option 1)
 npm develop --watch-admin
 
-# with npx
+# with npx (option 2)
 npx strapi develop --watch-admin
 ```
 
-The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi sidebar after you run app again.
+The **BigBlueButton-Strapi** plugin should appear in the **Plugins** section of Strapi sidebar after you run app again.
 
-Enjoy 🎉
+Now you are ready to launch your onlie classes 🎉
 
 ## 🔧 Configuration
 
-You can easily configure the plugin to connect with your BigBlueButton server. 
+You can easily configure the BigBlueButton-Strapi plugin to connect with your BigBlueButton server. 
 
 - Go to `Strapi Settings -> BIGBLUEBUTTON -> Configuration`. 
 - On the configiration page, you can enter BigBlueButton URL and Secret. 
