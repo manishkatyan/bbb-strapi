@@ -1,4 +1,4 @@
-<div align="center" width="150px">
+<div align="center" width="120px">
   <img style="width: 120px; height: auto;" src="https://higheredlab.com/wp-content/uploads/hel.png" alt="highered-strapi" />
 </div>
 
