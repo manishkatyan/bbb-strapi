@@ -32,8 +32,6 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 - **Data Privacy** Get complete control of your students’ data, without ever sharing with any 3rd party
 - **Scale with ease** Use open-source load balancer with multiple BigBlueButton servers to teach 1000s of students simultaneously
 
-<br/>
-
 <div style="margin: 20px 0" align="center">
   <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-class.gif" alt="bbb-class" /> <br/>
 </div>
@@ -48,24 +46,27 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 
 ## 🖐 Requirements
 
-Complete installation requirements are exact same as for Strapi itself and can be found in the documentation under [Installation Requirements](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
+The requireemnts to install the BigBlueButton-Strapi plugin is same as those to install Strapi.
+
+Please refer to the official Strapi installation requirement doc here: [Installation Requirements](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html).
 
 **Minimum environment requirements**
 
 - Node.js `>=14.x.x`
 - NPM `>=6.x.x`
 
-In our minimum support we're following [official Node.js releases timelines](https://nodejs.org/en/about/releases/).
+We are following the [official Node.js releases timelines](https://nodejs.org/en/about/releases/).
 
 **Supported Strapi versions**:
 
 - Strapi v4.1.2 (recently tested)
 - Strapi v4.x
 
-> This plugin is designed for **Strapi v4** and is not working with v3.x.
-> **We recommend always using the latest version of Strapi to start your new projects**.
+> The BigBlueButton-Strapi plugin is designed for **Strapi v4.x**. 
+> 
+>  It won't work with Strapi v3.x.
+>  
 
-<br/>
 
 ## ⏳ Installation
 
@@ -101,21 +102,24 @@ The **BigBlueButton** plugin should appear in the **Plugins** section of Strapi 
 
 Enjoy 🎉
 
-<br/>
-
 ## 🔧 Configuration
 
-In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
+You can easily configure the plugin to connect with your BigBlueButton server. 
+
+- Go to `Strapi Settings -> BIGBLUEBUTTON -> Configuration`. 
+- On the configiration page, you can enter BigBlueButton URL and Secret. 
+- Click on verify to ensure that the plugin is able to connect with your BigBlueButton server. 
+- Click on save to save the BigBlueButton URL and Secret. 
+
+In case you don't have a BigBlueButton server, you can create a [free trial account here](https://higheredlab.com/).
 
 <div style="margin: 20px 0" align="center">
   <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bbb-class" />
 </div>
 
-- Enter BigBlueButton Url and Secret, if you don't have create free account [here](https://higheredlab.com/).
-- Click on verify it will verify entered BigBlueButton Url and Secret correct or not.
-- Click on Save.
 
-To setup amend default plugin configuration we recommend to put following snippet as part of `config/plugins.js` file. If the file does not exist yet, you have to create it manually.
+To complete the plugin setup, you would need to change the default plugin configuration file. Please add following code snippet in `config/plugins.js` file. 
+If this file does not exist for your Strapi installation, please create it.
 
 ```js
 module.exports = {
@@ -130,9 +134,8 @@ module.exports = {
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
 
-<br/>
-
 ## 📝 License
 
 [MIT License](LICENSE.md) 
+
 Copyright (c) [Asyncweb](https://higheredlab.com/).
