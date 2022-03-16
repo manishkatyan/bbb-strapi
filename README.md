@@ -32,9 +32,12 @@
 
 ## ✨ Features
 
-- **Create new classes**
-- **Teachers can easily start classes**
-- **Teachers can invite the students to join class**
+- **HD Video** Start online classes with HD video conferencing, public and private chat, whiteboard, poll, presentation and screen-sharing
+- **Analytics** Get analytics including attendance, time used for audio and video chat by students, chat messages sent, activity score
+- **Engagement Tools** Various tools to engage students including Raise hand, Emoji, Shared notes, Breakout rooms, Recording, and annotation
+- **Branding** Build and promote your online classes with your brand, url, logo and theme
+- **Data Privacy** Get complete control of your students’ data, without ever sharing with any 3rd party
+- **Scale with ease** Use open-source load balancer with multiple BigBlueButton servers to teach 1000s of students simultaneously
 
 <br/>
 
