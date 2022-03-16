@@ -32,6 +32,8 @@
 
 ## ✨ Features
 
+BigBlueButton offers you everything you need for your online classes: HD audio/video conference, whiteboard, chat, slides, polling, raise hand and breakout rooms. Specifically,
+
 - **HD Video** Start online classes with HD video conferencing, public and private chat, whiteboard, poll, presentation and screen-sharing
 - **Analytics** Get analytics including attendance, time used for audio and video chat by students, chat messages sent, activity score
 - **Engagement Tools** Various tools to engage students including Raise hand, Emoji, Shared notes, Breakout rooms, Recording, and annotation
