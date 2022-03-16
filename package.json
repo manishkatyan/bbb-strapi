@@ -1,7 +1,7 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "1.0.2",
-  "description": "Start Online Classes on BigBlueButton.",
+  "version": "1.0.3",
+  "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
   "strapi": {
     "name": "bigbluebutton",
     "description": "Description of bigbluebutton plugin.",
