@@ -1,10 +1,10 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
   "strapi": {
-    "name": "bigbluebutton",
-    "description": "Description of bigbluebutton plugin.",
+    "name": "bigbluebutton-strapi",
+    "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
     "kind": "plugin"
   },
   "dependencies": {
@@ -16,7 +16,7 @@
     "react-copy-to-clipboard": "^5.0.4"
   },
   "author": {
-    "name": "AsyncWeb Technologies",
+    "name": "HigherEdLab.com",
     "email": "support@higheredlab.com",
     "url": "https://higheredlab.com/"
   },
@@ -27,7 +27,7 @@
   },
   "maintainers": [
     {
-      "name": "AsyncWeb Technologies",
+      "name": "HigherEdLab.com",
       "email": "support@higheredlab.com",
       "url": "https://higheredlab.com/"
     }
