@@ -16,8 +16,8 @@
 ---
 
 <div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="assets/bbb-classes.png" alt="bbb-class" /> <br/>
-  <img style="width: 100%; height: auto;" src="assets/bbb-meeting.png" alt="bbb-meeting" />
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-classes.png" alt="bbb-class" /> <br/>
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-meeting.png" alt="bbb-meeting" />
 </div>
 
 A plugin for [Strapi Headless CMS](https://github.com/strapi/strapi) that facilitate conducting online classes.
@@ -100,7 +100,7 @@ Enjoy 🎉
 In this Plugin introduce the intuitive **Settings** page which you can easly access via `Strapi Settings -> Section: BIGBLUEBUTTON -> Configuration`. On dedicated page you will be able to setup all crucial properties which drives the plugin.
 
 <div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="assets/bbb-configuration.png" alt="bbb-class" />
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.png" alt="bbb-class" />
 </div>
 
 - Enter BigBlueButton Url and Secret, if you don't have create free account [here](https://higheredlab.com/).
@@ -126,4 +126,5 @@ module.exports = {
 
 ## 📝 License
 
-[MIT License](LICENSE.md) Copyright (c) [Asyncweb](https://higheredlab.com/).
+[MIT License](LICENSE.md) 
+Copyright (c) [Asyncweb](https://higheredlab.com/).
