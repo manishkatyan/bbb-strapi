@@ -35,8 +35,7 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 <br/>
 
 <div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-classes.png" alt="bbb-class" /> <br/>
-  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-meeting.png" alt="bbb-meeting" />
+  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-class.gif" alt="bbb-class" /> <br/>
 </div>
 
 <br/>
