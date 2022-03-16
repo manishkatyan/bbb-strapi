@@ -40,7 +40,7 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 
 - **Strapi v4**
 
-<br/>
+<br/><br/>
 
 ## 🖐 Requirements
 
@@ -62,6 +62,7 @@ We are following the [official Node.js releases timelines](https://nodejs.org/en
 
 > The BigBlueButton-Strapi plugin is designed for **Strapi v4.x**. It won't work with Strapi v3.x.
 
+<br/><br/>
 
 ## ⏳ Installation
 
@@ -99,6 +100,8 @@ The **BigBlueButton-Strapi** plugin should appear in the **Plugins** section of 
 
 Now you are ready to launch your onlie classes 🎉
 
+<br/><br/>
+
 ## 🔧 Configuration
 
 You can easily configure the BigBlueButton-Strapi plugin to connect with your BigBlueButton server. 
@@ -110,9 +113,9 @@ You can easily configure the BigBlueButton-Strapi plugin to connect with your Bi
 
 In case you don't have a BigBlueButton server, you can create a [free trial account here](https://higheredlab.com/).
 
-<div style="margin: 20px 0" align="center">
-  <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bbb-class" />
-</div>
+<br/><br/>
+<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bbb-class" />
+<br/><br/>
 
 
 To complete the plugin setup, you would need to change the default plugin configuration file. Please add following code snippet in `config/plugins.js` file. 
@@ -130,6 +133,8 @@ module.exports = {
 
 > _Note_
 > Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
+
+<br/><br/>
 
 ## 📝 License
 
