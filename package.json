@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
   "strapi": {
     "name": "bigbluebutton-strapi",
