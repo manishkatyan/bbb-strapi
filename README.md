@@ -4,11 +4,11 @@
 <div>
   <h1>BigBlueButton-Strapi</h1>
   
-  <p>[BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.</p>
+  [BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.
   
-  <p>[Strapi](https://strapi.io/) is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first.</p>
+  [Strapi](https://strapi.io/) is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first.
   
-  <p>The BigBlueButton-Strapi plugin enables you to integrate BigBlueButton into Strapi.</p>
+  The BigBlueButton-Strapi plugin enables you to integrate BigBlueButton into Strapi.
   
   <a href="https://www.npmjs.com/package/bigbluebutton-strapi">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/manishkatyan/bbb-strapi?label=npm&logo=npm">
