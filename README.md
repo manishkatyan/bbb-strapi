@@ -82,16 +82,6 @@ $ npx strapi  build
 $ npx strapi  develop
 ```
 
-Alternatively, you can run Strapi in the development mode with `--watch-admin` option:
-
-```bash
-# with npm (option 1)
-npm develop --watch-admin
-
-# with npx (option 2)
-npx strapi develop --watch-admin
-```
-
 The **BigBlueButton-Strapi** plugin should appear in the **Plugins** section of Strapi sidebar after you run app again.
 
 Now you are ready to launch your onlie classes 🎉
@@ -113,22 +103,6 @@ In case you don't have a BigBlueButton server, you can create a [free trial acco
 <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration.gif" alt="bigbluebutton-strapi-config" />
 <br/><br/>
 
-
-To complete the plugin setup, you would need to change the default plugin configuration file. Please add following code snippet in `config/plugins.js` file. 
-If this file does not exist for your Strapi installation, please create it.
-
-```js
-module.exports = {
-  // ...
-  bigbluebutton: {
-    enabled: true,
-  },
-  // ...
-};
-```
-
-> _Note_
-> Default configuration for your plugin is fetched from `config/plugins.js` or directly from the plugin itself.
 
 <br/>
 
