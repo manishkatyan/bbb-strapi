@@ -8,7 +8,7 @@ import { HeaderLayout, ContentLayout } from "@strapi/design-system/Layout";
 import { Main } from "@strapi/design-system/Main";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Typography } from "@strapi/design-system/Typography";
-import Information from "@strapi/icons/Information";
+import Eye from "@strapi/icons/Eye";
 import CheckCircle from "@strapi/icons/CheckCircle";
 import { Alert } from "@strapi/design-system/Alert";
 import {
@@ -141,20 +141,20 @@ const Settings = () => {
                 setShowAlert(false);
               }}
             >
-              url and secret saved successfully
+              URL and secret saved successfully
             </Alert>
           ) : (
             ""
           )}
         </Box>
         <Box shadow="tableShadow" background="neutral0" padding={3}>
-          <Box>
+          <Box paddingTop={6}>
             <Typography variant="delta">Configuration</Typography>
           </Box>
-          <Box paddingBottom={2}>
+          <Box paddingBottom={2} paddingTop={1} textColor="primary600">
             <Typography variant="omega">
               Enter your BigBlueButton URL and Secret below to connect to it. In
-              case you don&apos;t have one, create a free trial account &nbsp;
+              case you don&apos;t have one, create a free trial account&nbsp;
               <a
                 href="https://higheredlab.com/"
                 target="_blank"
@@ -162,17 +162,16 @@ const Settings = () => {
               >
                 here
               </a>
-              &nbsp;.
+              .
             </Typography>
           </Box>
           <Box padding={2}>
             <Grid gap={5}>
               <GridItem col={6} s={12}>
-                <Box paddingTop={5} paddingBottom={2}>
+                <Box paddingTop={5} paddingBottom={2} paddingLeft={7}>
                   <TextInput
                     name="url"
-                    label="BigBlueButton Url"
-                    placeholder="BigBlueButton Url"
+                    label="BigBlueButton URL"
                     value={url}
                     error={errorUrl ? errorUrl : ""}
                     onChange={handleChangeUrl}
@@ -183,7 +182,6 @@ const Settings = () => {
                 <Box paddingTop={5} paddingBottom={2}>
                   <TextInput
                     name="secret"
-                    placeholder="BigBlueButton Secret"
                     label="BigBlueButton Secret"
                     value={secret}
                     error={errorSecret ? errorSecret : ""}
@@ -205,15 +203,15 @@ const Settings = () => {
               </GridItem>
               <GridItem col={1} s={1}>
                 {iscorrectUrl ? (
-                  <Box paddingTop={5}>
+                  <Box paddingTop={5} paddingRight={7}>
                     <Button startIcon={<CheckCircle />} variant="success">
                       Verified
                     </Button>
                   </Box>
                 ) : (
-                  <Box paddingTop={5}>
+                  <Box paddingTop={5} paddingRight={7}>
                     <Button
-                      startIcon={<Information />}
+                      startIcon={<Eye />}
                       variant="secondary"
                       loading={isVerifying}
                       onClick={verifyUrlAndSecret}
