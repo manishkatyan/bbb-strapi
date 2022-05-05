@@ -13,7 +13,7 @@ import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { Switch } from "@strapi/design-system/Switch";
 import { createClass } from "../../utils/apiCalls";
 
-const Modal = ({ isVisible, handleClose, handleCreate }) => {
+const Modal = ({ isVisible, handleClose }) => {
   const [className, setClassName] = useState("");
   const [moderatorChecked, setModeratorChecked] = useState(false);
   const [moderatorAccessCode, setModeratorAccessCode] = useState("");

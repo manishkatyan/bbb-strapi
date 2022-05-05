@@ -8,8 +8,9 @@ import { HeaderLayout, ContentLayout } from "@strapi/design-system/Layout";
 import { Main } from "@strapi/design-system/Main";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Typography } from "@strapi/design-system/Typography";
-import Eye from "@strapi/icons/Eye";
+import { Link } from "@strapi/design-system/Link";
 import CheckCircle from "@strapi/icons/CheckCircle";
+import Refresh from "@strapi/icons/Refresh";
 import { Alert } from "@strapi/design-system/Alert";
 import {
   checkBBB,
@@ -141,34 +142,33 @@ const Settings = () => {
                 setShowAlert(false);
               }}
             >
-              URL and secret saved successfully
+              URL and Secret saved successfully.
             </Alert>
           ) : (
             ""
           )}
         </Box>
-        <Box shadow="tableShadow" background="neutral0" padding={3}>
-          <Box paddingTop={6}>
+        <Box
+          shadow="tableShadow"
+          background="neutral0"
+          paddingTop={6}
+          paddingLeft={7}
+          paddingRight={7}
+          paddingBottom={6}
+          hasRadius
+        >
+          <Box>
             <Typography variant="delta">Configuration</Typography>
           </Box>
-          <Box paddingBottom={2} paddingTop={1} textColor="primary600">
+          <Box paddingBottom={2} paddingTop={1}>
             <Typography variant="omega">
-              Enter your BigBlueButton URL and Secret below to connect to it. In
-              case you don&apos;t have one, create a free trial account&nbsp;
-              <a
-                href="https://higheredlab.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                here
-              </a>
-              .
+              Enter your BigBlueButton URL and Secret below to connect to it.
             </Typography>
           </Box>
-          <Box padding={2}>
+          <Box>
             <Grid gap={5}>
               <GridItem col={6} s={12}>
-                <Box paddingTop={5} paddingBottom={2} paddingLeft={7}>
+                <Box paddingTop={5} paddingBottom={2}>
                   <TextInput
                     name="url"
                     label="BigBlueButton URL"
@@ -192,7 +192,7 @@ const Settings = () => {
             </Grid>
 
             <Grid gap={5}>
-              <GridItem col={11} s={11}>
+              <GridItem col={9} s={11}>
                 <Box paddingTop={5}>
                   {error ? (
                     <Typography textColor="danger500">{error}</Typography>
@@ -201,25 +201,45 @@ const Settings = () => {
                   )}
                 </Box>
               </GridItem>
-              <GridItem col={1} s={1}>
+              <GridItem col={3} s={2}>
                 {iscorrectUrl ? (
-                  <Box paddingTop={5} paddingRight={7}>
+                  <Box paddingTop={5} paddingLeft={9}>
                     <Button startIcon={<CheckCircle />} variant="success">
                       Verified
                     </Button>
                   </Box>
                 ) : (
-                  <Box paddingTop={5} paddingRight={7}>
+                  <Box paddingTop={5} paddingLeft={9}>
                     <Button
-                      startIcon={<Eye />}
+                      startIcon={<Refresh />}
                       variant="secondary"
                       loading={isVerifying}
                       onClick={verifyUrlAndSecret}
                     >
-                      Verify
+                      Verify Connection
                     </Button>
                   </Box>
                 )}
+              </GridItem>
+            </Grid>
+          </Box>
+        </Box>
+        <br />
+        <Box
+          shadow="tableShadow"
+          background="neutral0"
+          paddingTop={6}
+          paddingLeft={7}
+          paddingRight={7}
+          paddingBottom={6}
+          hasRadius
+        >
+          <Box paddingTop={2}>
+            <Grid gap={4}>
+              <GridItem col={6} s={12}>
+                <Link href="https://higheredlab.com/" isExternal>
+                  Create a trial account to get a free BigBlueButton server
+                </Link>
               </GridItem>
             </Grid>
           </Box>
