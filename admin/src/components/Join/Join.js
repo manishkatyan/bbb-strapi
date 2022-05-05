@@ -6,6 +6,7 @@ import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Button } from "@strapi/design-system/Button";
 import { Divider } from "@strapi/design-system/Divider";
+
 import { getClassByUID } from "../../utils/apiCalls";
 import { startBBB } from "../../utils/apiCalls";
 
@@ -94,8 +95,8 @@ const Join = () => {
   };
 
   return (
-    <Box>
-      <Box paddingTop={8} paddingLeft={8}>
+    <>
+      <Box paddingTop={6} paddingLeft={7}>
         <Typography variant="alpha">
           Join {classDetail.className} Class
         </Typography>
@@ -103,59 +104,60 @@ const Join = () => {
       <Box padding={3}>
         <Divider />
       </Box>
-      <Grid paddingTop={5}>
-        <GridItem col={1}></GridItem>
-        <GridItem col={10}>
-          <Box
-            shadow="tableShadow"
-            background="neutral0"
-            paddingTop={3}
-            paddingBottom={3}
-          >
-            <Grid gap={5} justifyContent="center" alignItems="center">
-              <GridItem col={5}>
-                <Box padding={4}>
-                  <TextInput
-                    placeholder="Enter your name"
-                    aria-label="name"
-                    name="name"
-                    value={name}
-                    error={nameError ? nameError : ""}
-                    onChange={handleNameChange}
-                  />
-                </Box>
-              </GridItem>
-
-              <GridItem col={5}>
-                <Box padding={4}>
-                  <TextInput
-                    placeholder="Enter access Code"
-                    type="number"
-                    aria-label="accessCode"
-                    name="accessCode"
-                    value={accessCode}
-                    error={codeError ? codeError : ""}
-                    onChange={handleAccessCodeChange}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={2}>
-                <Box padding={4}>
-                  <Button
-                    variant="default"
-                    loading={isLoading}
-                    onClick={() => handleJoinClass(classDetail)}
-                  >
-                    Join Class
-                  </Button>
-                </Box>
-              </GridItem>
-            </Grid>
-          </Box>
-        </GridItem>
-        <GridItem col={1}></GridItem>
-      </Grid>
-    </Box>
+      <Box paddingTop={6} paddingLeft={7} paddingRight={7}>
+        <Grid>
+          <GridItem col={12}>
+            <Box
+              shadow="tableShadow"
+              background="neutral0"
+              paddingTop={6}
+              paddingBottom={6}
+              paddingLeft={7}
+              paddingRight={7}
+            >
+              <Grid gap={5} justifyContent="center" alignItems="center">
+                <GridItem col={5}>
+                  <Box>
+                    <TextInput
+                      placeholder="Enter your name"
+                      aria-label="name"
+                      name="name"
+                      value={name}
+                      error={nameError ? nameError : ""}
+                      onChange={handleNameChange}
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem col={5}>
+                  <Box>
+                    <TextInput
+                      placeholder="Enter access Code"
+                      type="number"
+                      aria-label="accessCode"
+                      name="accessCode"
+                      value={accessCode}
+                      error={codeError ? codeError : ""}
+                      onChange={handleAccessCodeChange}
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem col={2}>
+                  <Box>
+                    <Button
+                      variant="default"
+                      loading={isLoading}
+                      onClick={() => handleJoinClass(classDetail)}
+                    >
+                      Join Class
+                    </Button>
+                  </Box>
+                </GridItem>
+              </Grid>
+            </Box>
+          </GridItem>
+        </Grid>
+      </Box>
+    </>
   );
 };
 

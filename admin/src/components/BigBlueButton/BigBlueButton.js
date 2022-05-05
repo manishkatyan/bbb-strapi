@@ -1,8 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { Box } from "@strapi/design-system/Box";
 import { Typography } from "@strapi/design-system/Typography";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
-import { Button } from "@strapi/design-system/Button";
 import { Divider } from "@strapi/design-system/Divider";
 import Modal from "./Modal";
 import ClassTable from "./Table";
@@ -15,7 +13,8 @@ const BigBlueButton = () => {
   const handleCloseModal = () => {
     setIsVisible(false);
   };
-  const handleCreateClass = () => setIsVisible(true);
+  const handleClickCreate = () => setIsVisible(true);
+
   const deleteAction = () => {
     setAction(action + 1);
   };
@@ -29,37 +28,37 @@ const BigBlueButton = () => {
   return (
     <>
       <Box>
-        <Box paddingTop={8} paddingLeft={8}>
+        <Box paddingTop={6} paddingLeft={7}>
           <Typography variant="alpha">
-            Start BigBlueButton Online Classes
+            Manage BigBlueButton Online Classes
           </Typography>
-          <Box>
+          {/* <Box>
             <Typography variant="omega">
-              Create and start a BigBlueButton online class, and invite others.
-              to join in
+              Enter your BigBlueButton URL and Secret below to connect to it. In
+              case you don&apos;t have one, create a free trial account &nbsp;
+              <a
+                href="https://higheredlab.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                here
+              </a>
+              .
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
         <Box padding={3}>
           <Divider />
         </Box>
-        <Grid>
-          <GridItem padding={1} col={7} xs={12}></GridItem>
-          <GridItem padding={1} col={3} xs={12}></GridItem>
-          <GridItem padding={1} col={2} xs={12}>
-            <Button onClick={() => setIsVisible((prev) => !prev)}>
-              Create Class
-            </Button>
-            <Modal
-              isVisible={isVisible}
-              handleClose={handleCloseModal}
-              handleCreate={handleCreateClass}
-            />
-          </GridItem>
-        </Grid>
+
+        <Modal isVisible={isVisible} handleClose={handleCloseModal} />
 
         {classData && classData.length > 0 ? (
-          <ClassTable classData={classData} deleteAction={deleteAction} />
+          <ClassTable
+            classData={classData}
+            deleteAction={deleteAction}
+            handleClickCreate={handleClickCreate}
+          />
         ) : (
           ""
         )}

@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Box } from "@strapi/design-system/Box";
 import copy from "copy-to-clipboard";
-import { Table, Thead, Tbody, Tr, Td, Th } from "@strapi/design-system/Table";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Td,
+  Th,
+  TFooter,
+} from "@strapi/design-system/Table";
 import { Typography } from "@strapi/design-system/Typography";
 import { Flex } from "@strapi/design-system/Flex";
 import { VisuallyHidden } from "@strapi/design-system/VisuallyHidden";
@@ -11,12 +19,13 @@ import { IconButton } from "@strapi/design-system/IconButton";
 import { Alert } from "@strapi/design-system/Alert";
 import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
+import Plus from "@strapi/icons/Plus";
 import LinkIcon from "./LinkIcon";
 import ConfirmDialog from "./ConfirmDialog";
 
 import { deleteClass } from "../../utils/apiCalls";
 
-const ClassTable = ({ classData, deleteAction }) => {
+const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
   let { url } = useRouteMatch();
   const [showAlert, setShowAlert] = useState(false);
   const ROW_COUNT = 6;
@@ -45,7 +54,13 @@ const ClassTable = ({ classData, deleteAction }) => {
 
   return (
     <>
-      <Box padding={8} paddingTop={5} background="neutral100">
+      <Box
+        paddingTop={6}
+        paddingBottom={6}
+        paddingLeft={7}
+        paddingRight={7}
+        background="neutral100"
+      >
         <Box paddingBottom={2}>
           {showAlert ? (
             <Alert
@@ -62,11 +77,19 @@ const ClassTable = ({ classData, deleteAction }) => {
             ""
           )}
         </Box>
-        <Table colCount={COL_COUNT} rowCount={ROW_COUNT}>
+        <Table
+          colCount={COL_COUNT}
+          rowCount={ROW_COUNT}
+          footer={
+            <TFooter icon={<Plus />} onClick={handleClickCreate}>
+              Create New Class
+            </TFooter>
+          }
+        >
           <Thead>
             <Tr>
               <Th>
-                <Typography variant="sigma">S.No</Typography>
+                <VisuallyHidden>S.No</VisuallyHidden>
               </Th>
               <Th>
                 <Typography variant="sigma">Class</Typography>
@@ -126,7 +149,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                             to={`${url}/join/moderator/${bbbClass.uid}`}
                             style={{ textDecoration: "none" }}
                           >
-                            <Button endIcon={<Play />}>Start Class</Button>
+                            <Button startIcon={<Play />}>Start Class</Button>
                           </Link>
                         </Typography>
                       </Box>
@@ -138,7 +161,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                             onClick={() => {
                               handleInvite(bbbClass);
                             }}
-                            endIcon={<LinkIcon />}
+                            startIcon={<LinkIcon />}
                           >
                             Invite
                           </Button>
@@ -147,7 +170,7 @@ const ClassTable = ({ classData, deleteAction }) => {
                     </Flex>
                   </Td>
                   <Td>
-                    <Flex>
+                    <Flex justifyContent="end">
                       <Box paddingLeft={1}>
                         <IconButton
                           onClick={() => {
