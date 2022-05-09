@@ -9,8 +9,8 @@ import { Main } from "@strapi/design-system/Main";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Typography } from "@strapi/design-system/Typography";
 import { Link } from "@strapi/design-system/Link";
-import CheckCircle from "@strapi/icons/CheckCircle";
-import Refresh from "@strapi/icons/Refresh";
+import { Flex } from "@strapi/design-system/Flex";
+import { Loader } from "@strapi/design-system/Loader";
 import { Alert } from "@strapi/design-system/Alert";
 import {
   checkBBB,
@@ -21,11 +21,9 @@ import {
 const Settings = () => {
   const [url, setUrl] = useState("");
   const [secret, setSecret] = useState("");
-  const [iscorrectUrl, setIsCorrectUrl] = useState(false);
-
+  const [isCorrectUrl, setIsCorrectUrl] = useState(false);
   const [errorUrl, setErrorUrl] = useState("");
   const [errorSecret, setErrorSecret] = useState("");
-  const [isVerifying, setIsVerifying] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -53,39 +51,9 @@ const Settings = () => {
     setError("");
   };
 
-  const verifyUrlAndSecret = async () => {
-    setIsVerifying(true);
-    if (url && secret) {
-      let trimUrl;
-      if (url.endsWith("/api")) {
-        trimUrl = url.slice(0, -4);
-      } else if (url.endsWith("/")) {
-        trimUrl = url.slice(0, -1);
-      } else {
-        trimUrl = url;
-      }
-      const response = await checkBBB(trimUrl, secret);
-
-      if (response.data.returncode === "SUCCESS") {
-        setIsCorrectUrl(true);
-        setErrorUrl("");
-        setIsVerifying(false);
-      } else if (response.data.returncode === "FAILED") {
-        setError("Please enter valid BigBlueButton url/secret");
-        setIsCorrectUrl(false);
-        setIsVerifying(false);
-      }
-    } else if (!url) {
-      setErrorUrl("Please enter BigBlueButton url");
-      setIsVerifying(false);
-    } else if (!secret) {
-      setErrorSecret("Please enter BigBlueButton secret");
-      setIsVerifying(false);
-    }
-  };
-
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setError("");
     if (!url && !secret) {
       setErrorUrl("Please enter BigBlueButton url");
       setErrorSecret("Please enter BigBlueButton secret");
@@ -105,11 +73,23 @@ const Settings = () => {
       } else {
         trimUrl = url;
       }
-      const response = await bigBlueButtonSetting(trimUrl, secret);
+      const response = await checkBBB(trimUrl, secret);
+      if (response.data.returncode === "SUCCESS") {
+        setIsCorrectUrl(true);
+        setErrorUrl("");
 
-      if (response.data.ok) {
-        setShowAlert(true);
+        const saveCredential = await bigBlueButtonSetting(trimUrl, secret);
+
+        if (saveCredential.data.ok) {
+          setShowAlert(true);
+          setIsSubmitting(false);
+        }
+      } else if (response.data.returncode === "FAILED") {
+        setError("Please enter valid BigBlueButton url/secret");
+        setIsCorrectUrl(false);
+        setIsSubmitting(false);
       }
+
       setIsSubmitting(false);
     }
   };
@@ -117,20 +97,7 @@ const Settings = () => {
   return (
     <Main>
       <SettingsPageTitle name="BigBlueButton" />
-      <HeaderLayout
-        title="BigBlueButton Configuration"
-        primaryAction={
-          <Button
-            type="submit"
-            loading={isSubmitting}
-            onClick={handleSubmit}
-            startIcon={<Check />}
-            size="L"
-          >
-            Save
-          </Button>
-        }
-      />
+      <HeaderLayout title="BigBlueButton Configuration" primaryAction="" />
       <ContentLayout>
         <Box paddingBottom={2}>
           {showAlert ? (
@@ -199,27 +166,39 @@ const Settings = () => {
                   ) : (
                     ""
                   )}
+                  {isCorrectUrl ? (
+                    <Typography textColor="success500">
+                      Connection Verified
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  {isSubmitting ? (
+                    <>
+                      <Flex>
+                        <Loader small>Loading content...</Loader>&nbsp;
+                        <Typography textColor="primary600">
+                          Verifying Connection
+                        </Typography>
+                      </Flex>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </Box>
               </GridItem>
               <GridItem col={3} s={2}>
-                {iscorrectUrl ? (
-                  <Box paddingTop={5} paddingLeft={9}>
-                    <Button startIcon={<CheckCircle />} variant="success">
-                      Verified
-                    </Button>
-                  </Box>
-                ) : (
-                  <Box paddingTop={5} paddingLeft={9}>
-                    <Button
-                      startIcon={<Refresh />}
-                      variant="secondary"
-                      loading={isVerifying}
-                      onClick={verifyUrlAndSecret}
-                    >
-                      Verify Connection
-                    </Button>
-                  </Box>
-                )}
+                <Flex justifyContent="end" paddingTop={4}>
+                  <Button
+                    type="submit"
+                    loading={isSubmitting}
+                    onClick={handleSubmit}
+                    startIcon={<Check />}
+                    size="L"
+                  >
+                    Save
+                  </Button>
+                </Flex>
               </GridItem>
             </Grid>
           </Box>
@@ -237,7 +216,7 @@ const Settings = () => {
           <Box paddingTop={2}>
             <Grid gap={4}>
               <GridItem col={6} s={12}>
-                <Link href="https://higheredlab.com/" isExternal>
+                <Link href="https://higheredlab.com/bigbluebutton/" isExternal>
                   Create a trial account to get a free BigBlueButton server
                 </Link>
               </GridItem>

@@ -45,7 +45,6 @@ module.exports = ({ strapi }) => ({
       }
       return parsedResponse;
     } catch (error) {
-      console.log(error);
       return { returncode: "FAILED" };
     }
   },
@@ -86,7 +85,6 @@ module.exports = ({ strapi }) => ({
       const response = await axios.get(url);
       return parseXml(response.data).running;
     } catch (error) {
-      console.log(error);
       return { returncode: "FAILED" };
     }
   },
@@ -108,7 +106,6 @@ module.exports = ({ strapi }) => ({
       const parsedResponse = parseXml(response.data);
       return parsedResponse;
     } catch (error) {
-      console.log(error);
       return { returncode: "FAILED" };
     }
   },
@@ -138,12 +135,19 @@ module.exports = ({ strapi }) => ({
       return `${bbb.host}/api/${action}?${paramStringify}`;
     }
 
+    const endMeeting = async (meetingID, password) => {
+      const url = constructUrl(bbbParams, "end", { meetingID, password });
+      await axios.get(url);
+    };
+
     try {
       const response = await axios.get(bbbUrl);
       const parsedResponse = parseXml(response.data);
+      if (parsedResponse.returncode === "SUCCESS") {
+        await endMeeting(parsedResponse.meetingID, parsedResponse.moderatorPW);
+      }
       return parsedResponse;
     } catch (error) {
-      console.log(error);
       return { returncode: "FAILED" };
     }
   },

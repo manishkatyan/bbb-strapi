@@ -2,8 +2,13 @@ import React, { useState, useEffect, memo } from "react";
 import { Box } from "@strapi/design-system/Box";
 import { Typography } from "@strapi/design-system/Typography";
 import { Divider } from "@strapi/design-system/Divider";
+import { Button } from "@strapi/design-system/Button";
+import { EmptyStateLayout } from "@strapi/design-system/EmptyStateLayout";
+import ExclamationMarkCircle from "@strapi/icons/ExclamationMarkCircle";
+import Plus from "@strapi/icons/Plus";
 import Modal from "./Modal";
 import ClassTable from "./Table";
+import SettingLink from "./SettingLink";
 import { getClass } from "../../utils/apiCalls";
 
 const BigBlueButton = () => {
@@ -32,20 +37,6 @@ const BigBlueButton = () => {
           <Typography variant="alpha">
             Manage BigBlueButton Online Classes
           </Typography>
-          {/* <Box>
-            <Typography variant="omega">
-              Enter your BigBlueButton URL and Secret below to connect to it. In
-              case you don&apos;t have one, create a free trial account &nbsp;
-              <a
-                href="https://higheredlab.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                here
-              </a>
-              .
-            </Typography>
-          </Box> */}
         </Box>
         <Box padding={3}>
           <Divider />
@@ -60,8 +51,26 @@ const BigBlueButton = () => {
             handleClickCreate={handleClickCreate}
           />
         ) : (
-          ""
+          <Box padding={7} background="neutral100">
+            <EmptyStateLayout
+              icon={<ExclamationMarkCircle />}
+              content="You don't have any content yet..."
+              action={
+                <Button
+                  variant="secondary"
+                  startIcon={<Plus />}
+                  onClick={handleClickCreate}
+                >
+                  Create your first class
+                </Button>
+              }
+            />
+          </Box>
         )}
+
+        <Box paddingLeft={7} paddingRight={7}>
+          <SettingLink />
+        </Box>
       </Box>
     </>
   );

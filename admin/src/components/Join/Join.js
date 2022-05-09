@@ -6,7 +6,9 @@ import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Button } from "@strapi/design-system/Button";
 import { Divider } from "@strapi/design-system/Divider";
-
+import { Link } from "@strapi/design-system/Link";
+import ExternalLink from "@strapi/icons/ExternalLink";
+import ArrowLeft from "@strapi/icons/ArrowLeft";
 import { getClassByUID } from "../../utils/apiCalls";
 import { startBBB } from "../../utils/apiCalls";
 
@@ -88,7 +90,7 @@ const Join = () => {
 
       const res = await startBBB(classParams.uid, data, name);
       if (res.status === 200) {
-        window.location.replace(res.data.joinURL);
+        window.open(res.data.joinURL, "_blank");
         setIsLoading(false);
       }
     }
@@ -96,7 +98,12 @@ const Join = () => {
 
   return (
     <>
-      <Box paddingTop={6} paddingLeft={7}>
+      <Box paddingLeft={7} paddingTop={6}>
+        <Link to="/plugins/bigbluebutton-strapi" startIcon={<ArrowLeft />}>
+          Back
+        </Link>
+      </Box>
+      <Box paddingTop={4} paddingLeft={7}>
         <Typography variant="alpha">
           Join {classDetail.className} Class
         </Typography>
@@ -146,6 +153,7 @@ const Join = () => {
                     <Button
                       variant="default"
                       loading={isLoading}
+                      startIcon={<ExternalLink />}
                       onClick={() => handleJoinClass(classDetail)}
                     >
                       Join Class
