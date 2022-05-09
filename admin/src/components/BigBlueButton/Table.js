@@ -89,9 +89,6 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
           <Thead>
             <Tr>
               <Th>
-                <VisuallyHidden>S.No</VisuallyHidden>
-              </Th>
-              <Th>
                 <Typography variant="sigma">Class</Typography>
               </Th>
               <Th>
@@ -109,12 +106,6 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
             <Tbody>
               {classData.map((bbbClass, index) => (
                 <Tr key={bbbClass.id}>
-                  <Td>
-                    <Typography textColor="neutral800">
-                      {parseInt(index) + 1}
-                    </Typography>
-                  </Td>
-
                   <Td>
                     <Typography
                       textColor="neutral800"
@@ -178,7 +169,6 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                             setClassId(bbbClass.id);
                           }}
                           label="Delete"
-                          noBorder
                           icon={<Trash />}
                           data-toggle="dialog"
                           data-target={`#delete_${bbbClass.id}`}
