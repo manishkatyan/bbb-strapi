@@ -32,12 +32,6 @@ BigBlueButton offers you everything you need for your online classes: HD audio/v
 
 <br/><br/>
 
-## ⚙️ Versions
-
-- **Strapi v4**
-
-<br/><br/>
-
 ## 🖐 Requirements
 
 The requireemnts to install the BigBlueButton-Strapi plugin is same as those to install Strapi.
