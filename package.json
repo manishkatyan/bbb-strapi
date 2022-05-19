@@ -13,6 +13,7 @@
     "hash.js": "^1.1.7",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
+    "react-ace": "^10.1.0",
     "react-copy-to-clipboard": "^5.0.4"
   },
   "author": {
@@ -38,10 +39,20 @@
   },
   "keywords": [
     "strapi",
-    "strapi-plugin",
-    "plugin",
+    "bigbluebtton",
     "bigbluebutton-strapi",
-    "bigbluebtton"
+    "strapi-plugin",
+    "online tutoring",
+    "web conference",
+    "online class",
+    "teaching",
+    "teacher",
+    "student",
+    "tuition",
+    "streaming",
+    "integration",
+    "tutorials",
+    "online meeting"
   ],
   "license": "MIT"
 }

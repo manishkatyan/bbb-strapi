@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { Box } from "@strapi/design-system/Box";
 import { Link } from "@strapi/design-system/Link";
+import { Typography } from "@strapi/design-system/Typography";
 import ArrowRight from "@strapi/icons/ArrowRight";
 
 const SettingLink = () => {
@@ -25,6 +26,11 @@ const SettingLink = () => {
               >
                 Configure Your BigBlueButton URL and Secret
               </Link>
+            </GridItem>
+            <GridItem col={6} s={12}>
+              <Typography variant="pi">
+                Need help? Contact us at : support@higheredlab.com
+              </Typography>
             </GridItem>
           </Grid>
         </Box>

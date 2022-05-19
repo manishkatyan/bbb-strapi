@@ -21,7 +21,9 @@ import Play from "@strapi/icons/Play";
 import Trash from "@strapi/icons/Trash";
 import Plus from "@strapi/icons/Plus";
 import LinkIcon from "./LinkIcon";
+import Cog from "@strapi/icons/Cog";
 import ConfirmDialog from "./ConfirmDialog";
+import ApiEndPointModal from "./ApiEndPointModal";
 
 import { deleteClass } from "../../utils/apiCalls";
 
@@ -32,6 +34,8 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
   const COL_COUNT = 10;
   const [isVisible, setIsVisible] = useState(false);
   const [classId, setClassId] = useState(false);
+  const [isApiModalVisible, setApiModalVisible] = useState(false);
+  const [classUid, setClassUid] = useState("");
 
   useEffect(async () => {}, [isVisible, classData]);
 
@@ -52,8 +56,15 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
     deleteAction();
   };
 
+  const handleCloseApiModal = () => setApiModalVisible(false);
+
   return (
     <>
+      <ApiEndPointModal
+        classUid={classUid}
+        isVisibleModal={isApiModalVisible}
+        handleCloseModal={handleCloseApiModal}
+      />
       <Box
         paddingTop={6}
         paddingBottom={6}
@@ -158,11 +169,23 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                           </Button>
                         </Typography>
                       </Box>
+                      <Box paddingLeft={2}>
+                        <Button
+                          variant="secondary"
+                          onClick={() => {
+                            setApiModalVisible(true);
+                            setClassUid(bbbClass.uid);
+                          }}
+                          startIcon={<Cog />}
+                        >
+                          API End-points
+                        </Button>
+                      </Box>
                     </Flex>
                   </Td>
                   <Td>
                     <Flex justifyContent="end">
-                      <Box paddingLeft={1}>
+                      <Box>
                         <IconButton
                           onClick={() => {
                             setIsVisible(true);

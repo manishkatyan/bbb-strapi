@@ -147,4 +147,20 @@ module.exports = [
       auth: false,
     },
   },
+  {
+    method: "POST",
+    path: "/api/class/start/:uid",
+    handler: "bbbApiController.startBBB",
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: "POST",
+    path: "/api/class/join/:uid",
+    handler: "bbbApiController.joinBBB",
+    config: {
+      auth: false,
+    },
+  },
 ];
