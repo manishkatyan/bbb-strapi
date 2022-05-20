@@ -109,6 +109,21 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                 </AccordionContent>
               </Accordion>
             </Box>
+            <Box
+              background="neutral100"
+              paddingTop={3}
+              paddingBottom={4}
+              paddingLeft={5}
+              paddingRight={5}
+              marginTop={4}
+              marginBottom={4}
+            >
+              <Typography>
+                {`if (response.data.joinURL) {
+      window.open(response.data.joinURL, "_blank");
+    }`}
+              </Typography>
+            </Box>
             <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
               <Typography variant="delta">
                 API End-point to Join Class
@@ -162,7 +177,27 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                 </AccordionContent>
               </Accordion>
             </Box>
-            <Box paddingTop={4}>
+            <Box
+              background="neutral100"
+              paddingTop={3}
+              paddingBottom={4}
+              paddingLeft={5}
+              paddingRight={5}
+              marginTop={4}
+              marginBottom={4}
+            >
+              <Typography>
+                {`if (response.data.joinURL) {
+      window.open(response.data.joinURL, "_blank");
+    }`}
+              </Typography>
+            </Box>
+            <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
+              <Typography variant="delta">
+                Sample API End-points implementation
+              </Typography>
+            </Box>
+            <Box paddingTop={2}>
               <Box padding={4} background="neutral100">
                 <Accordion
                   expanded={expandDemo}
@@ -170,7 +205,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                   id="acc-1"
                   size="S"
                 >
-                  <AccordionToggle title="Sample API End-points implementation" />
+                  <AccordionToggle title="Code Block" />
                   <AccordionContent>
                     <Box padding={3}>
                       <AceEditor
@@ -185,7 +220,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                         showGutter={true}
                         readOnly={true}
                         height="800px"
-                        width="700px"
+                        width="680px"
                         value={`
 export default function App() {
   const handleClickStart = async () => {

@@ -1,10 +1,10 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "1.3.0",
-  "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
+  "version": "2.0.0",
+  "description": "Integrate online classes into Strapi CMS via BigBlueButton open-source video conferencing. This free plugin also provides API end-points to easily start and join web conferencing into any frontend app.",
   "strapi": {
     "name": "bigbluebutton",
-    "description": "Integrate BigBlueButton Online Classes into Strapi CMS",
+    "description": "Integrate online classes into Strapi CMS via BigBlueButton open-source video conferencing. This free plugin also provides API end-points to easily start and join web conferencing into any frontend app.",
     "kind": "plugin"
   },
   "dependencies": {
@@ -38,21 +38,31 @@
     "npm": ">=6.0.0"
   },
   "keywords": [
-    "strapi",
     "bigbluebtton",
     "bigbluebutton-strapi",
+    "strapi",
     "strapi-plugin",
     "online tutoring",
+    "e-learning",
+    "audio conference",
     "web conference",
     "online class",
-    "teaching",
-    "teacher",
-    "student",
-    "tuition",
     "streaming",
-    "integration",
-    "tutorials",
-    "online meeting"
+    "online meeting",
+    "online classroom",
+    "open-source",
+    "online lectures",
+    "online event",
+    "meeting room",
+    "mediasoup",
+    "video conference",
+    "virtual classes",
+    "web conferencing tool",
+    "web meeting",
+    "web conference call",
+    "webrtc meeting",
+    "jitsi",
+    "zoom"
   ],
   "license": "MIT"
 }
