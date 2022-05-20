@@ -10,8 +10,7 @@ import { Typography } from "@strapi/design-system/Typography";
 import { Button } from "@strapi/design-system/Button";
 import { Flex } from "@strapi/design-system/Flex";
 import { Box } from "@strapi/design-system/Box";
-import { Link } from "@strapi/design-system/Link";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
+import { Divider } from "@strapi/design-system/Divider";
 import {
   Accordion,
   AccordionToggle,
@@ -46,8 +45,8 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               </Box>
               <Box>
                 <Typography variant="omega">
-                  Simple API end-points to that you can embed in your Front-end
-                  app.
+                  Simple API end-points that you can easily integrate in your
+                  Frontend app to enable online classes.
                 </Typography>
               </Box>
             </Flex>
@@ -119,10 +118,17 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               marginBottom={4}
             >
               <Typography>
-                {`if (response.data.joinURL) {
-      window.open(response.data.joinURL, "_blank");
-    }`}
+                {`// This block code will redirected moderator to bigbluebutton meeting`}
               </Typography>
+              <Box>
+                <Typography>
+                  {`
+                if (response.data.joinURL) {
+                  window.open(response.data.joinURL, "_blank");
+                }
+                `}
+                </Typography>
+              </Box>
             </Box>
             <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
               <Typography variant="delta">
@@ -187,17 +193,22 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               marginBottom={4}
             >
               <Typography>
-                {`if (response.data.joinURL) {
-      window.open(response.data.joinURL, "_blank");
-    }`}
+                {`// This block code will redirected viewer to bigbluebutton meeting`}
               </Typography>
+              <Box>
+                <Typography>
+                  {`
+                if (response.data.joinURL) {
+                  window.open(response.data.joinURL, "_blank");
+                }
+                `}
+                </Typography>
+              </Box>
             </Box>
-            <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
-              <Typography variant="delta">
-                Sample API End-points implementation
-              </Typography>
+            <Box paddingTop={4}>
+              <Divider />
             </Box>
-            <Box paddingTop={2}>
+            <Box paddingTop={6}>
               <Box padding={4} background="neutral100">
                 <Accordion
                   expanded={expandDemo}
@@ -205,7 +216,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                   id="acc-1"
                   size="S"
                 >
-                  <AccordionToggle title="Code Block" />
+                  <AccordionToggle title="Sample API End-points implementation" />
                   <AccordionContent>
                     <Box padding={3}>
                       <AceEditor
@@ -225,7 +236,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
 export default function App() {
   const handleClickStart = async () => {
     const response = await axios.post(
-      "http://${window.location.origin}/bigbluebutton/api/class/start/${classUid}",
+      "${window.location.origin}/bigbluebutton/api/class/start/${classUid}",
       {
         moderatorName: "Moderator"
       }
@@ -237,7 +248,7 @@ export default function App() {
 
   const handleClickJoin = async () => {
     const response = await axios.post(
-      "http://${window.location.origin}/bigbluebutton/api/class/join/${classUid}",
+      "${window.location.origin}/bigbluebutton/api/class/join/${classUid}",
       { viewerName: "Viewer" }
     );
     
