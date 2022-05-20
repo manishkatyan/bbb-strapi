@@ -81,11 +81,34 @@ const Join = () => {
         data.guestPolicy = "ASK_MODERATOR";
       }
 
-      if (classParams.bbbSettings?.muteViewerjoin) {
-        data.muteOnStart = true;
+      if (classParams.bbbSettings?.muteOnStart) {
+        data.muteOnStart = JSON.parse(classParams.bbbSettings?.muteOnStart);
       }
-      if (classParams.bbbSettings?.logoUrl) {
-        data.logo = classParams.bbbSettings.logoUrl;
+
+      if (classParams.bbbSettings?.logo) {
+        data.logo = classParams.bbbSettings.logo;
+      }
+
+      if (classParams.bbbSettings?.maxParticipants) {
+        data.maxParticipants = JSON.parse(
+          classParams.bbbSettings?.maxParticipants
+        );
+      }
+
+      if (classParams.bbbSettings?.logoutURL) {
+        data.logoutURL = classParams.bbbSettings?.logoutURL;
+      }
+
+      if (classParams.bbbSettings?.allowModsToUnmuteUsers) {
+        data.allowModsToUnmuteUsers = JSON.parse(
+          classParams.bbbSettings?.allowModsToUnmuteUsers
+        );
+      }
+
+      if (classParams.bbbSettings?.lockSettingsDisablePrivateChat) {
+        data.lockSettingsDisablePrivateChat = JSON.parse(
+          classParams.bbbSettings?.lockSettingsDisablePrivateChat
+        );
       }
 
       const res = await startBBB(classParams.uid, data, name);

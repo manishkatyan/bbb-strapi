@@ -45,6 +45,8 @@ export async function joinBBB(uid, fullName, bbbParams) {
     fullName,
     meetingID: bbbParams.meetingID,
     password: bbbParams.moderatorPW,
+    "userdata-bbb_skip_check_audio": bbbParams["userdata-bbb_skip_check_audio"],
+    "userdata-bbb_listen_only_mode": bbbParams["userdata-bbb_listen_only_mode"],
   });
   return joinResponse;
 }

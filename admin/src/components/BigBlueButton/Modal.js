@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AceEditor from "react-ace";
 import {
   ModalLayout,
   ModalBody,
@@ -11,7 +12,12 @@ import { Box } from "@strapi/design-system/Box";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { Switch } from "@strapi/design-system/Switch";
+import { Link } from "@strapi/design-system/Link";
 import { createClass } from "../../utils/apiCalls";
+
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 const Modal = ({ isVisible, handleClose }) => {
   const [className, setClassName] = useState("");
@@ -20,13 +26,17 @@ const Modal = ({ isVisible, handleClose }) => {
   const [viewerChecked, setViewerChecked] = useState(false);
   const [viewerAccessCode, setViewerAccessCode] = useState("");
   const [moderatorApproval, setModeratorApproval] = useState(false);
-  const [muteViewerjoin, setMuteViewerJoin] = useState(false);
   const [classNameError, setClassNameError] = useState("");
   const [moderatorCodeError, setModeratorCodeError] = useState("");
   const [viewerCodeError, setViewerCodeError] = useState("");
-  const [logoUrl, setLogoUrl] = useState(
-    "https://higheredlab.com/wp-content/uploads/hel.png"
-  );
+  const [bbbAdvanceSetting, setbbbAdvanceSetting] = useState({
+    maxParticipants: 100,
+    logoutURL: "https://higheredlab.com/",
+    allowModsToUnmuteUsers: false,
+    lockSettingsDisablePrivateChat: false,
+    logo: "https://higheredlab.com/wp-content/uploads/hel.png",
+    muteOnStart: false,
+  });
 
   const classCreateData = {
     className,
@@ -34,8 +44,7 @@ const Modal = ({ isVisible, handleClose }) => {
     viewerAccessCode,
     bbbSettings: {
       moderatorApproval,
-      muteViewerjoin,
-      logoUrl,
+      ...bbbAdvanceSetting,
     },
   };
 
@@ -60,7 +69,6 @@ const Modal = ({ isVisible, handleClose }) => {
         setViewerChecked(false);
         setViewerAccessCode("");
         setModeratorApproval(false);
-        setMuteViewerJoin(false);
       }
     }
   }
@@ -81,6 +89,11 @@ const Modal = ({ isVisible, handleClose }) => {
       setViewerAccessCode("");
     }
   }, [moderatorChecked, viewerChecked, isVisible]);
+
+  const onChangeJson = (extraSetting) => {
+    setbbbAdvanceSetting(JSON.parse(extraSetting));
+  };
+
   return (
     <>
       {isVisible && (
@@ -109,25 +122,6 @@ const Modal = ({ isVisible, handleClose }) => {
                       setClassName(e.target.value);
                       setClassNameError("");
                     }}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={5}>
-                <Box padding={2}>
-                  <Typography variant="delta">Show Logo </Typography>
-                </Box>
-              </GridItem>
-              <GridItem col={6}>
-                <Box padding={2}>
-                  <TextInput
-                    placeholder="	https://higheredlab.com/wp-content/uploads/hel.png"
-                    aria-label="logoUrl"
-                    name="logoUrl"
-                    onChange={(e) => {
-                      setLogoUrl(e.target.value);
-                    }}
-                    value={logoUrl}
-                    size="S"
                   />
                 </Box>
               </GridItem>
@@ -215,17 +209,56 @@ const Modal = ({ isVisible, handleClose }) => {
                   />
                 </Box>
               </GridItem>
-              <GridItem col={10}>
+
+              <GridItem col={11}>
                 <Box padding={2}>
-                  <Typography variant="delta">Mute viewers on join</Typography>
+                  <Typography variant="beta">Advance Settings</Typography>
+                  <Box>
+                    <Typography variant="epsilon">
+                      You can customize settings for your BigBlueButton class.
+                      You may refer to the
+                      <Link
+                        href="https://docs.bigbluebutton.org/dev/api.html"
+                        isExternal
+                      >
+                        API doc for more information
+                      </Link>
+                      .
+                    </Typography>
+                  </Box>
                 </Box>
               </GridItem>
-              <GridItem col={2}>
+              <GridItem col={11}>
                 <Box padding={2}>
-                  <Switch
-                    label="Activate mute Viewers on join"
-                    selected={muteViewerjoin}
-                    onChange={() => setMuteViewerJoin((s) => !s)}
+                  <AceEditor
+                    placeholder="BigBlueButton Settings"
+                    mode="json"
+                    theme="monokai"
+                    name="setting"
+                    onChange={onChangeJson}
+                    fontSize={18}
+                    showPrintMargin={false}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    height="300px"
+                    width="700px"
+                    defaultValue={`{
+"maxParticipants":"100",
+"logoutURL":"https://higheredlab.com/",
+"allowModsToUnmuteUsers":"false",
+"lockSettingsDisablePrivateChat":"false",
+"logo":"https://higheredlab.com/wp-content/uploads/hel.png",
+"muteOnStart":"false",
+"userdata-bbb_skip_check_audio":"false",
+"userdata-bbb_listen_only_mode":"true"
+}`}
+                    setOptions={{
+                      enableBasicAutocompletion: false,
+                      enableLiveAutocompletion: false,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 4,
+                    }}
                   />
                 </Box>
               </GridItem>
