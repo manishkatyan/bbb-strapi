@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-strapi",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Integrate online classes into Strapi CMS via BigBlueButton open-source video conferencing. This free plugin also provides API end-points to easily setup start and join buttons for web conferencing into any frontend app.",
   "strapi": {
     "name": "bigbluebutton",
