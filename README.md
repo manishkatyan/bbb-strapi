@@ -20,7 +20,7 @@
 
 <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v3.gif" alt="bbb-class" /> <br/>
 
-<br/><br/>
+<br/>
 
 # BigBlueButton plugin for Strapi
 
