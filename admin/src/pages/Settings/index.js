@@ -220,6 +220,11 @@ const Settings = () => {
                   Create a trial account to get a free BigBlueButton server
                 </Link>
               </GridItem>
+              <GridItem col={6} s={12}>
+                <Typography variant="pi">
+                  Need help? Contact us at : support@higheredlab.com
+                </Typography>
+              </GridItem>
             </Grid>
           </Box>
         </Box>

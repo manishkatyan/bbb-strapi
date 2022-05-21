@@ -1,9 +1,9 @@
 <div align="center">
-   <img alt="bigbluebutton" width="60" src="https://market.strapi.io/_next/image?url=https%3A%2F%2Fdl.airtable.com%2F.attachments%2Fd11ed4e2980e2c436f8c62aee0f6cfcb%2F59f79dc5%2Fhel_logo_600.png%3Fts%3D1653033172%26userId%3DusrUa8HWbsGCCzcQm%26cs%3D399bcef6f9a4a14f&w=128&h=150&q=75" />
+   <img alt="bigbluebutton" width="60" src="https://higheredlab.com/wp-content/uploads/hel_icon.png" />
 </div>
 <h1 align="center">BigBlueButton-Strapi</h1>
 <p align="center">Integrate online classes into Strapi CMS via BigBlueButton open-source video conferencing.</p>
-<p align="center">This free plugin also provides API end-points to easily start and join web conferencing into any frontend app.</p>
+<p align="center">This free plugin also provides API end-points to easily setup start and join buttons for web conferencing into any frontend app.</p>
 
 <br />
 
@@ -18,11 +18,11 @@
 
 <br>
 
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v2.gif" alt="bbb-class" /> <br/>
+<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v3.gif" alt="bbb-class" /> <br/>
 
 <br/><br/>
 
-# BigBlueButton-Strapi
+# BigBlueButton plugin for Strapi
 
 [BigBlueButton](https://bigbluebutton.org/) is like-Zoom for online classes but at a much lower cost, with better analytics, and is open-source.
 

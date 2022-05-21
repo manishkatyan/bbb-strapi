@@ -216,14 +216,6 @@ const Modal = ({ isVisible, handleClose }) => {
                   <Box>
                     <Typography variant="epsilon">
                       You can customize settings for your BigBlueButton class.
-                      You may refer to the
-                      <Link
-                        href="https://docs.bigbluebutton.org/dev/api.html"
-                        isExternal
-                      >
-                        API doc for more information
-                      </Link>
-                      .
                     </Typography>
                   </Box>
                 </Box>
@@ -260,6 +252,18 @@ const Modal = ({ isVisible, handleClose }) => {
                       tabSize: 4,
                     }}
                   />
+                </Box>
+              </GridItem>
+              <GridItem col={11}>
+                <Box padding={2}>
+                  <Link
+                    href="https://docs.bigbluebutton.org/dev/api.html"
+                    isExternal
+                  >
+                    <Typography variant="epsilon" textColor="primary600">
+                      You may refer to the API doc for more information
+                    </Typography>
+                  </Link>
                 </Box>
               </GridItem>
             </Grid>
