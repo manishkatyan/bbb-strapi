@@ -111,7 +111,17 @@ const Join = () => {
         );
       }
 
-      const res = await startBBB(classParams.uid, data, name);
+      const meetingData = {
+        ...data,
+        "userdata-bbb_skip_check_audio": JSON.parse(
+          classParams.bbbSettings["userdata-bbb_skip_check_audio"]
+        ),
+        "userdata-bbb_listen_only_mode": JSON.parse(
+          classParams.bbbSettings["userdata-bbb_listen_only_mode"]
+        ),
+      };
+
+      const res = await startBBB(classParams.uid, meetingData, name);
       if (res.status === 200) {
         window.open(res.data.joinURL, "_blank");
         setIsLoading(false);
@@ -155,6 +165,7 @@ const Join = () => {
                       value={name}
                       error={nameError ? nameError : ""}
                       onChange={handleNameChange}
+                      data-setid="moderator-name"
                     />
                   </Box>
                 </GridItem>
@@ -178,6 +189,7 @@ const Join = () => {
                       loading={isLoading}
                       startIcon={<ExternalLink />}
                       onClick={() => handleJoinClass(classDetail)}
+                      data-setid="join-class"
                     >
                       Join Class
                     </Button>
