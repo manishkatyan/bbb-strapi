@@ -18,7 +18,7 @@
 
 <br>
 
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v2.gif" alt="bbb-class" /> <br/>
+<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v31.gif" alt="bbb-class" /> <br/>
 
 <br/>
 
