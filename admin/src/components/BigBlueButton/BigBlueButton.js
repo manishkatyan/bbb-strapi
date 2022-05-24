@@ -15,6 +15,7 @@ const BigBlueButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState(0);
   const [classData, setClassData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const handleCloseModal = () => {
     setIsVisible(false);
   };
@@ -28,6 +29,7 @@ const BigBlueButton = () => {
     const res = await getClass();
     if (res.status === 200) {
       setClassData(res.data);
+      setLoading(false);
     }
   }, [isVisible, action]);
   return (
@@ -44,7 +46,9 @@ const BigBlueButton = () => {
 
         <Modal isVisible={isVisible} handleClose={handleCloseModal} />
 
-        {classData && classData.length > 0 ? (
+        {loading ? (
+          ""
+        ) : classData && classData.length > 0 ? (
           <ClassTable
             classData={classData}
             deleteAction={deleteAction}
@@ -60,6 +64,7 @@ const BigBlueButton = () => {
                   variant="secondary"
                   startIcon={<Plus />}
                   onClick={handleClickCreate}
+                  data-testid="create-class-modal"
                 >
                   Create your first class
                 </Button>

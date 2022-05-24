@@ -92,7 +92,11 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
           colCount={COL_COUNT}
           rowCount={ROW_COUNT}
           footer={
-            <TFooter icon={<Plus />} onClick={handleClickCreate}>
+            <TFooter
+              icon={<Plus />}
+              onClick={handleClickCreate}
+              data-testid="create-class-modal"
+            >
               Create New Class
             </TFooter>
           }
@@ -151,7 +155,12 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                             to={`${url}/join/moderator/${bbbClass.uid}`}
                             style={{ textDecoration: "none" }}
                           >
-                            <Button startIcon={<Play />}>Start Class</Button>
+                            <Button
+                              startIcon={<Play />}
+                              data-testid={`start-class-${index + 1}`}
+                            >
+                              Start Class
+                            </Button>
                           </Link>
                         </Typography>
                       </Box>

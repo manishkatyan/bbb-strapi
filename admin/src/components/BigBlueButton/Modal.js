@@ -36,6 +36,8 @@ const Modal = ({ isVisible, handleClose }) => {
     lockSettingsDisablePrivateChat: false,
     logo: "https://higheredlab.com/wp-content/uploads/hel.png",
     muteOnStart: false,
+    "userdata-bbb_skip_check_audio": "false",
+    "userdata-bbb_listen_only_mode": "true",
   });
 
   const classCreateData = {
@@ -156,6 +158,7 @@ const Modal = ({ isVisible, handleClose }) => {
                       setModeratorChecked((s) => !s);
                       setModeratorCodeError("");
                     }}
+                    data-testid="moderator-access-code"
                   />
                 </Box>
               </GridItem>
@@ -190,6 +193,7 @@ const Modal = ({ isVisible, handleClose }) => {
                       setViewerChecked((s) => !s);
                       setViewerCodeError("");
                     }}
+                    data-testid="viewer-access-code"
                   />
                 </Box>
               </GridItem>
@@ -280,6 +284,7 @@ const Modal = ({ isVisible, handleClose }) => {
                   onClick={() => {
                     handleCreateClass(classCreateData);
                   }}
+                  data-testid="create-class"
                 >
                   Create
                 </Button>
