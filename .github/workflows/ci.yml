@@ -23,8 +23,8 @@ jobs:
           tags: nishekh/bbbstrapi:${{ env.COMMIT_ID }}
   runtest:
     runs-on: ubuntu-latest
-      container:
-        image: nishekh/bbbstrapi:${{ env.COMMIT_ID }}
+    container:
+      image: nishekh/bbbstrapi:${{ env.COMMIT_ID }}
 
     steps:
       - run: npm run develop &
