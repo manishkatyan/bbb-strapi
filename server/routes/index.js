@@ -125,7 +125,7 @@ module.exports = [
   },
   {
     method: "POST",
-    path: "/check/bbb",
+    path: "/verifyUrlAndSecret",
     handler: "bbbController.checkBigBlueButtonUrlAndSecret",
     config: {
       auth: false,
@@ -143,22 +143,6 @@ module.exports = [
     method: "GET",
     path: "/getSettings",
     handler: "bbbController.getSetting",
-    config: {
-      auth: false,
-    },
-  },
-  {
-    method: "POST",
-    path: "/api/class/start/:uid",
-    handler: "bbbApiController.startBBB",
-    config: {
-      auth: false,
-    },
-  },
-  {
-    method: "POST",
-    path: "/api/class/join/:uid",
-    handler: "bbbApiController.joinBBB",
     config: {
       auth: false,
     },

@@ -62,66 +62,7 @@ const Join = () => {
       setCodeError("Please enter valid access code");
       setIsLoading(false);
     } else {
-      const data = {
-        name: classParams.className,
-        meetingID: classParams.uid,
-        moderatorPW: classParams.moderatorAccessCode
-          ? classParams.moderatorAccessCode
-          : "mp",
-        attendeePW: classParams.viewerAccessCode
-          ? classParams.viewerAccessCode
-          : "ap",
-        duration: 0,
-        record: false,
-        meetingKeepEvents: true,
-        "meta_bbb-origin": "bbb-strapi",
-      };
-      if (classParams.bbbSettings?.moderatorApproval) {
-        data.guest = true;
-        data.guestPolicy = "ASK_MODERATOR";
-      }
-
-      if (classParams.bbbSettings?.muteOnStart) {
-        data.muteOnStart = JSON.parse(classParams.bbbSettings?.muteOnStart);
-      }
-
-      if (classParams.bbbSettings?.logo) {
-        data.logo = classParams.bbbSettings.logo;
-      }
-
-      if (classParams.bbbSettings?.maxParticipants) {
-        data.maxParticipants = JSON.parse(
-          classParams.bbbSettings?.maxParticipants
-        );
-      }
-
-      if (classParams.bbbSettings?.logoutURL) {
-        data.logoutURL = classParams.bbbSettings?.logoutURL;
-      }
-
-      if (classParams.bbbSettings?.allowModsToUnmuteUsers) {
-        data.allowModsToUnmuteUsers = JSON.parse(
-          classParams.bbbSettings?.allowModsToUnmuteUsers
-        );
-      }
-
-      if (classParams.bbbSettings?.lockSettingsDisablePrivateChat) {
-        data.lockSettingsDisablePrivateChat = JSON.parse(
-          classParams.bbbSettings?.lockSettingsDisablePrivateChat
-        );
-      }
-
-      const meetingData = {
-        ...data,
-        "userdata-bbb_skip_check_audio": JSON.parse(
-          classParams.bbbSettings["userdata-bbb_skip_check_audio"]
-        ),
-        "userdata-bbb_listen_only_mode": JSON.parse(
-          classParams.bbbSettings["userdata-bbb_listen_only_mode"]
-        ),
-      };
-
-      const res = await startBBB(classParams.uid, meetingData, name);
+      const res = await startBBB(classParams.uid, name);
       if (res.status === 200) {
         window.open(res.data.joinURL, "_blank");
         setIsLoading(false);
@@ -165,7 +106,7 @@ const Join = () => {
                       value={name}
                       error={nameError ? nameError : ""}
                       onChange={handleNameChange}
-                      data-setid="moderator-name"
+                      data-testid="moderator-name"
                     />
                   </Box>
                 </GridItem>
@@ -189,7 +130,7 @@ const Join = () => {
                       loading={isLoading}
                       startIcon={<ExternalLink />}
                       onClick={() => handleJoinClass(classDetail)}
-                      data-setid="join-class"
+                      data-testid="join-class"
                     >
                       Join Class
                     </Button>

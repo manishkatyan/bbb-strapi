@@ -64,5 +64,8 @@
     "jitsi",
     "zoom"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^9.6.1"
+  }
 }
