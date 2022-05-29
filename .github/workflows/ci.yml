@@ -27,6 +27,6 @@ jobs:
       image: nishekh/bbbstrapi:latest
 
     steps:
-      - run: npm run develop &
+      - run: cd /usr/src/app/;npm run develop &
       - run: sleep 50
       - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
