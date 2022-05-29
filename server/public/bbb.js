@@ -40,7 +40,7 @@ function validateCode() {
                   fetch(joinUrl, {
                     method: "post",
                     body: JSON.stringify({
-                      fullName: name,
+                      viewerName: name,
                       password: code,
                     }),
                     mode: "cors",
@@ -62,7 +62,6 @@ function validateCode() {
                 }
               });
           }
-
           const runningMeeting = setInterval(() => {
             joinBBBMeeting();
           }, 10000);

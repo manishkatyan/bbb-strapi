@@ -28,31 +28,24 @@ export async function deleteClass(classId) {
 
 // bbb actions
 
-export async function startBBB(uid, bbbParams, fullName) {
+export async function startBBB(uid, moderatorName) {
   const startClassResponse = await axios.post(
     `/bigbluebutton/class/start/${uid}`,
-    bbbParams
+    { moderatorName }
   );
-  if (startClassResponse.status === 200) {
-    const joinResponse = await joinBBB(uid, fullName, bbbParams);
-    return joinResponse;
-  }
-  return { error: true };
+
+  return startClassResponse;
 }
 
-export async function joinBBB(uid, fullName, bbbParams) {
+export async function joinBBB(uid, viewerName) {
   const joinResponse = await axios.post(`/bigbluebutton/class/join/${uid}`, {
-    fullName,
-    meetingID: bbbParams.meetingID,
-    password: bbbParams.moderatorPW,
-    "userdata-bbb_skip_check_audio": bbbParams["userdata-bbb_skip_check_audio"],
-    "userdata-bbb_listen_only_mode": bbbParams["userdata-bbb_listen_only_mode"],
+    viewerName,
   });
   return joinResponse;
 }
 
 export async function checkBBB(url, secret) {
-  const response = await axios.post("/bigbluebutton/check/bbb", {
+  const response = await axios.post("/bigbluebutton/verifyUrlAndSecret", {
     url,
     secret,
   });
