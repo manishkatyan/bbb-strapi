@@ -1,4 +1,4 @@
-cp -r * /usr/src/app/src/plugins/bigbluebutton/
+
 cd /usr/src/app/src/plugins/bigbluebutton/
 npm install
 cd /usr/src/app/

@@ -5,15 +5,28 @@ on:
     branches: [packet-update]
   pull_request:
     branches: [main]
+env:
+  COMMIT_ID: ${{ github.sha }}
 
 jobs:
-  build:
+  dockerbuildandpush:
     runs-on: ubuntu-latest
-    container:
-      image: nishekh/bbbstrapi
 
     steps:
-      - run: ls -la
-      - run: pwd
-      - run: whoami
-      - run: bash copy.sh
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: nishekh/bbbstrapi:${{env.COMMIT_ID}}
+  runtest:
+    container:
+      runs-on: ubuntu-latest
+      image: nishekh/bbbstrapi:${{env.COMMIT_ID}}
+
+    steps:
+      - run: npm run develop &
+      - run: sleep 50
+      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox

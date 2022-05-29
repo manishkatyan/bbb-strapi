@@ -5,3 +5,5 @@ cypress
 copy.sh
 
 cypress.json
+
+Dockerfile
