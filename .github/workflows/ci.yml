@@ -32,4 +32,4 @@ jobs:
     steps:
       - run: cd /usr/src/app/;npm run develop &
       - run: sleep 50
-      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
+      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npm install;npx cypress run --browser firefox
