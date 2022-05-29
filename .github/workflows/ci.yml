@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [packet-update]
+    branches: [package-update]
   pull_request:
     branches: [main]
 env:
