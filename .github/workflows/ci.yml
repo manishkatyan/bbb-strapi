@@ -20,11 +20,11 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: nishekh/bbbstrapi:${{ env.COMMIT_ID }}
+          tags: nishekh/bbbstrapi:latest
   runtest:
     container:
       runs-on: ubuntu-latest
-      image: nishekh/bbbstrapi:${{ env.COMMIT_ID }}
+      image: nishekh/bbbstrapi:latest
 
     steps:
       - run: npm run develop &
