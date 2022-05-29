@@ -13,4 +13,7 @@ jobs:
       image: nishekh/bbbstrapi
 
     steps:
+      - run: ls -la
+      - run: pwd
+      - run: whoami
       - run: bash copy.sh
