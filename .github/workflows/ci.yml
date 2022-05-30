@@ -13,13 +13,13 @@ jobs:
       image: nishekh/bbbstrapi:node-base
 
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - run: bash /usr/src/app/src/plugins/bigbluebutton/copy.sh
       - run: pwd
       - run: ls
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v2
         with:
           browser: chrome
 # name: Node.js CI
