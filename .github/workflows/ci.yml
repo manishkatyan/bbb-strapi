@@ -13,11 +13,9 @@ jobs:
       image: nishekh/bbbstrapi:cypress-base
 
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      - run: pwd
-      - run: ls
-      - run: bash /usr/src/app/src/plugins/bigbluebutton/copy.sh
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: bash copy.sh
 
       # - name: Cypress run
       #   uses: cypress-io/github-action@v2
