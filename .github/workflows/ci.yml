@@ -23,8 +23,8 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: nishekh/bbbstrapi:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=nishekh/bbbstrapi:latest
+          cache-to: type=inline
 
   runtest:
     needs: dockerbuildandpush
