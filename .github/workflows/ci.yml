@@ -23,6 +23,9 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: nishekh/bbbstrapi:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
   runtest:
     needs: dockerbuildandpush
     runs-on: ubuntu-latest
@@ -31,5 +34,5 @@ jobs:
 
     steps:
       - run: cd /usr/src/app/;npm run develop &
-      - run: sleep 50
-      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npm install;npx cypress run --browser firefox
+      - run: sleep 20
+      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
