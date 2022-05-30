@@ -5,6 +5,8 @@ cd /usr/src/app/
 npm run build
 npm run develop &
 sleep 5
-cd /usr/src/app/src/plugins/bigbluebutton/
-# npx cypress run --browser chrome
-# npx cypress run --browser firefox
+pwd
+ls
+# cd /usr/src/app/src/plugins/bigbluebutton/
+npx cypress run --browser chrome
+npx cypress run --browser firefox

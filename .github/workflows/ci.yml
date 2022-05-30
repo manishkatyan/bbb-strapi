@@ -10,19 +10,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: nishekh/bbbstrapi:node-base
-      image: cypress/browsers:node12.13.0-chrome78-ff70
+      image: nishekh/bbbstrapi:cypress-base
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      # - name: Checkout
+      #   uses: actions/checkout@v2
       - run: bash copy.sh
-      - run: pwd
-      - run: ls
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
+
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     browser: chrome
 # name: Node.js CI
 
 # on:
