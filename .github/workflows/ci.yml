@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [package-update]
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -16,45 +16,3 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: bash copy.sh
-
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     browser: chrome
-# name: Node.js CI
-
-# on:
-#   push:
-#     branches: [package-update]
-#   pull_request:
-#     branches: [main]
-
-# jobs:
-# dockerbuildandpush:
-#   runs-on: ubuntu-latest
-
-#   steps:
-#     - name: "Checkout"
-#       uses: actions/checkout@v2
-#     - name: Build and push
-#       id: docker_build
-#       uses: docker/build-push-action@v3
-#       with:
-#         context: ./
-#         file: ./Dockerfile
-#         push: false
-#         tags: nishekh/bbbstrapi:latest
-#         cache-from: type=registry,ref=nishekh/bbbstrapi:latest
-#         cache-to: type=inline
-
-# runtest:
-# needs: dockerbuildandpush
-# runs-on: ubuntu-latest
-# container:
-#   image: nishekh/bbbstrapi:cypress-base
-
-# steps:
-#   - run: bash copy.sh
-# - run: cd /usr/src/app/;npm run develop &
-# - run: sleep 20
-# - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
