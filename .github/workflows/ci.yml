@@ -9,30 +9,31 @@ env:
   COMMIT_ID: ${{ github.sha }}
 
 jobs:
-  dockerbuildandpush:
-    runs-on: ubuntu-latest
+  # dockerbuildandpush:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v2
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v3
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: false
-          tags: nishekh/bbbstrapi:latest
-          cache-from: type=registry,ref=nishekh/bbbstrapi:latest
-          cache-to: type=inline
+  #   steps:
+  #     - name: "Checkout"
+  #       uses: actions/checkout@v2
+  #     - name: Build and push
+  #       id: docker_build
+  #       uses: docker/build-push-action@v3
+  #       with:
+  #         context: ./
+  #         file: ./Dockerfile
+  #         push: false
+  #         tags: nishekh/bbbstrapi:latest
+  #         cache-from: type=registry,ref=nishekh/bbbstrapi:latest
+  #         cache-to: type=inline
 
   runtest:
-    needs: dockerbuildandpush
+    # needs: dockerbuildandpush
     runs-on: ubuntu-latest
     container:
-      image: nishekh/bbbstrapi:latest
+      image: nishekh/bbbstrapi:cypress-base
 
     steps:
-      - run: cd /usr/src/app/;npm run develop &
-      - run: sleep 20
-      - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
+      - run: bash copy.sh
+      # - run: cd /usr/src/app/;npm run develop &
+      # - run: sleep 20
+      # - run: cd /usr/src/app/src/plugins/bigbluebutton/;npx cypress run --browser firefox
