@@ -13,16 +13,17 @@ jobs:
       image: nishekh/bbbstrapi:node-base
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - run: bash /usr/src/app/src/plugins/bigbluebutton/copy.sh
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     ref: package-update
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
           browser: chrome
-      - run: pwd && ls
-      - run: bash /usr/src/app/src/plugins/bigbluebutton/copy.sh
 # name: Node.js CI
 
 # on:
