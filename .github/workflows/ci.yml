@@ -15,7 +15,7 @@ jobs:
     steps:
       # - name: Checkout
       #   uses: actions/checkout@v2
-      - run: bash copy.sh
+      - run: bash /usr/src/app/src/plugins/bigbluebutton/copy.sh
 
       # - name: Cypress run
       #   uses: cypress-io/github-action@v2
