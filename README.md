@@ -14,12 +14,12 @@
 <a href="https://www.npmjs.org/package/bigbluebutton-strapi">
 <img src="https://img.shields.io/npm/dm/bigbluebutton-strapi.svg" alt="Monthly download on NPM" />
 </a>
-![CI Status](https://github.com/manishkatyan/bbb-strapi/actions/workflows/ci/badge.svg)
+![CI Status](https://github.com/manishkatyan/bbb-strapi/actions/workflows/ci.yml/badge.svg)
 <!-- <a href="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg">
 <img src="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg" alt="npm publish" />
 </a> -->
 </p>
-
+![CI Status](https://github.com/manishkatyan/bbb-strapi/actions/workflows/ci.yml/badge.svg)
 <br>
 
 <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v31.gif" alt="bbb-class" /> <br/>
