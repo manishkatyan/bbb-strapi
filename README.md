@@ -17,9 +17,9 @@
 <a href="https://github.com/manishkatyan/bbb-strapi/actions/workflows/ci.yml/badge.svg">
 <img src="https://github.com/manishkatyan/bbb-strapi/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
 </a>
-<!-- <a href="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg">
-<img src="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg" alt="npm publish" />
-</a> -->
+<a href="https://github.com/manishkatyan/bbb-strapi/actions/workflows/publish.yml/badge.svg">
+<img src="https://github.com/manishkatyan/bbb-strapi/actions/workflows/publish.yml/badge.svg" alt="npm publish" />
+</a>
 </p>
 
 <br>
