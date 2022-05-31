@@ -14,6 +14,12 @@
 <a href="https://www.npmjs.org/package/bigbluebutton-strapi">
 <img src="https://img.shields.io/npm/dm/bigbluebutton-strapi.svg" alt="Monthly download on NPM" />
 </a>
+<a href="https://github.com/bbb-strapi/build/workflows/CI/badge.svg">
+<img src="https://github.com/bbb-strapi/build/workflows/CI/badge.svg" alt="Continuous Integration" />
+</a>
+<!-- <a href="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg">
+<img src="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg" alt="npm publish" />
+</a> -->
 </p>
 
 <br>
