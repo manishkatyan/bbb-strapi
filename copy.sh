@@ -6,4 +6,4 @@ npm run build
 npm run develop &
 sleep 5
 npx cypress run --browser chrome
-#                           npx cypress run --browser firefox
+npx cypress run --browser firefox

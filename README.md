@@ -15,7 +15,12 @@
 <img src="https://img.shields.io/npm/dm/bigbluebutton-strapi.svg" alt="Monthly download on NPM" />
 </a>
 </p>
-
+<a href="https://github.com/bbb-strapi/build/workflows/CI/badge.svg">
+<img src="https://github.com/bbb-strapi/build/workflows/CI/badge.svg" alt="Continuous Integration" />
+</a>
+<a href="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg">
+<img src="https://github.com/bbb-strapi/build/workflows/Publish/badge.svg" alt="npm publish" />
+</a>
 <br>
 
 <img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v31.gif" alt="bbb-class" /> <br/>
