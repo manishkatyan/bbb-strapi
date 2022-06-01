@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: "14.x"
           registry-url: "https://registry.npmjs.org"
-      - run: npm install
-      - run: npm publish --access public
+      - run: echo "NPM token  is $NODE_AUTH_TOKEN"
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISHING_TOKEN }}
