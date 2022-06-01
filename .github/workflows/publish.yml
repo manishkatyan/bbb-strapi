@@ -14,4 +14,4 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: "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"
+          NODE_AUTH_TOKEN: ${{ NPM_PUBLISHING_TOKEN }}
