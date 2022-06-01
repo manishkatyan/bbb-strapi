@@ -16,6 +16,9 @@
     "react-ace": "^10.1.0",
     "react-copy-to-clipboard": "^5.0.4"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "author": {
     "name": "HigherEdLab.com",
     "email": "support@higheredlab.com",
