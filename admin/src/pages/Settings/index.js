@@ -1,82 +1,83 @@
-import React, { useState, useEffect } from "react";
-import { SettingsPageTitle } from "@strapi/helper-plugin";
-import Check from "@strapi/icons/Check";
-import { Box } from "@strapi/design-system/Box";
-import { Button } from "@strapi/design-system/Button";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
-import { HeaderLayout, ContentLayout } from "@strapi/design-system/Layout";
-import { Main } from "@strapi/design-system/Main";
-import { TextInput } from "@strapi/design-system/TextInput";
-import { Typography } from "@strapi/design-system/Typography";
-import { Link } from "@strapi/design-system/Link";
-import { Flex } from "@strapi/design-system/Flex";
-import { Loader } from "@strapi/design-system/Loader";
-import { Alert } from "@strapi/design-system/Alert";
-import {
-  checkBBB,
-  bigBlueButtonSetting,
-  getBigBlueButtonSetting,
-} from "../../utils/apiCalls";
+import React, { useState, useEffect } from 'react';
+import { SettingsPageTitle } from '@strapi/helper-plugin';
+import Check from '@strapi/icons/Check';
+import { Box } from '@strapi/design-system/Box';
+import { Button } from '@strapi/design-system/Button';
+import { Grid, GridItem } from '@strapi/design-system/Grid';
+import { HeaderLayout, ContentLayout } from '@strapi/design-system/Layout';
+import { Main } from '@strapi/design-system/Main';
+import { TextInput } from '@strapi/design-system/TextInput';
+import { Typography } from '@strapi/design-system/Typography';
+import { Link } from '@strapi/design-system/Link';
+import { Flex } from '@strapi/design-system/Flex';
+import { Loader } from '@strapi/design-system/Loader';
+import { Alert } from '@strapi/design-system/Alert';
+import { checkBBB, bigBlueButtonSetting, getBigBlueButtonSetting } from '../../utils/apiCalls';
 
 const Settings = () => {
-  const [url, setUrl] = useState("");
-  const [secret, setSecret] = useState("");
+  const [url, setUrl] = useState('');
+  const [secret, setSecret] = useState('');
   const [isCorrectUrl, setIsCorrectUrl] = useState(false);
-  const [errorUrl, setErrorUrl] = useState("");
-  const [errorSecret, setErrorSecret] = useState("");
+  const [errorUrl, setErrorUrl] = useState('');
+  const [errorSecret, setErrorSecret] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
-  useEffect(async () => {
-    const response = await getBigBlueButtonSetting();
+  useEffect(() => {
+    (async () => {
+      const response = await getBigBlueButtonSetting();
 
-    if (response.data.ok) {
-      setUrl(response.data?.url ? response.data.url : "");
-      setSecret(response.data?.url ? response.data.secret : "");
-    }
+      if (response.data.ok) {
+        setUrl(response.data?.url ? response.data.url : '');
+        setSecret(response.data?.url ? response.data.secret : '');
+      }
+    })();
   }, []);
 
-  const handleChangeUrl = (e) => {
+  const handleChangeUrl = e => {
     setUrl(e.target.value);
-    setErrorUrl("");
+    setErrorUrl('');
     setIsCorrectUrl(false);
-    setError("");
+    setError('');
   };
 
-  const handleChangeSecret = (e) => {
+  const handleChangeSecret = e => {
     setSecret(e.target.value);
-    setErrorSecret("");
+    setErrorSecret('');
     setIsCorrectUrl(false);
-    setError("");
+    setError('');
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    setError("");
+    setError('');
+
     if (!url && !secret) {
-      setErrorUrl("Please enter BigBlueButton url");
-      setErrorSecret("Please enter BigBlueButton secret");
+      setErrorUrl('Please enter BigBlueButton url');
+      setErrorSecret('Please enter BigBlueButton secret');
       setIsSubmitting(false);
     } else if (!url) {
-      setErrorUrl("Please enter BigBlueButton url");
+      setErrorUrl('Please enter BigBlueButton url');
       setIsSubmitting(false);
     } else if (!secret) {
-      setErrorSecret("Please enter BigBlueButton secret");
+      setErrorSecret('Please enter BigBlueButton secret');
       setIsSubmitting(false);
     } else {
       let trimUrl;
-      if (url.endsWith("/api")) {
+
+      if (url.endsWith('/api')) {
         trimUrl = url.slice(0, -4);
-      } else if (url.endsWith("/")) {
+      } else if (url.endsWith('/')) {
         trimUrl = url.slice(0, -1);
       } else {
         trimUrl = url;
       }
       const response = await checkBBB(trimUrl, secret);
-      if (response.data.returncode === "SUCCESS") {
+
+      if (response.data.returncode === 'SUCCESS') {
         setIsCorrectUrl(true);
-        setErrorUrl("");
+        setErrorUrl('');
 
         const saveCredential = await bigBlueButtonSetting(trimUrl, secret);
 
@@ -84,8 +85,8 @@ const Settings = () => {
           setShowAlert(true);
           setIsSubmitting(false);
         }
-      } else if (response.data.returncode === "FAILED") {
-        setError("Please enter valid BigBlueButton url/secret");
+      } else if (response.data.returncode === 'FAILED') {
+        setError('Please enter valid BigBlueButton url/secret');
         setIsCorrectUrl(false);
         setIsSubmitting(false);
       }
@@ -112,7 +113,7 @@ const Settings = () => {
               URL and Secret saved successfully.
             </Alert>
           ) : (
-            ""
+            ''
           )}
         </Box>
         <Box
@@ -140,7 +141,7 @@ const Settings = () => {
                     name="url"
                     label="BigBlueButton URL"
                     value={url}
-                    error={errorUrl ? errorUrl : ""}
+                    error={errorUrl || ''}
                     onChange={handleChangeUrl}
                   />
                 </Box>
@@ -151,7 +152,7 @@ const Settings = () => {
                     name="secret"
                     label="BigBlueButton Secret"
                     value={secret}
-                    error={errorSecret ? errorSecret : ""}
+                    error={errorSecret || ''}
                     onChange={handleChangeSecret}
                   />
                 </Box>
@@ -161,29 +162,19 @@ const Settings = () => {
             <Grid gap={5}>
               <GridItem col={9} s={11}>
                 <Box paddingTop={5}>
-                  {error ? (
-                    <Typography textColor="danger500">{error}</Typography>
-                  ) : (
-                    ""
-                  )}
+                  {error ? <Typography textColor="danger500">{error}</Typography> : ''}
                   {isCorrectUrl ? (
-                    <Typography textColor="success500">
-                      Connection Verified
-                    </Typography>
+                    <Typography textColor="success500">Connection Verified</Typography>
                   ) : (
-                    ""
+                    ''
                   )}
                   {isSubmitting ? (
-                    <>
-                      <Flex>
-                        <Loader small>Loading content...</Loader>&nbsp;
-                        <Typography textColor="primary600">
-                          Verifying Connection
-                        </Typography>
-                      </Flex>
-                    </>
+                    <Flex>
+                      <Loader small>Loading content...</Loader>&nbsp;
+                      <Typography textColor="primary600">Verifying Connection</Typography>
+                    </Flex>
                   ) : (
-                    ""
+                    ''
                   )}
                 </Box>
               </GridItem>

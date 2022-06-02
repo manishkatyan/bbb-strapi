@@ -1,5 +1,6 @@
 'use strict';
-const staticJs = require('./staticFiles')
+const staticJs = require('./staticFiles');
+
 module.exports = {
-    staticJs
+  staticJs,
 };

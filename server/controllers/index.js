@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const classController = require("./classController");
-const sessionController = require("./sessionController");
-const bbbController = require("./bbbController");
+const classController = require('./classController');
+const sessionController = require('./sessionController');
+const bbbController = require('./bbbController');
 
 module.exports = {
   classController,

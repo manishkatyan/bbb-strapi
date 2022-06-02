@@ -1,43 +1,44 @@
-import React, { useState, useEffect } from "react";
-import AceEditor from "react-ace";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import AceEditor from 'react-ace';
 import {
   ModalLayout,
   ModalBody,
   ModalHeader,
   ModalFooter,
-} from "@strapi/design-system/ModalLayout";
-import { Typography } from "@strapi/design-system/Typography";
-import { Button } from "@strapi/design-system/Button";
-import { Box } from "@strapi/design-system/Box";
-import { TextInput } from "@strapi/design-system/TextInput";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
-import { Switch } from "@strapi/design-system/Switch";
-import { Link } from "@strapi/design-system/Link";
-import { createClass } from "../../utils/apiCalls";
+} from '@strapi/design-system/ModalLayout';
+import { Typography } from '@strapi/design-system/Typography';
+import { Button } from '@strapi/design-system/Button';
+import { Box } from '@strapi/design-system/Box';
+import { TextInput } from '@strapi/design-system/TextInput';
+import { Grid, GridItem } from '@strapi/design-system/Grid';
+import { Switch } from '@strapi/design-system/Switch';
+import { Link } from '@strapi/design-system/Link';
+import { createClass } from '../../utils/apiCalls';
 
-import "ace-builds/src-noconflict/mode-json";
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/ext-language_tools";
+import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/ext-language_tools';
 
 const Modal = ({ isVisible, handleClose }) => {
-  const [className, setClassName] = useState("");
+  const [className, setClassName] = useState('');
   const [moderatorChecked, setModeratorChecked] = useState(false);
-  const [moderatorAccessCode, setModeratorAccessCode] = useState("");
+  const [moderatorAccessCode, setModeratorAccessCode] = useState('');
   const [viewerChecked, setViewerChecked] = useState(false);
-  const [viewerAccessCode, setViewerAccessCode] = useState("");
+  const [viewerAccessCode, setViewerAccessCode] = useState('');
   const [moderatorApproval, setModeratorApproval] = useState(false);
-  const [classNameError, setClassNameError] = useState("");
-  const [moderatorCodeError, setModeratorCodeError] = useState("");
-  const [viewerCodeError, setViewerCodeError] = useState("");
+  const [classNameError, setClassNameError] = useState('');
+  const [moderatorCodeError, setModeratorCodeError] = useState('');
+  const [viewerCodeError, setViewerCodeError] = useState('');
   const [bbbAdvanceSetting, setbbbAdvanceSetting] = useState({
     maxParticipants: 100,
-    logoutURL: "https://higheredlab.com/",
+    logoutURL: 'https://higheredlab.com/',
     allowModsToUnmuteUsers: false,
     lockSettingsDisablePrivateChat: false,
-    logo: "https://higheredlab.com/wp-content/uploads/hel.png",
+    logo: 'https://higheredlab.com/wp-content/uploads/hel.png',
     muteOnStart: false,
-    "userdata-bbb_skip_check_audio": "false",
-    "userdata-bbb_listen_only_mode": "true",
+    'userdata-bbb_skip_check_audio': 'false',
+    'userdata-bbb_listen_only_mode': 'true',
   });
 
   const classCreateData = {
@@ -52,24 +53,25 @@ const Modal = ({ isVisible, handleClose }) => {
 
   async function handleCreateClass(data) {
     if (!className && !moderatorAccessCode && !viewerAccessCode) {
-      setClassNameError("Class Name is required");
-      setModeratorCodeError("Moderator Access code is required");
-      setViewerCodeError("Viewer Access code is required");
+      setClassNameError('Class Name is required');
+      setModeratorCodeError('Moderator Access code is required');
+      setViewerCodeError('Viewer Access code is required');
     } else if (!className) {
-      setClassNameError("Class Name is required");
+      setClassNameError('Class Name is required');
     } else if (!moderatorAccessCode) {
-      setModeratorCodeError("Moderator Access code is required");
+      setModeratorCodeError('Moderator Access code is required');
     } else if (!viewerAccessCode) {
-      setViewerCodeError("Viewer Access code is required");
+      setViewerCodeError('Viewer Access code is required');
     } else {
       const res = await createClass(data);
+
       if (res.status === 200) {
         handleClose();
-        setClassName("");
-        setModeratorAccessCode("");
+        setClassName('');
+        setModeratorAccessCode('');
         setModeratorChecked(false);
         setViewerChecked(false);
-        setViewerAccessCode("");
+        setViewerAccessCode('');
         setModeratorApproval(false);
       }
     }
@@ -78,36 +80,30 @@ const Modal = ({ isVisible, handleClose }) => {
   useEffect(() => {
     if (moderatorChecked && !moderatorAccessCode) {
       const accessCode = Math.random().toString().substring(2, 6);
-      const code = parseInt(accessCode);
+      const code = parseInt(accessCode, 10);
       setModeratorAccessCode(code);
     } else if (!moderatorChecked) {
-      setModeratorAccessCode("");
+      setModeratorAccessCode('');
     }
     if (viewerChecked && !viewerAccessCode) {
       const accessCode = Math.random().toString().substring(2, 6);
-      const code = parseInt(accessCode);
+      const code = parseInt(accessCode, 10);
       setViewerAccessCode(code);
     } else if (!viewerChecked) {
-      setViewerAccessCode("");
+      setViewerAccessCode('');
     }
-  }, [moderatorChecked, viewerChecked, isVisible]);
+  }, [moderatorChecked, viewerChecked, isVisible, moderatorAccessCode, viewerAccessCode]);
 
-  const onChangeJson = (extraSetting) => {
+  const onChangeJson = extraSetting => {
     setbbbAdvanceSetting(JSON.parse(extraSetting));
   };
 
   return (
-    <>
+    <div>
       {isVisible && (
         <ModalLayout onClose={handleClose} labelledBy="title">
           <ModalHeader>
-            <Typography
-              fontWeight="bold"
-              textColor="neutral800"
-              as="h2"
-              id="title"
-              variant="beta"
-            >
+            <Typography fontWeight="bold" textColor="neutral800" as="h2" id="title" variant="beta">
               Create Class
             </Typography>
           </ModalHeader>
@@ -119,10 +115,10 @@ const Modal = ({ isVisible, handleClose }) => {
                     placeholder="Enter a class Name"
                     aria-label="Class"
                     name="className"
-                    error={classNameError ? classNameError : ""}
-                    onChange={(e) => {
+                    error={classNameError || ''}
+                    onChange={e => {
                       setClassName(e.target.value);
-                      setClassNameError("");
+                      setClassNameError('');
                     }}
                   />
                 </Box>
@@ -139,10 +135,10 @@ const Modal = ({ isVisible, handleClose }) => {
                     type="number"
                     aria-label="moderatorAccessCode"
                     name="moderatorAccessCode"
-                    error={moderatorCodeError ? moderatorCodeError : ""}
-                    onChange={(e) => {
+                    error={moderatorCodeError || ''}
+                    onChange={e => {
                       setModeratorAccessCode(e.target.value);
-                      setModeratorCodeError("");
+                      setModeratorCodeError('');
                     }}
                     value={moderatorAccessCode}
                     size="S"
@@ -155,8 +151,8 @@ const Modal = ({ isVisible, handleClose }) => {
                     label="Activate moderator access code"
                     selected={moderatorChecked}
                     onChange={() => {
-                      setModeratorChecked((s) => !s);
-                      setModeratorCodeError("");
+                      setModeratorChecked(s => !s);
+                      setModeratorCodeError('');
                     }}
                     data-testid="moderator-access-code"
                   />
@@ -174,10 +170,10 @@ const Modal = ({ isVisible, handleClose }) => {
                     type="number"
                     aria-label="viewerAccessCode"
                     name="viewerAccessCode"
-                    error={viewerCodeError ? viewerCodeError : ""}
-                    onChange={(e) => {
+                    error={viewerCodeError || ''}
+                    onChange={e => {
                       setViewerAccessCode(e.target.value);
-                      setViewerCodeError("");
+                      setViewerCodeError('');
                     }}
                     value={viewerAccessCode}
                     size="S"
@@ -190,8 +186,8 @@ const Modal = ({ isVisible, handleClose }) => {
                     label="Activate viewer access code"
                     selected={viewerChecked}
                     onChange={() => {
-                      setViewerChecked((s) => !s);
-                      setViewerCodeError("");
+                      setViewerChecked(s => !s);
+                      setViewerCodeError('');
                     }}
                     data-testid="viewer-access-code"
                   />
@@ -199,9 +195,7 @@ const Modal = ({ isVisible, handleClose }) => {
               </GridItem>
               <GridItem col={10}>
                 <Box padding={2}>
-                  <Typography variant="delta">
-                    Requires moderator approval to join
-                  </Typography>
+                  <Typography variant="delta">Requires moderator approval to join</Typography>
                 </Box>
               </GridItem>
               <GridItem col={2}>
@@ -209,7 +203,7 @@ const Modal = ({ isVisible, handleClose }) => {
                   <Switch
                     label="Activate moderator approval to join"
                     selected={moderatorApproval}
-                    onChange={() => setModeratorApproval((s) => !s)}
+                    onChange={() => setModeratorApproval(s => !s)}
                   />
                 </Box>
               </GridItem>
@@ -234,8 +228,8 @@ const Modal = ({ isVisible, handleClose }) => {
                     onChange={onChangeJson}
                     fontSize={18}
                     showPrintMargin={false}
-                    showGutter={true}
-                    highlightActiveLine={true}
+                    showGutter
+                    highlightActiveLine
                     height="300px"
                     width="700px"
                     defaultValue={`{
@@ -260,10 +254,7 @@ const Modal = ({ isVisible, handleClose }) => {
               </GridItem>
               <GridItem col={11}>
                 <Box padding={2}>
-                  <Link
-                    href="https://docs.bigbluebutton.org/dev/api.html"
-                    isExternal
-                  >
+                  <Link href="https://docs.bigbluebutton.org/dev/api.html" isExternal>
                     <Typography variant="epsilon" textColor="primary600">
                       You may refer to the API doc for more information
                     </Typography>
@@ -279,22 +270,25 @@ const Modal = ({ isVisible, handleClose }) => {
               </Button>
             }
             endActions={
-              <>
-                <Button
-                  onClick={() => {
-                    handleCreateClass(classCreateData);
-                  }}
-                  data-testid="create-class"
-                >
-                  Create
-                </Button>
-              </>
+              <Button
+                onClick={() => {
+                  handleCreateClass(classCreateData);
+                }}
+                data-testid="create-class"
+              >
+                Create
+              </Button>
             }
           />
         </ModalLayout>
       )}
-    </>
+    </div>
   );
+};
+
+Modal.propTypes = {
+  isVisible: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

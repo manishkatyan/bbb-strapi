@@ -1,7 +1,9 @@
-"use strict";
+/* eslint-disable node/no-missing-require */
 
-const _ = require("lodash");
-const slugify = require("@sindresorhus/slugify");
+'use strict';
+
+const _ = require('lodash');
+const slugify = require('@sindresorhus/slugify');
 
 module.exports = {
   async generateUIDField({ contentTypeUID, field, data }) {
@@ -34,7 +36,7 @@ module.exports = {
         [`${field}_contains`]: value,
         _limit: -1,
       })
-      .then((results) => results.map((result) => result[field]));
+      .then(results => results.map(result => result[field]));
 
     if (possibleColisions.length === 0) {
       return value;

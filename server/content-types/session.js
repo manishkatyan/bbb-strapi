@@ -1,49 +1,50 @@
+'use strict';
 module.exports = {
   info: {
-    tableName: "session",
-    singularName: "session", // kebab-case mandatory
-    pluralName: "sessions", // kebab-case mandatory
-    displayName: "Session",
-    description: "Session",
-    kind: "collectionType",
+    tableName: 'session',
+    singularName: 'session', // kebab-case mandatory
+    pluralName: 'sessions', // kebab-case mandatory
+    displayName: 'Session',
+    description: 'Session',
+    kind: 'collectionType',
   },
   options: {
     draftAndPublish: false,
   },
   pluginOptions: {
-    "content-manager": {
+    'content-manager': {
       visible: false,
     },
-    "content-type-builder": {
+    'content-type-builder': {
       visible: false,
     },
   },
   attributes: {
     bbbRecordId: {
-      type: "string",
+      type: 'string',
       min: 1,
       configurable: false,
     },
     isRecorded: {
-      type: "boolean",
+      type: 'boolean',
       configurable: false,
       default: false,
     },
     isRecordingAvailable: {
-      type: "boolean",
+      type: 'boolean',
       configurable: false,
       default: false,
     },
     isAnalyticsAvailabe: {
-      type: "boolean",
+      type: 'boolean',
       configurable: false,
       default: false,
     },
     class: {
-      type: "relation",
-      relation: "manyToOne",
-      target: "plugin::bigbluebutton.class",
-      inversedBy: "sessions",
+      type: 'relation',
+      relation: 'manyToOne',
+      target: 'plugin::bigbluebutton.class',
+      inversedBy: 'sessions',
     },
   },
 };

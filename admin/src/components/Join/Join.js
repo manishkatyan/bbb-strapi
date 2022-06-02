@@ -1,70 +1,72 @@
-import React, { useState, useEffect, memo } from "react";
-import { useParams } from "react-router-dom";
-import { Box } from "@strapi/design-system/Box";
-import { Typography } from "@strapi/design-system/Typography";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
-import { TextInput } from "@strapi/design-system/TextInput";
-import { Button } from "@strapi/design-system/Button";
-import { Divider } from "@strapi/design-system/Divider";
-import { Link } from "@strapi/design-system/Link";
-import ExternalLink from "@strapi/icons/ExternalLink";
-import ArrowLeft from "@strapi/icons/ArrowLeft";
-import { getClassByUID } from "../../utils/apiCalls";
-import { startBBB } from "../../utils/apiCalls";
+/* eslint-disable no-unused-expressions */
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Box } from '@strapi/design-system/Box';
+import { Typography } from '@strapi/design-system/Typography';
+import { Grid, GridItem } from '@strapi/design-system/Grid';
+import { TextInput } from '@strapi/design-system/TextInput';
+import { Button } from '@strapi/design-system/Button';
+import { Divider } from '@strapi/design-system/Divider';
+import { Link } from '@strapi/design-system/Link';
+import ExternalLink from '@strapi/icons/ExternalLink';
+import ArrowLeft from '@strapi/icons/ArrowLeft';
+import { getClassByUID, startBBB } from '../../utils/apiCalls';
 
 const Join = () => {
   const { userRole, classUid } = useParams();
-  const [name, setName] = useState("");
-  const [accessCode, setAccessCode] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [codeError, setCodeError] = useState("");
+  const [name, setName] = useState('');
+  const [accessCode, setAccessCode] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [codeError, setCodeError] = useState('');
   const [classDetail, setClassDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(async () => {
-    const response = await getClassByUID(classUid);
+  useEffect(() => {
+    (async () => {
+      const response = await getClassByUID(classUid);
 
-    if (response.status === 200) {
-      setClassDetail(response.data);
+      if (response.status === 200) {
+        setClassDetail(response.data);
 
-      userRole === "moderator"
-        ? setAccessCode(response.data.moderatorAccessCode)
-        : "";
-    }
-  }, []);
+        userRole === 'moderator' ? setAccessCode(response.data.moderatorAccessCode) : '';
+      }
+    })();
+  }, [classUid, userRole]);
 
-  const handleNameChange = (e) => {
+  const handleNameChange = e => {
     setName(e.target.value);
-    setNameError("");
+    setNameError('');
   };
 
-  const handleAccessCodeChange = (e) => {
+  const handleAccessCodeChange = e => {
     setAccessCode(e.target.value);
-    setCodeError("");
+    setCodeError('');
   };
 
-  const handleJoinClass = async (classParams) => {
+  const handleJoinClass = async classParams => {
     setIsLoading(true);
+
     if (!name && !accessCode) {
-      setNameError("Name is required");
-      setCodeError("Access code is required");
+      setNameError('Name is required');
+      setCodeError('Access code is required');
       setIsLoading(false);
     } else if (!name) {
-      setNameError("Name is required");
+      setNameError('Name is required');
       setIsLoading(false);
     } else if (!accessCode) {
-      setCodeError("Access code is required");
+      setCodeError('Access code is required');
       setIsLoading(false);
     } else if (
       accessCode !== classParams.moderatorAccessCode &&
       accessCode !== classParams.viewerAccessCode
     ) {
-      setCodeError("Please enter valid access code");
+      setCodeError('Please enter valid access code');
       setIsLoading(false);
     } else {
       const res = await startBBB(classParams.uid, name);
+
       if (res.status === 200) {
-        window.open(res.data.joinURL, "_blank");
+        window.open(res.data.joinURL, '_blank');
         setIsLoading(false);
       }
     }
@@ -78,9 +80,7 @@ const Join = () => {
         </Link>
       </Box>
       <Box paddingTop={4} paddingLeft={7}>
-        <Typography variant="alpha">
-          Join {classDetail.className} Class
-        </Typography>
+        <Typography variant="alpha">Join {classDetail.className} Class</Typography>
       </Box>
       <Box padding={3}>
         <Divider />
@@ -104,7 +104,7 @@ const Join = () => {
                       aria-label="name"
                       name="name"
                       value={name}
-                      error={nameError ? nameError : ""}
+                      error={nameError || ''}
                       onChange={handleNameChange}
                       data-testid="moderator-name"
                     />
@@ -118,7 +118,7 @@ const Join = () => {
                       aria-label="accessCode"
                       name="accessCode"
                       value={accessCode}
-                      error={codeError ? codeError : ""}
+                      error={codeError || ''}
                       onChange={handleAccessCodeChange}
                     />
                   </Box>

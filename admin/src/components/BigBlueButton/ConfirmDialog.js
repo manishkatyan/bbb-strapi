@@ -1,21 +1,17 @@
-import React, { useState } from "react";
-import { Dialog, DialogBody, DialogFooter } from "@strapi/design-system/Dialog";
-import ExclamationMarkCircle from "@strapi/icons/ExclamationMarkCircle";
-import { Flex } from "@strapi/design-system/Flex";
-import { Stack } from "@strapi/design-system/Stack";
-import { Typography } from "@strapi/design-system/Typography";
-import { Button } from "@strapi/design-system/Button";
-import Trash from "@strapi/icons/Trash";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Dialog, DialogBody, DialogFooter } from '@strapi/design-system/Dialog';
+import ExclamationMarkCircle from '@strapi/icons/ExclamationMarkCircle';
+import { Flex } from '@strapi/design-system/Flex';
+import { Stack } from '@strapi/design-system/Stack';
+import { Typography } from '@strapi/design-system/Typography';
+import { Button } from '@strapi/design-system/Button';
+import Trash from '@strapi/icons/Trash';
 
-const ConfirmDialog = ({ dialogId, isVisible, handleClose, handleDelete, }) => {
+const ConfirmDialog = ({ dialogId, isVisible, handleClose, handleDelete }) => {
   return (
-    <>
-      <Dialog
-        id={dialogId}
-        onClose={handleClose}
-        title="Confirmation"
-        isOpen={isVisible}
-      >
+    <div>
+      <Dialog id={dialogId} onClose={handleClose} title="Confirmation" isOpen={isVisible}>
         <DialogBody icon={<ExclamationMarkCircle />}>
           <Stack size={2}>
             <Flex justifyContent="center">
@@ -32,18 +28,21 @@ const ConfirmDialog = ({ dialogId, isVisible, handleClose, handleDelete, }) => {
             </Button>
           }
           endAction={
-            <Button
-              variant="danger-light"
-              startIcon={<Trash />}
-              onClick={handleDelete}
-            >
+            <Button variant="danger-light" startIcon={<Trash />} onClick={handleDelete}>
               Confirm
             </Button>
           }
         />
       </Dialog>
-    </>
+    </div>
   );
+};
+
+ConfirmDialog.propTypes = {
+  dialogId: PropTypes.string.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default ConfirmDialog;
