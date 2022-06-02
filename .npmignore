@@ -7,3 +7,9 @@ copy.sh
 cypress.json
 
 Dockerfile
+.eslintignore
+.eslintrc.back.js
+.eslintrc.front.js
+.eslintrc.js
+.prettierignore
+.prettierrc.js
