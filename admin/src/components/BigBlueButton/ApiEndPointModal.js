@@ -1,25 +1,21 @@
-import React, { useState } from "react";
-import AceEditor from "react-ace";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import AceEditor from 'react-ace';
 import {
   ModalLayout,
   ModalBody,
   ModalHeader,
   ModalFooter,
-} from "@strapi/design-system/ModalLayout";
-import { Typography } from "@strapi/design-system/Typography";
-import { Button } from "@strapi/design-system/Button";
-import { Flex } from "@strapi/design-system/Flex";
-import { Box } from "@strapi/design-system/Box";
-import { Divider } from "@strapi/design-system/Divider";
-import {
-  Accordion,
-  AccordionToggle,
-  AccordionContent,
-  AccordionGroup,
-} from "@strapi/design-system/Accordion";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-github";
-import "ace-builds/src-noconflict/ext-language_tools";
+} from '@strapi/design-system/ModalLayout';
+import { Typography } from '@strapi/design-system/Typography';
+import { Button } from '@strapi/design-system/Button';
+import { Flex } from '@strapi/design-system/Flex';
+import { Box } from '@strapi/design-system/Box';
+import { Divider } from '@strapi/design-system/Divider';
+import { Accordion, AccordionToggle, AccordionContent } from '@strapi/design-system/Accordion';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/ext-language_tools';
 
 const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
   const [expandCreate, setExpandCreate] = useState(false);
@@ -27,7 +23,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
   const [expandDemo, setExpandDemo] = useState(false);
 
   return (
-    <>
+    <div>
       {isVisibleModal && (
         <ModalLayout onClose={handleCloseModal} labelledBy="title">
           <ModalHeader>
@@ -45,21 +41,19 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               </Box>
               <Box>
                 <Typography variant="omega">
-                  Simple API end-points that you can easily integrate in your
-                  Frontend app to enable online classes.
+                  Simple API end-points that you can easily integrate in your Frontend app to enable
+                  online classes.
                 </Typography>
               </Box>
             </Flex>
           </ModalHeader>
           <ModalBody>
             <Box paddingRight={2} paddingBottom={2}>
-              <Typography variant="delta">
-                API End-point to Start Class
-              </Typography>
+              <Typography variant="delta">API End-point to Start Class</Typography>
               <Box paddingTop={2}>
                 <Typography variant="epsilon">
-                  Use the API call below to start a BigBlueButton class and join
-                  as a moderator (teacher). <br />
+                  Use the API call below to start a BigBlueButton class and join as a moderator
+                  (teacher). <br />
                   You can pass the moderator name as a parameter.
                 </Typography>
               </Box>
@@ -84,15 +78,15 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
             <Box paddingRight={2} paddingBottom={4}>
               <Box>
                 <Typography variant="epsilon">
-                  You would get joinURL in the response object, where you should
-                  redirect your user to start a class and join as a moderator.
+                  You would get joinURL in the response object, where you should redirect your user
+                  to start a class and join as a moderator.
                 </Typography>
               </Box>
             </Box>
             <Box padding={4} background="neutral100">
               <Accordion
                 expanded={expandCreate}
-                toggle={() => setExpandCreate((s) => !s)}
+                toggle={() => setExpandCreate(s => !s)}
                 id="acc-1"
                 size="S"
               >
@@ -118,7 +112,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               marginBottom={4}
             >
               <Typography>
-                {`// This block code will redirected moderator to bigbluebutton meeting`}
+                {/* This block code will redirected moderator to bigbluebutton meeting */}
               </Typography>
               <Box>
                 <Typography>
@@ -131,23 +125,15 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               </Box>
             </Box>
             <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
-              <Typography variant="delta">
-                API End-point to Join Class
-              </Typography>
+              <Typography variant="delta">API End-point to Join Class</Typography>
               <Box paddingTop={2}>
                 <Typography variant="epsilon">
-                  Use the API call below to join a BigBlueButton class as a
-                  viewer (student). <br />
+                  Use the API call below to join a BigBlueButton class as a viewer (student). <br />
                   You can pass the viewer name as a parameter.
                 </Typography>
               </Box>
             </Box>
-            <Box
-              background="neutral100"
-              padding={2}
-              marginTop={4}
-              marginBottom={4}
-            >
+            <Box background="neutral100" padding={2} marginTop={4} marginBottom={4}>
               <Typography>
                 {`const response = await axios.post(
                    " ${window.location.origin}/bigbluebutton/api/class/join/${classUid}",{
@@ -159,15 +145,15 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
             <Box paddingRight={2} paddingBottom={4}>
               <Box>
                 <Typography variant="epsilon">
-                  You would get joinURL in the response object, where you should
-                  redirect your user to start a class and join as a viewer.
+                  You would get joinURL in the response object, where you should redirect your user
+                  to start a class and join as a viewer.
                 </Typography>
               </Box>
             </Box>
             <Box padding={4} background="neutral100">
               <Accordion
                 expanded={expandJoin}
-                toggle={() => setExpandJoin((s) => !s)}
+                toggle={() => setExpandJoin(s => !s)}
                 id="acc-1"
                 size="S"
               >
@@ -193,7 +179,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               marginBottom={4}
             >
               <Typography>
-                {`// This block code will redirected viewer to bigbluebutton meeting`}
+                {/* This block code will redirected viewer to bigbluebutton meeting */}
               </Typography>
               <Box>
                 <Typography>
@@ -212,7 +198,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
               <Box padding={4} background="neutral100">
                 <Accordion
                   expanded={expandDemo}
-                  toggle={() => setExpandDemo((s) => !s)}
+                  toggle={() => setExpandDemo(s => !s)}
                   id="acc-1"
                   size="S"
                 >
@@ -225,11 +211,10 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                         theme="github"
                         name="demoCode"
                         fontSize={18}
-                        showPrintMargin={true}
+                        showPrintMargin
                         showGutter={false}
                         highlightActiveLine={false}
-                        showGutter={true}
-                        readOnly={true}
+                        readOnly
                         height="800px"
                         width="680px"
                         value={`
@@ -301,16 +286,17 @@ export default function App() {
                 Cancel
               </Button>
             }
-            endActions={
-              <>
-                <Button onClick={handleCloseModal}>Close</Button>
-              </>
-            }
+            endActions={<Button onClick={handleCloseModal}>Close</Button>}
           />
         </ModalLayout>
       )}
-    </>
+    </div>
   );
 };
 
+ApiEndPointModal.propTypes = {
+  classUid: PropTypes.string.isRequired,
+  isVisibleModal: PropTypes.bool.isRequired,
+  handleCloseModal: PropTypes.func.isRequired,
+};
 export default ApiEndPointModal;

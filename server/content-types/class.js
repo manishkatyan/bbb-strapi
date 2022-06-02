@@ -1,57 +1,58 @@
+'use strict';
 module.exports = {
   info: {
-    tableName: "class",
-    singularName: "class", // kebab-case mandatory
-    pluralName: "classes", // kebab-case mandatory
-    displayName: "Class",
-    description: "Class",
-    kind: "collectionType",
+    tableName: 'class',
+    singularName: 'class', // kebab-case mandatory
+    pluralName: 'classes', // kebab-case mandatory
+    displayName: 'Class',
+    description: 'Class',
+    kind: 'collectionType',
   },
   options: {
     draftAndPublish: false,
   },
   pluginOptions: {
-    "content-manager": {
+    'content-manager': {
       visible: false,
     },
-    "content-type-builder": {
+    'content-type-builder': {
       visible: false,
     },
   },
   attributes: {
     className: {
-      type: "string",
+      type: 'string',
       min: 1,
       configurable: false,
     },
     uid: {
-      type: "uid",
-      targetField: "className",
+      type: 'uid',
+      targetField: 'className',
     },
     bbbId: {
-      type: "string",
+      type: 'string',
       min: 1,
       configurable: false,
     },
     moderatorAccessCode: {
-      type: "string",
+      type: 'string',
       min: 1,
       configurable: false,
     },
     viewerAccessCode: {
-      type: "string",
+      type: 'string',
       min: 1,
       configurable: false,
     },
     bbbSettings: {
-      type: "json",
+      type: 'json',
       configurable: false,
     },
     sessions: {
-      type: "relation",
-      relation: "oneToMany",
-      target: "plugin::bigbluebutton.session",
-      mappedBy: "class",
+      type: 'relation',
+      relation: 'oneToMany',
+      target: 'plugin::bigbluebutton.session',
+      mappedBy: 'class',
     },
   },
 };

@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid, GridItem } from "@strapi/design-system/Grid";
-import { Box } from "@strapi/design-system/Box";
-import { Link } from "@strapi/design-system/Link";
-import { Typography } from "@strapi/design-system/Typography";
-import ArrowRight from "@strapi/icons/ArrowRight";
+import React from 'react';
+import { Grid, GridItem } from '@strapi/design-system/Grid';
+import { Box } from '@strapi/design-system/Box';
+import { Link } from '@strapi/design-system/Link';
+import { Typography } from '@strapi/design-system/Typography';
+import ArrowRight from '@strapi/icons/ArrowRight';
 
 const SettingLink = () => {
   return (
-    <>
+    <div>
       <Box
         shadow="tableShadow"
         background="neutral0"
@@ -20,10 +20,7 @@ const SettingLink = () => {
         <Box>
           <Grid gap={4}>
             <GridItem col={6} s={12}>
-              <Link
-                to="/settings/bigbluebutton-strapi"
-                endIcon={<ArrowRight />}
-              >
+              <Link to="/settings/bigbluebutton-strapi" endIcon={<ArrowRight />}>
                 Configure Your BigBlueButton URL and Secret
               </Link>
             </GridItem>
@@ -35,7 +32,7 @@ const SettingLink = () => {
           </Grid>
         </Box>
       </Box>
-    </>
+    </div>
   );
 };
 

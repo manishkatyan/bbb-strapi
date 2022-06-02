@@ -1,40 +1,38 @@
-"use strict";
+/* eslint-disable node/no-unsupported-features/node-builtins */
+'use strict';
 
-const axios = require("axios");
-const crypto = require("hash.js");
-const { XMLParser } = require("fast-xml-parser");
-const jwt = require("jsonwebtoken");
+const axios = require('axios');
+const crypto = require('hash.js');
+const { XMLParser } = require('fast-xml-parser');
+
 const parser = new XMLParser();
 
 module.exports = ({ strapi }) => ({
   async create(classUID, params) {
     const meetingParams = params;
     const pluginStore = strapi.store({
-      type: "plugin",
-      name: "bigbluebutton",
+      type: 'plugin',
+      name: 'bigbluebutton',
     });
 
-    const host = await pluginStore.get({ key: "url" });
-    const salt = await pluginStore.get({ key: "secret" });
+    const host = await pluginStore.get({ key: 'url' });
+    const salt = await pluginStore.get({ key: 'secret' });
     const bbb = {
       host,
       salt,
     };
-    const url = constructUrl(bbb, "create", meetingParams);
+    const url = constructUrl(bbb, 'create', meetingParams);
 
     try {
       const bbbClass = await strapi
-        .query("plugin::bigbluebutton.class")
+        .query('plugin::bigbluebutton.class')
         .findOne({ where: { uid: classUID } });
 
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
 
-      if (
-        parsedResponse.returncode === "SUCCESS" &&
-        parsedResponse.internalMeetingID
-      ) {
-        await strapi.query("plugin::bigbluebutton.session").create({
+      if (parsedResponse.returncode === 'SUCCESS' && parsedResponse.internalMeetingID) {
+        await strapi.query('plugin::bigbluebutton.session').create({
           data: {
             bbbRecordId: parsedResponse.internalMeetingID,
             isRecorded: meetingParams.record,
@@ -45,35 +43,35 @@ module.exports = ({ strapi }) => ({
       }
       return parsedResponse;
     } catch (error) {
-      return { returncode: "FAILED" };
+      return { returncode: 'FAILED' };
     }
   },
   async join(uid, params) {
     const joinMeetingParams = params;
     const pluginStore = strapi.store({
-      type: "plugin",
-      name: "bigbluebutton",
+      type: 'plugin',
+      name: 'bigbluebutton',
     });
 
-    const host = await pluginStore.get({ key: "url" });
-    const salt = await pluginStore.get({ key: "secret" });
+    const host = await pluginStore.get({ key: 'url' });
+    const salt = await pluginStore.get({ key: 'secret' });
     const bbb = {
       host,
       salt,
     };
     joinMeetingParams.meetingID = uid;
-    const joinURL = constructUrl(bbb, "join", joinMeetingParams);
+    const joinURL = constructUrl(bbb, 'join', joinMeetingParams);
     return joinURL;
   },
   async isMeetingRunning(uid) {
     try {
       const pluginStore = strapi.store({
-        type: "plugin",
-        name: "bigbluebutton",
+        type: 'plugin',
+        name: 'bigbluebutton',
       });
 
-      const host = await pluginStore.get({ key: "url" });
-      const salt = await pluginStore.get({ key: "secret" });
+      const host = await pluginStore.get({ key: 'url' });
+      const salt = await pluginStore.get({ key: 'secret' });
       const bbb = {
         host,
         salt,
@@ -81,32 +79,32 @@ module.exports = ({ strapi }) => ({
       const params = {
         meetingID: uid,
       };
-      const url = constructUrl(bbb, "isMeetingRunning", params);
+      const url = constructUrl(bbb, 'isMeetingRunning', params);
       const response = await axios.get(url);
       return parseXml(response.data).running;
     } catch (error) {
-      return { returncode: "FAILED" };
+      return { returncode: 'FAILED' };
     }
   },
   async end(meetingID, password) {
     const pluginStore = strapi.store({
-      type: "plugin",
-      name: "bigbluebutton",
+      type: 'plugin',
+      name: 'bigbluebutton',
     });
 
-    const host = await pluginStore.get({ key: "url" });
-    const salt = await pluginStore.get({ key: "secret" });
+    const host = await pluginStore.get({ key: 'url' });
+    const salt = await pluginStore.get({ key: 'secret' });
     const bbb = {
       host,
       salt,
     };
-    const url = constructUrl(bbb, "end", { meetingID, password });
+    const url = constructUrl(bbb, 'end', { meetingID, password });
     try {
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
       return parsedResponse;
     } catch (error) {
-      return { returncode: "FAILED" };
+      return { returncode: 'FAILED' };
     }
   },
 
@@ -116,17 +114,15 @@ module.exports = ({ strapi }) => ({
       salt: secret,
     };
     const meetingParams = {
-      name: "test",
-      meetingID: "test01",
+      name: 'test',
+      meetingID: 'test01',
     };
 
-    const bbbUrl = constructUrl(bbbParams, "create", meetingParams);
+    const bbbUrl = constructUrl(bbbParams, 'create', meetingParams);
 
     function getChecksum(callName, queryParams, sharedSecret) {
       const paramStringify = new URLSearchParams(queryParams).toString();
-      return crypto["sha1"]()
-        .update(`${callName}${paramStringify}${sharedSecret}`)
-        .digest("hex");
+      return crypto['sha1']().update(`${callName}${paramStringify}${sharedSecret}`).digest('hex');
     }
 
     function constructUrl(bbb, action, params) {
@@ -136,28 +132,26 @@ module.exports = ({ strapi }) => ({
     }
 
     const endMeeting = async (meetingID, password) => {
-      const url = constructUrl(bbbParams, "end", { meetingID, password });
+      const url = constructUrl(bbbParams, 'end', { meetingID, password });
       await axios.get(url);
     };
 
     try {
       const response = await axios.get(bbbUrl);
       const parsedResponse = parseXml(response.data);
-      if (parsedResponse.returncode === "SUCCESS") {
+      if (parsedResponse.returncode === 'SUCCESS') {
         await endMeeting(parsedResponse.meetingID, parsedResponse.moderatorPW);
       }
       return parsedResponse;
     } catch (error) {
-      return { returncode: "FAILED" };
+      return { returncode: 'FAILED' };
     }
   },
 });
 
 function getChecksum(callName, queryParams, sharedSecret) {
   const paramStringify = new URLSearchParams(queryParams).toString();
-  return crypto["sha1"]()
-    .update(`${callName}${paramStringify}${sharedSecret}`)
-    .digest("hex");
+  return crypto['sha1']().update(`${callName}${paramStringify}${sharedSecret}`).digest('hex');
 }
 
 function constructUrl(bbb, action, params) {

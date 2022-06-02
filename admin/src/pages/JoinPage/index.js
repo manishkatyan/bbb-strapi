@@ -4,9 +4,9 @@
  *
  */
 
-import React, { memo } from "react";
+import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
-import Join from "../../components/Join/Join";
+import Join from '../../components/Join/Join';
 
 const JoinPage = () => {
   return (

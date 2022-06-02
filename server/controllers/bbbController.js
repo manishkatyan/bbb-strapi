@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -6,40 +6,34 @@
  */
 
 module.exports = {
-  startBBB: async (ctx) => {
+  async startBBB(ctx) {
     let meetingParams;
     const { moderatorName } = ctx.request.body;
     const { uid } = ctx.params;
 
     const response = await strapi
-      .query("plugin::bigbluebutton.class")
+      .query('plugin::bigbluebutton.class')
       .findOne({ where: { uid }, populate: true });
 
     if (response.id) {
       meetingParams = {
         name: response.className,
         meetingID: response.uid,
-        moderatorPW: response.moderatorAccessCode
-          ? response.moderatorAccessCode
-          : "mp",
-        attendeePW: response.viewerAccessCode
-          ? response.viewerAccessCode
-          : "ap",
+        moderatorPW: response.moderatorAccessCode ? response.moderatorAccessCode : 'mp',
+        attendeePW: response.viewerAccessCode ? response.viewerAccessCode : 'ap',
         duration: 0,
         record: false,
         meetingKeepEvents: true,
-        "meta_bbb-origin": "bbb-strapi",
+        'meta_bbb-origin': 'bbb-strapi',
       };
 
       if (response.bbbSettings.moderatorApproval) {
         meetingParams.guest = true;
-        meetingParams.guestPolicy = "ASK_MODERATOR";
+        meetingParams.guestPolicy = 'ASK_MODERATOR';
       }
 
       if (response.bbbSettings.muteOnStart) {
-        meetingParams.muteOnStart = JSON.parse(
-          response.bbbSettings.muteOnStart
-        );
+        meetingParams.muteOnStart = JSON.parse(response.bbbSettings.muteOnStart);
       }
 
       if (response.bbbSettings.logo) {
@@ -47,9 +41,7 @@ module.exports = {
       }
 
       if (response.bbbSettings.maxParticipants) {
-        meetingParams.maxParticipants = JSON.parse(
-          response.bbbSettings.maxParticipants
-        );
+        meetingParams.maxParticipants = JSON.parse(response.bbbSettings.maxParticipants);
       }
 
       if (response.bbbSettings.logoutURL) {
@@ -70,70 +62,66 @@ module.exports = {
     }
 
     const createMeetingResponse = await strapi
-      .plugin("bigbluebutton")
-      .service("bbbService")
+      .plugin('bigbluebutton')
+      .service('bbbService')
       .create(uid, meetingParams);
 
-    if (createMeetingResponse.returncode === "SUCCESS") {
+    if (createMeetingResponse.returncode === 'SUCCESS') {
       const joinMeetingParams = {
-        fullName: moderatorName ? moderatorName : "Moderator",
+        fullName: moderatorName ? moderatorName : 'Moderator',
         meetingID: createMeetingResponse.meetingID,
-        password: createMeetingResponse.moderatorPW
-          ? createMeetingResponse.moderatorPW
-          : "mp",
-        "userdata-bbb_skip_check_audio": JSON.parse(
-          response.bbbSettings["userdata-bbb_skip_check_audio"]
+        password: createMeetingResponse.moderatorPW ? createMeetingResponse.moderatorPW : 'mp',
+        'userdata-bbb_skip_check_audio': JSON.parse(
+          response.bbbSettings['userdata-bbb_skip_check_audio']
         ),
-        "userdata-bbb_listen_only_mode": JSON.parse(
-          response.bbbSettings["userdata-bbb_listen_only_mode"]
+        'userdata-bbb_listen_only_mode': JSON.parse(
+          response.bbbSettings['userdata-bbb_listen_only_mode']
         ),
       };
       const joinMeetingURLResponse = await strapi
-        .plugin("bigbluebutton")
-        .service("bbbService")
+        .plugin('bigbluebutton')
+        .service('bbbService')
         .join(uid, joinMeetingParams);
 
       ctx.send({ joinURL: joinMeetingURLResponse }, 200);
     }
   },
-  joinBBB: async (ctx) => {
+  async joinBBB(ctx) {
     const { viewerName } = ctx.request.body;
     const { uid } = ctx.params;
     let meetingParams;
     const response = await strapi
-      .query("plugin::bigbluebutton.class")
+      .query('plugin::bigbluebutton.class')
       .findOne({ where: { uid }, populate: true });
 
     if (response.id) {
       meetingParams = {
-        fullName: viewerName ? viewerName : "Viewer",
+        fullName: viewerName ? viewerName : 'Viewer',
         meetingID: response.uid,
-        password: response.viewerAccessCode ? response.viewerAccessCode : "ap",
-        "userdata-bbb_skip_check_audio": JSON.parse(
-          response.bbbSettings["userdata-bbb_skip_check_audio"]
+        password: response.viewerAccessCode ? response.viewerAccessCode : 'ap',
+        'userdata-bbb_skip_check_audio': JSON.parse(
+          response.bbbSettings['userdata-bbb_skip_check_audio']
         ),
-        "userdata-bbb_listen_only_mode": JSON.parse(
-          response.bbbSettings["userdata-bbb_listen_only_mode"]
+        'userdata-bbb_listen_only_mode': JSON.parse(
+          response.bbbSettings['userdata-bbb_listen_only_mode']
         ),
         guest: response.bbbSettings.moderatorApproval ? true : false,
       };
     }
 
     const joinMeetingURL = await strapi
-      .plugin("bigbluebutton")
-      .service("bbbService")
+      .plugin('bigbluebutton')
+      .service('bbbService')
       .join(uid, meetingParams);
 
     ctx.send({ joinURL: joinMeetingURL }, 200);
   },
-  validateJoin: async (ctx) => {
+  async validateJoin(ctx) {
     const { uid } = ctx.params;
     const meetingParams = ctx.request.body;
-    const classdata = await strapi
-      .query("plugin::bigbluebutton.class")
-      .findOne({
-        where: { uid },
-      });
+    const classdata = await strapi.query('plugin::bigbluebutton.class').findOne({
+      where: { uid },
+    });
     if (
       meetingParams.code == classdata.moderatorAccessCode ||
       meetingParams.code == classdata.viewerAccessCode
@@ -144,52 +132,49 @@ module.exports = {
     }
   },
 
-  isMeetingRunning: async (ctx) => {
+  async isMeetingRunning(ctx) {
     const { uid } = ctx.params;
 
-    const status = await strapi
-      .plugin("bigbluebutton")
-      .service("bbbService")
-      .isMeetingRunning(uid);
+    const status = await strapi.plugin('bigbluebutton').service('bbbService').isMeetingRunning(uid);
 
     ctx.send({ running: status }, 200);
   },
 
-  endMeeting: async (ctx) => {
+  async endMeeting(ctx) {
     const { meetingId, meetingPassword } = ctx.request.body;
     const endMeetingResponse = await strapi
-      .plugin("bigbluebutton")
-      .service("bbbService")
+      .plugin('bigbluebutton')
+      .service('bbbService')
       .end(meetingId, meetingPassword);
     ctx.send(endMeetingResponse, 200);
   },
 
-  checkBigBlueButtonUrlAndSecret: async (ctx) => {
+  async checkBigBlueButtonUrlAndSecret(ctx) {
     const { url, secret } = ctx.request.body;
 
     const checkUrlResponse = await strapi
-      .plugin("bigbluebutton")
-      .service("bbbService")
+      .plugin('bigbluebutton')
+      .service('bbbService')
       .checkUrlAndSecret(url, secret);
     ctx.send(checkUrlResponse, 200);
   },
 
-  updateSetting: async (ctx) => {
+  async updateSetting(ctx) {
     const { url, secret } = ctx.request.body;
 
-    const pluginStore = strapi.store({ type: "plugin", name: "bigbluebutton" });
+    const pluginStore = strapi.store({ type: 'plugin', name: 'bigbluebutton' });
 
-    const res2 = await pluginStore.set({ key: "url", value: url });
-    const res3 = await pluginStore.set({ key: "secret", value: secret });
-    const res = await pluginStore.get({ key: "url" });
+    const res2 = await pluginStore.set({ key: 'url', value: url });
+    const res3 = await pluginStore.set({ key: 'secret', value: secret });
+    const res = await pluginStore.get({ key: 'url' });
 
     return ctx.send({ ok: true, res, res2, res3 });
   },
-  getSetting: async (ctx) => {
-    const pluginStore = strapi.store({ type: "plugin", name: "bigbluebutton" });
+  async getSetting(ctx) {
+    const pluginStore = strapi.store({ type: 'plugin', name: 'bigbluebutton' });
 
-    const url = await pluginStore.get({ key: "url" });
-    const secret = await pluginStore.get({ key: "secret" });
+    const url = await pluginStore.get({ key: 'url' });
+    const secret = await pluginStore.get({ key: 'secret' });
 
     return ctx.send({ ok: true, url, secret });
   },
