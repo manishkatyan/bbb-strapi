@@ -1,10 +1,8 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Box } from '@strapi/design-system/Box';
-import { Typography } from '@strapi/design-system/Typography';
-import { Divider } from '@strapi/design-system/Divider';
 import { Button } from '@strapi/design-system/Button';
 import { EmptyStateLayout } from '@strapi/design-system/EmptyStateLayout';
-import ExclamationMarkCircle from '@strapi/icons/ExclamationMarkCircle';
+import { HeaderLayout } from '@strapi/design-system/Layout';
 import Plus from '@strapi/icons/Plus';
 import Modal from './Modal';
 import ClassTable from './Table';
@@ -28,8 +26,8 @@ const createClass = (loading, classData, deleteAction, handleClickCreate) => {
     htmlCode = (
       <Box padding={7} background="neutral100">
         <EmptyStateLayout
-          icon={<ExclamationMarkCircle />}
-          content="You don't have any content yet..."
+          icon=""
+          content=""
           action={
             <Button
               variant="secondary"
@@ -37,7 +35,7 @@ const createClass = (loading, classData, deleteAction, handleClickCreate) => {
               onClick={handleClickCreate}
               data-testid="create-class-modal"
             >
-              Create your first class
+              Create a Class
             </Button>
           }
         />
@@ -77,12 +75,11 @@ const BigBlueButton = () => {
   return (
     <div>
       <Box>
-        <Box paddingTop={6} paddingLeft={7}>
-          <Typography variant="alpha">Manage BigBlueButton Online Classes</Typography>
-        </Box>
-        <Box padding={3}>
-          <Divider />
-        </Box>
+        <HeaderLayout
+          title="Start Online Classes on BigBlueButton"
+          subtitle="BigBlueButton is like-Zoom for online classes, but at a much lower cost, with better analytics, and is white-labelled."
+          as="h2"
+        />
 
         <Modal isVisible={isVisible} handleClose={handleCloseModal} />
         {createClass(loading, classData, deleteAction, handleClickCreate, handleClickCreate)}

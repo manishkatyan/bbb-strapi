@@ -17,6 +17,7 @@ module.exports = ({ strapi }) => ({
 
     const host = await pluginStore.get({ key: 'url' });
     const salt = await pluginStore.get({ key: 'secret' });
+
     const bbb = {
       host,
       salt,
@@ -46,7 +47,7 @@ module.exports = ({ strapi }) => ({
       return { returncode: 'FAILED' };
     }
   },
-  async join(uid, params) {
+  async join(meetingId, params) {
     const joinMeetingParams = params;
     const pluginStore = strapi.store({
       type: 'plugin',
@@ -59,11 +60,11 @@ module.exports = ({ strapi }) => ({
       host,
       salt,
     };
-    joinMeetingParams.meetingID = uid;
+    joinMeetingParams.meetingID = meetingId;
     const joinURL = constructUrl(bbb, 'join', joinMeetingParams);
     return joinURL;
   },
-  async isMeetingRunning(uid) {
+  async isMeetingRunning(meetingId) {
     try {
       const pluginStore = strapi.store({
         type: 'plugin',
@@ -77,7 +78,7 @@ module.exports = ({ strapi }) => ({
         salt,
       };
       const params = {
-        meetingID: uid,
+        meetingID: meetingId,
       };
       const url = constructUrl(bbb, 'isMeetingRunning', params);
       const response = await axios.get(url);
@@ -143,6 +144,18 @@ module.exports = ({ strapi }) => ({
         await endMeeting(parsedResponse.meetingID, parsedResponse.moderatorPW);
       }
       return parsedResponse;
+    } catch (error) {
+      return { returncode: 'FAILED' };
+    }
+  },
+  async setUrlAndScret(url, secret) {
+    const pluginStore = strapi.store({ type: 'plugin', name: 'bigbluebutton' });
+    try {
+      const res2 = await pluginStore.set({ key: 'url', value: url });
+      const res3 = await pluginStore.set({ key: 'secret', value: secret });
+      const urlResponse = await pluginStore.get({ key: 'url' });
+
+      return { ok: true, urlResponse, res2, res3 };
     } catch (error) {
       return { returncode: 'FAILED' };
     }

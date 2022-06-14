@@ -29,7 +29,7 @@ module.exports = {
       type: 'uid',
       targetField: 'className',
     },
-    bbbId: {
+    meetingId: {
       type: 'string',
       min: 1,
       configurable: false,

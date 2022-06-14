@@ -6,9 +6,7 @@ import copy from 'copy-to-clipboard';
 import { Table, Thead, Tbody, Tr, Td, Th, TFooter } from '@strapi/design-system/Table';
 import { Typography } from '@strapi/design-system/Typography';
 import { Flex } from '@strapi/design-system/Flex';
-import { VisuallyHidden } from '@strapi/design-system/VisuallyHidden';
 import { Button } from '@strapi/design-system/Button';
-import { IconButton } from '@strapi/design-system/IconButton';
 import { Alert } from '@strapi/design-system/Alert';
 import Play from '@strapi/icons/Play';
 import Trash from '@strapi/icons/Trash';
@@ -93,16 +91,20 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
           <Thead>
             <Tr>
               <Th>
-                <Typography variant="sigma">Class</Typography>
+                <Box paddingLeft={2}>
+                  <Typography variant="sigma">Class</Typography>
+                </Box>
+              </Th>
+
+              <Th>
+                <Box paddingLeft={2}>
+                  <Typography variant="sigma">Access Code</Typography>
+                </Box>
               </Th>
               <Th>
-                <Typography variant="sigma">Access Code</Typography>
-              </Th>
-              <Th>
-                <Typography variant="sigma">Action</Typography>
-              </Th>
-              <Th>
-                <VisuallyHidden>Actions</VisuallyHidden>
+                <Box paddingLeft={2}>
+                  <Typography variant="sigma">Action</Typography>
+                </Box>
               </Th>
             </Tr>
           </Thead>
@@ -169,21 +171,20 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                           API End-points
                         </Button>
                       </Box>
-                    </Flex>
-                  </Td>
-                  <Td>
-                    <Flex justifyContent="end">
-                      <Box>
-                        <IconButton
+
+                      <Box paddingLeft={2}>
+                        <Button
+                          variant="danger-light"
                           onClick={() => {
                             setIsVisible(true);
                             setClassId(bbbClass.id);
                           }}
-                          label="Delete"
-                          icon={<Trash />}
+                          startIcon={<Trash />}
                           data-toggle="dialog"
                           data-target={`#delete_${bbbClass.id}`}
-                        />
+                        >
+                          Delete
+                        </Button>
                         {classId ? (
                           <ConfirmDialog
                             dialogId={`delete_${classId}`}
