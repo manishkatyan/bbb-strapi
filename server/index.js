@@ -5,6 +5,7 @@ const controllers = require('./controllers');
 const routes = require('./routes');
 const services = require('./services');
 const register = require('./register');
+const bootstrap = require('./bootstrap');
 
 module.exports = {
   contentTypes,
@@ -12,4 +13,5 @@ module.exports = {
   controllers,
   register,
   services,
+  bootstrap,
 };
