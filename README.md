@@ -24,7 +24,7 @@
 
 <br>
 
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bigbluebutton-strapi-v31.gif" alt="bbb-class" /> <br/>
+<img style="width: 100%; height: auto;" src="/static/bigbluebutton-strapi.gif" alt="bbb-class" /> <br/>
 
 <br/>
 
@@ -66,7 +66,7 @@ We are following the [official Node.js releases timelines](https://nodejs.org/en
 
 **Supported Strapi versions**:
 
-- Strapi v4.1.2 (recently tested)
+- Strapi v4.1.12 (recently tested)
 - Strapi v4.x
 
 > The BigBlueButton-Strapi plugin is designed for **Strapi v4.x**. It won't work with Strapi v3.x.
@@ -103,17 +103,16 @@ Now you are ready to launch your onlie classes 🎉
 
 ## 🔧 Configuration
 
-You can easily configure the BigBlueButton-Strapi plugin to connect with your BigBlueButton server.
+You can replace the default BigBlueButton URL and Secret with your own server details.
 
-- Go to `Strapi Settings -> BIGBLUEBUTTON -> Configuration`.
-- On the configiration page, you can enter BigBlueButton URL and Secret.
-- Click on verify to ensure that the plugin is able to connect with your BigBlueButton server.
+- Click on `Configure Your BigBlueButton URL and Secret`.
+- On the configiration page, you can enter your own server details, if not you can use default one.
 - Click on save to save the BigBlueButton URL and Secret.
 
 In case you don't have a BigBlueButton server, you can create a [free trial account here](https://higheredlab.com/).
 
 <br/><br/>
-<img style="width: 100%; height: auto;" src="https://higheredlab.com/wp-content/uploads/bbb-configuration-v2.gif" alt="bigbluebutton-strapi-config" />
+<img style="width: 100%; height: auto;" src="/static/bigbluebutton-strapi-config.gif" alt="bigbluebutton-strapi-config" />
 <br/><br/>
 
 <br/>

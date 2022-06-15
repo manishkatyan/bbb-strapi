@@ -18,7 +18,7 @@ module.exports = {
     if (response.id) {
       meetingParams = {
         name: response.className,
-        meetingID: response.uid,
+        meetingID: response.meetingId,
         moderatorPW: response.moderatorAccessCode ? response.moderatorAccessCode : 'mp',
         attendeePW: response.viewerAccessCode ? response.viewerAccessCode : 'ap',
         duration: 0,
@@ -65,7 +65,7 @@ module.exports = {
       .plugin('bigbluebutton')
       .service('bbbService')
       .create(uid, meetingParams);
-
+    
     if (createMeetingResponse.returncode === 'SUCCESS') {
       const joinMeetingParams = {
         fullName: moderatorName ? moderatorName : 'Moderator',
@@ -81,7 +81,7 @@ module.exports = {
       const joinMeetingURLResponse = await strapi
         .plugin('bigbluebutton')
         .service('bbbService')
-        .join(uid, joinMeetingParams);
+        .join(response.meetingId, joinMeetingParams);
 
       ctx.send({ joinURL: joinMeetingURLResponse }, 200);
     }
@@ -97,7 +97,7 @@ module.exports = {
     if (response.id) {
       meetingParams = {
         fullName: viewerName ? viewerName : 'Viewer',
-        meetingID: response.uid,
+        meetingID: response.meetingId,
         password: response.viewerAccessCode ? response.viewerAccessCode : 'ap',
         'userdata-bbb_skip_check_audio': JSON.parse(
           response.bbbSettings['userdata-bbb_skip_check_audio']
@@ -112,7 +112,7 @@ module.exports = {
     const joinMeetingURL = await strapi
       .plugin('bigbluebutton')
       .service('bbbService')
-      .join(uid, meetingParams);
+      .join(response.meetingId, meetingParams);
 
     ctx.send({ joinURL: joinMeetingURL }, 200);
   },
@@ -135,7 +135,14 @@ module.exports = {
   async isMeetingRunning(ctx) {
     const { uid } = ctx.params;
 
-    const status = await strapi.plugin('bigbluebutton').service('bbbService').isMeetingRunning(uid);
+    const response = await strapi
+      .query('plugin::bigbluebutton.class')
+      .findOne({ where: { uid }, populate: true });
+
+    const status = await strapi
+      .plugin('bigbluebutton')
+      .service('bbbService')
+      .isMeetingRunning(response.meetingId);
 
     ctx.send({ running: status }, 200);
   },
@@ -162,13 +169,11 @@ module.exports = {
   async updateSetting(ctx) {
     const { url, secret } = ctx.request.body;
 
-    const pluginStore = strapi.store({ type: 'plugin', name: 'bigbluebutton' });
-
-    const res2 = await pluginStore.set({ key: 'url', value: url });
-    const res3 = await pluginStore.set({ key: 'secret', value: secret });
-    const res = await pluginStore.get({ key: 'url' });
-
-    return ctx.send({ ok: true, res, res2, res3 });
+    const setUrlAndSecret = await strapi
+      .plugin('bigbluebutton')
+      .service('bbbService')
+      .setUrlAndScret(url, secret);
+    ctx.send(setUrlAndSecret, 200);
   },
   async getSetting(ctx) {
     const pluginStore = strapi.store({ type: 'plugin', name: 'bigbluebutton' });

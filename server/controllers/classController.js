@@ -1,7 +1,10 @@
 /* eslint-disable node/no-missing-require */
+/* eslint-disable node/no-extraneous-require */
+
 'use strict';
 const path = require('path');
 const fs = require('fs-extra');
+const crypto = require('hash.js');
 const koaStatic = require('koa-static');
 const _ = require('lodash');
 
@@ -60,8 +63,11 @@ module.exports = ({ strapi }) => ({
       field: 'uid',
       data: params,
     });
-
     params.uid = slug;
+    params.meetingId = crypto
+      .sha256()
+      .update(`${slug}${Date.now() / 1000}`)
+      .digest('hex');
 
     const res = await strapi
       .query('plugin::bigbluebutton.class')

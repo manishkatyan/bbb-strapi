@@ -73,6 +73,7 @@ const Settings = () => {
       } else {
         trimUrl = url;
       }
+
       const response = await checkBBB(trimUrl, secret);
 
       if (response.data.returncode === 'SUCCESS') {
@@ -130,7 +131,7 @@ const Settings = () => {
           </Box>
           <Box paddingBottom={2} paddingTop={1}>
             <Typography variant="omega">
-              Enter your BigBlueButton URL and Secret below to connect to it.
+              You can replace the default BigBlueButton URL and Secret with your own server details.
             </Typography>
           </Box>
           <Box>
@@ -207,8 +208,8 @@ const Settings = () => {
           <Box paddingTop={2}>
             <Grid gap={4}>
               <GridItem col={6} s={12}>
-                <Link href="https://higheredlab.com/bigbluebutton/" isExternal>
-                  Create a trial account to get a free BigBlueButton server
+                <Link href="https://higheredlab.com/" isExternal>
+                  Start Free Trial of BigBlueButton
                 </Link>
               </GridItem>
               <GridItem col={6} s={12}>
