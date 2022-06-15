@@ -106,8 +106,8 @@ Now you are ready to launch your onlie classes 🎉
 You can replace the default BigBlueButton URL and Secret with your own server details.
 
 - Click on `Configure Your BigBlueButton URL and Secret`.
-- On the configiration page, you can enter your own server details, if not you can use default one.
-- Click on save to save the BigBlueButton URL and Secret.
+- On the configuration page, you can test with the default BigBlueButton URL and Secret. Later on, you can provide your own server details.
+- Click on the Save button to verify the server connection and save it.
 
 In case you don't have a BigBlueButton server, you can create a [free trial account here](https://higheredlab.com/).
 

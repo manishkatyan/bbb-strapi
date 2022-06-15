@@ -3,7 +3,7 @@
 const crypto = require('hash.js');
 
 module.exports = {
-  url: 'https://api.asyncweb.io/abf82346/bigbluebutton',
+  url: 'https://api.asyncweb.io/0e76ab3d/bigbluebutton',
   secret: crypto.sha256().update('abc').digest('hex'),
   classParams: {
     className: 'Demo Class',

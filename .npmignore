@@ -5,6 +5,7 @@ cypress
 copy.sh
 
 cypress.json
+README.md
 
 Dockerfile
 static
