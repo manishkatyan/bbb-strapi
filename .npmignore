@@ -10,6 +10,7 @@ README.md
 Dockerfile
 
 static
+
 .eslintignore
 .eslintrc.back.js
 .eslintrc.front.js
