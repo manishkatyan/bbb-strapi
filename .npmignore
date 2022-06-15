@@ -8,6 +8,7 @@ cypress.json
 README.md
 
 Dockerfile
+
 static
 .eslintignore
 .eslintrc.back.js
