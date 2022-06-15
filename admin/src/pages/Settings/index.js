@@ -131,7 +131,8 @@ const Settings = () => {
           </Box>
           <Box paddingBottom={2} paddingTop={1}>
             <Typography variant="omega">
-              You can replace the default BigBlueButton URL and Secret with your own server details.
+              You can test with the default BigBlueButton URL and Secret. Later on, you can provide
+              your own server details.
             </Typography>
           </Box>
           <Box>
