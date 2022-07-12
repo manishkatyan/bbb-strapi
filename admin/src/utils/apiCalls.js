@@ -8,8 +8,8 @@ export async function getClass() {
   return response;
 }
 
-export async function getClassByUID(classUID) {
-  const response = await axios.get(`/bigbluebutton/class/${classUID}`);
+export async function getClassByMeetingId(meetingId) {
+  const response = await axios.get(`/bigbluebutton/class/${meetingId}`);
 
   return response;
 }
@@ -28,16 +28,16 @@ export async function deleteClass(classId) {
 
 // bbb actions
 
-export async function startBBB(uid, moderatorName) {
-  const startClassResponse = await axios.post(`/bigbluebutton/class/start/${uid}`, {
+export async function startBBB(meetingId, moderatorName) {
+  const startClassResponse = await axios.post(`/bigbluebutton/class/start/${meetingId}`, {
     moderatorName,
   });
 
   return startClassResponse;
 }
 
-export async function joinBBB(uid, viewerName) {
-  const joinResponse = await axios.post(`/bigbluebutton/class/join/${uid}`, {
+export async function joinBBB(meetingId, viewerName) {
+  const joinResponse = await axios.post(`/bigbluebutton/class/join/${meetingId}`, {
     viewerName,
   });
 

@@ -4,10 +4,10 @@
 function validateCode() {
   const name = document.getElementById('name').value;
   const code = document.getElementById('code').value;
-  const uid = document.getElementById('classUID').value;
-  const validateUrl = '/bigbluebutton/class/auth/join/' + uid;
-  const joinUrl = '/bigbluebutton/class/join/' + uid;
-  const isMeetingRunning = '/bigbluebutton/class/status/' + uid;
+  const meetingId = document.getElementById('meetingId').value;
+  const validateUrl = '/bigbluebutton/class/auth/join/' + meetingId;
+  const joinUrl = '/bigbluebutton/class/join/' + meetingId;
+  const isMeetingRunning = '/bigbluebutton/class/status/' + meetingId;
   if (!name) {
     document.getElementById('nameError').style.display = 'block';
     return false;

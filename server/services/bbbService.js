@@ -8,7 +8,7 @@ const { XMLParser } = require('fast-xml-parser');
 const parser = new XMLParser();
 
 module.exports = ({ strapi }) => ({
-  async create(classUID, params) {
+  async create(meetingId, params) {
     const meetingParams = params;
     const pluginStore = strapi.store({
       type: 'plugin',
@@ -27,7 +27,7 @@ module.exports = ({ strapi }) => ({
     try {
       const bbbClass = await strapi
         .query('plugin::bigbluebutton.class')
-        .findOne({ where: { uid: classUID } });
+        .findOne({ where: { meetingId } });
 
       const response = await axios.get(url);
       const parsedResponse = parseXml(response.data);
@@ -47,6 +47,7 @@ module.exports = ({ strapi }) => ({
       return { returncode: 'FAILED' };
     }
   },
+
   async join(meetingId, params) {
     const joinMeetingParams = params;
     const pluginStore = strapi.store({

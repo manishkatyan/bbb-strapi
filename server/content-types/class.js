@@ -25,10 +25,6 @@ module.exports = {
       min: 1,
       configurable: false,
     },
-    uid: {
-      type: 'uid',
-      targetField: 'className',
-    },
     meetingId: {
       type: 'string',
       min: 1,
