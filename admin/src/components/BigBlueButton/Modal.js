@@ -7,6 +7,7 @@ import {
   ModalHeader,
   ModalFooter,
 } from '@strapi/design-system/ModalLayout';
+import { Tabs, Tab, TabGroup, TabPanels, TabPanel } from '@strapi/design-system/Tabs';
 import { Typography } from '@strapi/design-system/Typography';
 import { Button } from '@strapi/design-system/Button';
 import { Box } from '@strapi/design-system/Box';
@@ -15,12 +16,14 @@ import { Grid, GridItem } from '@strapi/design-system/Grid';
 import { Switch } from '@strapi/design-system/Switch';
 import { Link } from '@strapi/design-system/Link';
 import { createClass } from '../../utils/apiCalls';
+import ApiCreateEndPoint from './ApiCreateEndPoint';
 
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/ext-language_tools';
 
 const Modal = ({ isVisible, handleClose }) => {
+  const [isForm, setIsForm] = useState(true);
   const [className, setClassName] = useState('');
   const [moderatorChecked, setModeratorChecked] = useState(false);
   const [moderatorAccessCode, setModeratorAccessCode] = useState('');
@@ -73,6 +76,7 @@ const Modal = ({ isVisible, handleClose }) => {
         setViewerChecked(false);
         setViewerAccessCode('');
         setModeratorApproval(false);
+        setIsForm(true);
       }
     }
   }
@@ -98,141 +102,178 @@ const Modal = ({ isVisible, handleClose }) => {
     setbbbAdvanceSetting(JSON.parse(extraSetting));
   };
 
+  const handleTabChange = tabNum => {
+    if (tabNum === 0) {
+      setIsForm(true);
+    } else if (tabNum === 1) {
+      setIsForm(false);
+    }
+  };
+
   return (
     <div>
       {isVisible && (
-        <ModalLayout onClose={handleClose} labelledBy="title">
+        <ModalLayout
+          onClose={() => {
+            setIsForm(true);
+            handleClose();
+          }}
+          labelledBy="title"
+        >
           <ModalHeader>
             <Typography fontWeight="bold" textColor="neutral800" as="h2" id="title" variant="beta">
               Create Class
             </Typography>
           </ModalHeader>
           <ModalBody>
-            <Grid gap={5}>
-              <GridItem col={11}>
-                <Box padding={2}>
-                  <TextInput
-                    placeholder="Enter a class Name"
-                    aria-label="Class"
-                    name="className"
-                    error={classNameError || ''}
-                    onChange={e => {
-                      setClassName(e.target.value);
-                      setClassNameError('');
-                    }}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={5}>
-                <Box padding={2}>
-                  <Typography variant="delta">Moderator Access Code</Typography>
-                </Box>
-              </GridItem>
-              <GridItem col={5}>
-                <Box padding={2}>
-                  <TextInput
-                    placeholder="Click on switch for Access Code"
-                    type="number"
-                    aria-label="moderatorAccessCode"
-                    name="moderatorAccessCode"
-                    error={moderatorCodeError || ''}
-                    onChange={e => {
-                      setModeratorAccessCode(e.target.value);
-                      setModeratorCodeError('');
-                    }}
-                    value={moderatorAccessCode}
-                    size="S"
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={2}>
-                <Box padding={2}>
-                  <Switch
-                    label="Activate moderator access code"
-                    selected={moderatorChecked}
-                    onChange={() => {
-                      setModeratorChecked(s => !s);
-                      setModeratorCodeError('');
-                    }}
-                    data-testid="moderator-access-code"
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={5}>
-                <Box padding={2}>
-                  <Typography variant="delta">Viewer Access Code</Typography>
-                </Box>
-              </GridItem>
-              <GridItem col={5}>
-                <Box padding={2}>
-                  <TextInput
-                    placeholder="Click on switch for Access Code"
-                    type="number"
-                    aria-label="viewerAccessCode"
-                    name="viewerAccessCode"
-                    error={viewerCodeError || ''}
-                    onChange={e => {
-                      setViewerAccessCode(e.target.value);
-                      setViewerCodeError('');
-                    }}
-                    value={viewerAccessCode}
-                    size="S"
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={2}>
-                <Box padding={2}>
-                  <Switch
-                    label="Activate viewer access code"
-                    selected={viewerChecked}
-                    onChange={() => {
-                      setViewerChecked(s => !s);
-                      setViewerCodeError('');
-                    }}
-                    data-testid="viewer-access-code"
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={10}>
-                <Box padding={2}>
-                  <Typography variant="delta">Requires moderator approval to join</Typography>
-                </Box>
-              </GridItem>
-              <GridItem col={2}>
-                <Box padding={2}>
-                  <Switch
-                    label="Activate moderator approval to join"
-                    selected={moderatorApproval}
-                    onChange={() => setModeratorApproval(s => !s)}
-                  />
-                </Box>
-              </GridItem>
+            <TabGroup
+              label="Some stuff for the label"
+              id="tabs"
+              variant="simple"
+              onTabChange={tabNum => handleTabChange(tabNum)}
+            >
+              <Tabs>
+                <Tab>
+                  <Typography textColor="neutral800" id="title" variant="delta">
+                    Form
+                  </Typography>
+                </Tab>
+                <Tab>
+                  <Typography textColor="neutral800" id="title" variant="delta">
+                    Api-EndPoint
+                  </Typography>
+                </Tab>
+              </Tabs>
+              <TabPanels>
+                <TabPanel>
+                  <Box color="neutral800" paddingTop={2} background="neutral0">
+                    <Grid gap={5}>
+                      <GridItem col={11}>
+                        <Box padding={2}>
+                          <TextInput
+                            placeholder="Enter a class Name"
+                            aria-label="Class"
+                            name="className"
+                            error={classNameError || ''}
+                            onChange={e => {
+                              setClassName(e.target.value);
+                              setClassNameError('');
+                            }}
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={5}>
+                        <Box padding={2}>
+                          <Typography variant="delta">Moderator Access Code</Typography>
+                        </Box>
+                      </GridItem>
+                      <GridItem col={5}>
+                        <Box padding={2}>
+                          <TextInput
+                            placeholder="Click on switch for Access Code"
+                            type="number"
+                            aria-label="moderatorAccessCode"
+                            name="moderatorAccessCode"
+                            error={moderatorCodeError || ''}
+                            onChange={e => {
+                              setModeratorAccessCode(e.target.value);
+                              setModeratorCodeError('');
+                            }}
+                            value={moderatorAccessCode}
+                            size="S"
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={2}>
+                        <Box padding={2}>
+                          <Switch
+                            label="Activate moderator access code"
+                            selected={moderatorChecked}
+                            onChange={() => {
+                              setModeratorChecked(s => !s);
+                              setModeratorCodeError('');
+                            }}
+                            data-testid="moderator-access-code"
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={5}>
+                        <Box padding={2}>
+                          <Typography variant="delta">Viewer Access Code</Typography>
+                        </Box>
+                      </GridItem>
+                      <GridItem col={5}>
+                        <Box padding={2}>
+                          <TextInput
+                            placeholder="Click on switch for Access Code"
+                            type="number"
+                            aria-label="viewerAccessCode"
+                            name="viewerAccessCode"
+                            error={viewerCodeError || ''}
+                            onChange={e => {
+                              setViewerAccessCode(e.target.value);
+                              setViewerCodeError('');
+                            }}
+                            value={viewerAccessCode}
+                            size="S"
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={2}>
+                        <Box padding={2}>
+                          <Switch
+                            label="Activate viewer access code"
+                            selected={viewerChecked}
+                            onChange={() => {
+                              setViewerChecked(s => !s);
+                              setViewerCodeError('');
+                            }}
+                            data-testid="viewer-access-code"
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={10}>
+                        <Box padding={2}>
+                          <Typography variant="delta">
+                            Requires moderator approval to join
+                          </Typography>
+                        </Box>
+                      </GridItem>
+                      <GridItem col={2}>
+                        <Box padding={2}>
+                          <Switch
+                            label="Activate moderator approval to join"
+                            selected={moderatorApproval}
+                            onChange={() => setModeratorApproval(s => !s)}
+                          />
+                        </Box>
+                      </GridItem>
 
-              <GridItem col={11}>
-                <Box padding={2}>
-                  <Typography variant="beta">Advance Settings</Typography>
-                  <Box>
-                    <Typography variant="epsilon">
-                      You can customize settings for your BigBlueButton class.
-                    </Typography>
-                  </Box>
-                </Box>
-              </GridItem>
-              <GridItem col={11}>
-                <Box padding={2}>
-                  <AceEditor
-                    placeholder="BigBlueButton Settings"
-                    mode="json"
-                    theme="monokai"
-                    name="setting"
-                    onChange={onChangeJson}
-                    fontSize={18}
-                    showPrintMargin={false}
-                    showGutter
-                    highlightActiveLine
-                    height="300px"
-                    width="700px"
-                    defaultValue={`{
+                      <GridItem col={11}>
+                        <Box padding={2}>
+                          <Typography variant="beta">Advance Settings</Typography>
+                          <Box>
+                            <Typography variant="epsilon">
+                              You can customize settings for your BigBlueButton class.
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </GridItem>
+                      <GridItem col={11}>
+                        <Box padding={2}>
+                          <AceEditor
+                            placeholder="BigBlueButton Settings"
+                            mode="json"
+                            theme="monokai"
+                            name="setting"
+                            onChange={onChangeJson}
+                            fontSize={18}
+                            showPrintMargin={false}
+                            showGutter
+                            highlightActiveLine
+                            height="300px"
+                            width="700px"
+                            defaultValue={`{
 "maxParticipants":"100",
 "logoutURL":"https://higheredlab.com/",
 "allowModsToUnmuteUsers":"false",
@@ -242,42 +283,69 @@ const Modal = ({ isVisible, handleClose }) => {
 "userdata-bbb_skip_check_audio":"false",
 "userdata-bbb_listen_only_mode":"true"
 }`}
-                    setOptions={{
-                      enableBasicAutocompletion: false,
-                      enableLiveAutocompletion: false,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 4,
-                    }}
-                  />
-                </Box>
-              </GridItem>
-              <GridItem col={11}>
-                <Box padding={2}>
-                  <Link href="https://docs.bigbluebutton.org/dev/api.html" isExternal>
-                    <Typography variant="epsilon" textColor="primary600">
-                      You may refer to the API doc for more information
-                    </Typography>
-                  </Link>
-                </Box>
-              </GridItem>
-            </Grid>
+                            setOptions={{
+                              enableBasicAutocompletion: false,
+                              enableLiveAutocompletion: false,
+                              enableSnippets: false,
+                              showLineNumbers: true,
+                              tabSize: 4,
+                            }}
+                          />
+                        </Box>
+                      </GridItem>
+                      <GridItem col={11}>
+                        <Box padding={2}>
+                          <Link href="https://docs.bigbluebutton.org/dev/api.html" isExternal>
+                            <Typography variant="epsilon" textColor="primary600">
+                              You may refer to the API doc for more information
+                            </Typography>
+                          </Link>
+                        </Box>
+                      </GridItem>
+                    </Grid>
+                  </Box>
+                </TabPanel>
+                <TabPanel>
+                  <Box color="neutral800" paddingTop={2} background="neutral0">
+                    <ApiCreateEndPoint />
+                  </Box>
+                </TabPanel>
+              </TabPanels>
+            </TabGroup>
           </ModalBody>
           <ModalFooter
             startActions={
-              <Button onClick={handleClose} variant="tertiary">
+              <Button
+                onClick={() => {
+                  setIsForm(true);
+                  handleClose();
+                }}
+                variant="tertiary"
+              >
                 Cancel
               </Button>
             }
             endActions={
-              <Button
-                onClick={() => {
-                  handleCreateClass(classCreateData);
-                }}
-                data-testid="create-class"
-              >
-                Create
-              </Button>
+              isForm ? (
+                <Button
+                  onClick={() => {
+                    handleCreateClass(classCreateData);
+                  }}
+                  data-testid="create-class"
+                >
+                  Create
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    setIsForm(true);
+                    handleClose();
+                  }}
+                  data-testid="create-class"
+                >
+                  Close
+                </Button>
+              )
             }
           />
         </ModalLayout>
