@@ -148,7 +148,12 @@ const Modal = ({ isVisible, handleClose }) => {
                 <TabPanel>
                   <Box color="neutral800" paddingTop={2} background="neutral0">
                     <Grid gap={5}>
-                      <GridItem col={11}>
+                      <GridItem col={5}>
+                        <Box padding={2}>
+                          <Typography variant="delta">Class Name</Typography>
+                        </Box>
+                      </GridItem>
+                      <GridItem col={6}>
                         <Box padding={2}>
                           <TextInput
                             placeholder="Enter a class Name"
