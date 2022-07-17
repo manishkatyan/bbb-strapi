@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AceEditor from 'react-ace';
 import {
   ModalLayout,
   ModalBody,
@@ -13,11 +12,9 @@ import { Flex } from '@strapi/design-system/Flex';
 import { Box } from '@strapi/design-system/Box';
 import { Divider } from '@strapi/design-system/Divider';
 import { Accordion, AccordionToggle, AccordionContent } from '@strapi/design-system/Accordion';
-import 'ace-builds/src-noconflict/mode-javascript';
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/ext-language_tools';
+import AceEditorSnippet from './AceEditorSnippet';
 
-const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
+const ApiEndPointModal = ({ meetingId, isVisibleModal, handleCloseModal }) => {
   const [expandCreate, setExpandCreate] = useState(false);
   const [expandJoin, setExpandJoin] = useState(false);
   const [expandDemo, setExpandDemo] = useState(false);
@@ -48,7 +45,8 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
             </Flex>
           </ModalHeader>
           <ModalBody>
-            <Box paddingRight={2} paddingBottom={2}>
+            {/* Api endpoint start class */}
+            <Box paddingRight={2} paddingBottom={2} paddingTop={2}>
               <Typography variant="delta">API End-point to Start Class</Typography>
               <Box paddingTop={2}>
                 <Typography variant="epsilon">
@@ -69,7 +67,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
             >
               <Typography>
                 {`const response = await axios.post(
-                    "${window.location.origin}/bigbluebutton/api/class/start/${classUid}",{
+                    "${window.location.origin}/bigbluebutton/class/start/${meetingId}",{
                      moderatorName:""
                     }
                    )`}
@@ -95,7 +93,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                   <Box padding={3}>
                     <Typography>
                       {`{
-                        "joinURL": "https://api.asyncweb.io/abf87846/bigbluebutton/api/join?fullName=Teacher&meetingID=chemistry1&\npassword=****&checksum=8d3f92a599c9c1e3f792a4983c159b0e157bce33"
+                        "joinURL": "https://api.asyncweb.io/abf87846/bigbluebutton/api/join?fullName=Teacher&meetingID=${meetingId}&\npassword=****&checksum=8d3f92a599c9c1e3f792a4983c159b0e157bce33"
                       }`}
                     </Typography>
                   </Box>
@@ -124,6 +122,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                 </Typography>
               </Box>
             </Box>
+            {/* Api endpoint join class */}
             <Box paddingRight={2} paddingBottom={3} paddingTop={7}>
               <Typography variant="delta">API End-point to Join Class</Typography>
               <Box paddingTop={2}>
@@ -136,7 +135,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
             <Box background="neutral100" padding={2} marginTop={4} marginBottom={4}>
               <Typography>
                 {`const response = await axios.post(
-                   " ${window.location.origin}/bigbluebutton/api/class/join/${classUid}",{
+                   " ${window.location.origin}/bigbluebutton/class/join/${meetingId}",{
                      viewerName:""
                    }
                   ) `}
@@ -162,7 +161,7 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                   <Box padding={3}>
                     <Typography>
                       {`{
-                        "joinURL": "https://api.asyncweb.io/abf87846/bigbluebutton/api/join?fullName=Student&meetingID=chemistry1&\npassword=****&checksum=8d3f92a599c9c1e3f792a4983c159b0e157bce33"
+                        "joinURL": "https://api.asyncweb.io/abf87846/bigbluebutton/api/join?fullName=Student&meetingID=${meetingId}&\npassword=****&checksum=8d3f92a599c9c1e3f792a4983c159b0e157bce33"
                       }`}
                     </Typography>
                   </Box>
@@ -205,23 +204,14 @@ const ApiEndPointModal = ({ classUid, isVisibleModal, handleCloseModal }) => {
                   <AccordionToggle title="Sample API End-points implementation" />
                   <AccordionContent>
                     <Box padding={3}>
-                      <AceEditor
-                        placeholder="BigBlueButton Settings"
-                        mode="javascript"
-                        theme="github"
-                        name="demoCode"
-                        fontSize={18}
-                        showPrintMargin
-                        showGutter={false}
-                        highlightActiveLine={false}
-                        readOnly
+                      <AceEditorSnippet
                         height="800px"
-                        width="680px"
                         value={`
 export default function App() {
+  
   const handleClickStart = async () => {
     const response = await axios.post(
-      "${window.location.origin}/bigbluebutton/api/class/start/${classUid}",
+      "${window.location.origin}/bigbluebutton/class/start/${meetingId}",
       {
         moderatorName: "Moderator"
       }
@@ -233,7 +223,7 @@ export default function App() {
 
   const handleClickJoin = async () => {
     const response = await axios.post(
-      "${window.location.origin}/bigbluebutton/api/class/join/${classUid}",
+      "${window.location.origin}/bigbluebutton/class/join/${meetingId}",
       { viewerName: "Viewer" }
     );
     
@@ -266,13 +256,6 @@ export default function App() {
   );
 }
                     `}
-                        setOptions={{
-                          enableBasicAutocompletion: false,
-                          enableLiveAutocompletion: false,
-                          enableSnippets: false,
-                          showLineNumbers: false,
-                          tabSize: 2,
-                        }}
                       />
                     </Box>
                   </AccordionContent>
@@ -295,7 +278,7 @@ export default function App() {
 };
 
 ApiEndPointModal.propTypes = {
-  classUid: PropTypes.string.isRequired,
+  meetingId: PropTypes.string.isRequired,
   isVisibleModal: PropTypes.bool.isRequired,
   handleCloseModal: PropTypes.func.isRequired,
 };

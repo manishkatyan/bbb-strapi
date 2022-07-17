@@ -10,10 +10,10 @@ import { Divider } from '@strapi/design-system/Divider';
 import { Link } from '@strapi/design-system/Link';
 import ExternalLink from '@strapi/icons/ExternalLink';
 import ArrowLeft from '@strapi/icons/ArrowLeft';
-import { getClassByUID, startBBB } from '../../utils/apiCalls';
+import { getClassByMeetingId, startBBB } from '../../utils/apiCalls';
 
 const Join = () => {
-  const { userRole, classUid } = useParams();
+  const { userRole, meetingId } = useParams();
   const [name, setName] = useState('');
   const [accessCode, setAccessCode] = useState('');
   const [nameError, setNameError] = useState('');
@@ -23,7 +23,7 @@ const Join = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await getClassByUID(classUid);
+      const response = await getClassByMeetingId(meetingId);
 
       if (response.status === 200) {
         setClassDetail(response.data);
@@ -31,7 +31,7 @@ const Join = () => {
         userRole === 'moderator' ? setAccessCode(response.data.moderatorAccessCode) : '';
       }
     })();
-  }, [classUid, userRole]);
+  }, [meetingId, userRole]);
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -63,7 +63,7 @@ const Join = () => {
       setCodeError('Please enter valid access code');
       setIsLoading(false);
     } else {
-      const res = await startBBB(classParams.uid, name);
+      const res = await startBBB(classParams.meetingId, name);
 
       if (res.status === 200) {
         window.open(res.data.joinURL, '_blank');

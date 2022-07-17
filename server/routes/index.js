@@ -11,7 +11,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/class/:uid',
+    path: '/class/:meetingId',
     handler: 'classController.findOne',
     config: {
       auth: false,
@@ -77,7 +77,7 @@ module.exports = [
 
   {
     method: 'POST',
-    path: '/class/start/:uid',
+    path: '/class/start/:meetingId',
     handler: 'bbbController.startBBB',
     config: {
       auth: false,
@@ -85,7 +85,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/class/auth/join/:uid',
+    path: '/class/auth/join/:meetingId',
     handler: 'bbbController.validateJoin',
     config: {
       auth: false,
@@ -93,7 +93,7 @@ module.exports = [
   },
   {
     method: 'POST',
-    path: '/class/join/:uid',
+    path: '/class/join/:meetingId',
     handler: 'bbbController.joinBBB',
     config: {
       auth: false,
@@ -101,7 +101,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/class/join/:uid',
+    path: '/class/join/:meetingId',
     handler: 'classController.invite',
     config: {
       auth: false,
@@ -109,7 +109,7 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/class/status/:uid',
+    path: '/class/status/:meetingId',
     handler: 'bbbController.isMeetingRunning',
     config: {
       auth: false,

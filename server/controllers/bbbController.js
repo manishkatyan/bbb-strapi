@@ -9,11 +9,11 @@ module.exports = {
   async startBBB(ctx) {
     let meetingParams;
     const { moderatorName } = ctx.request.body;
-    const { uid } = ctx.params;
+    const { meetingId } = ctx.params;
 
     const response = await strapi
       .query('plugin::bigbluebutton.class')
-      .findOne({ where: { uid }, populate: true });
+      .findOne({ where: { meetingId }, populate: true });
 
     if (response.id) {
       meetingParams = {
@@ -64,8 +64,8 @@ module.exports = {
     const createMeetingResponse = await strapi
       .plugin('bigbluebutton')
       .service('bbbService')
-      .create(uid, meetingParams);
-    
+      .create(meetingId, meetingParams);
+
     if (createMeetingResponse.returncode === 'SUCCESS') {
       const joinMeetingParams = {
         fullName: moderatorName ? moderatorName : 'Moderator',
@@ -88,11 +88,11 @@ module.exports = {
   },
   async joinBBB(ctx) {
     const { viewerName } = ctx.request.body;
-    const { uid } = ctx.params;
+    const { meetingId } = ctx.params;
     let meetingParams;
     const response = await strapi
       .query('plugin::bigbluebutton.class')
-      .findOne({ where: { uid }, populate: true });
+      .findOne({ where: { meetingId }, populate: true });
 
     if (response.id) {
       meetingParams = {
@@ -116,11 +116,12 @@ module.exports = {
 
     ctx.send({ joinURL: joinMeetingURL }, 200);
   },
+
   async validateJoin(ctx) {
-    const { uid } = ctx.params;
+    const { meetingId } = ctx.params;
     const meetingParams = ctx.request.body;
     const classdata = await strapi.query('plugin::bigbluebutton.class').findOne({
-      where: { uid },
+      where: { meetingId },
     });
     if (
       meetingParams.code == classdata.moderatorAccessCode ||
@@ -133,22 +134,18 @@ module.exports = {
   },
 
   async isMeetingRunning(ctx) {
-    const { uid } = ctx.params;
-
-    const response = await strapi
-      .query('plugin::bigbluebutton.class')
-      .findOne({ where: { uid }, populate: true });
-
+    const { meetingId } = ctx.params;
     const status = await strapi
       .plugin('bigbluebutton')
       .service('bbbService')
-      .isMeetingRunning(response.meetingId);
+      .isMeetingRunning(meetingId);
 
     ctx.send({ running: status }, 200);
   },
 
   async endMeeting(ctx) {
     const { meetingId, meetingPassword } = ctx.request.body;
+
     const endMeetingResponse = await strapi
       .plugin('bigbluebutton')
       .service('bbbService')

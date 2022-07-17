@@ -26,7 +26,7 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [classId, setClassId] = useState(false);
   const [isApiModalVisible, setApiModalVisible] = useState(false);
-  const [classUid, setClassUid] = useState('');
+  const [meetingId, setMeetingId] = useState('');
 
   useEffect(() => {}, [isVisible, classData]);
 
@@ -35,7 +35,7 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
   };
 
   const handleInvite = bbbClassdata => {
-    const url = `${window.location.origin}/bigbluebutton/class/join/${bbbClassdata.uid}`;
+    const url = `${window.location.origin}/bigbluebutton/class/join/${bbbClassdata.meetingId}`;
     const inviteText = `Join ${bbbClassdata.className}.\n${url} \nAccess Code: ${bbbClassdata.viewerAccessCode}`;
     copy(inviteText);
     setShowAlert(true);
@@ -52,7 +52,7 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
   return (
     <>
       <ApiEndPointModal
-        classUid={classUid}
+        meetingId={meetingId}
         isVisibleModal={isApiModalVisible}
         handleCloseModal={handleCloseApiModal}
       />
@@ -136,7 +136,7 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                       <Box>
                         <Typography textColor="neutral800">
                           <Link
-                            to={`${url}/join/moderator/${bbbClass.uid}`}
+                            to={`${url}/join/moderator/${bbbClass.meetingId}`}
                             style={{ textDecoration: 'none' }}
                           >
                             <Button startIcon={<Play />} data-testid={`start-class-${index + 1}`}>
@@ -164,7 +164,7 @@ const ClassTable = ({ classData, deleteAction, handleClickCreate }) => {
                           variant="secondary"
                           onClick={() => {
                             setApiModalVisible(true);
-                            setClassUid(bbbClass.uid);
+                            setMeetingId(bbbClass.meetingId);
                           }}
                           startIcon={<Cog />}
                         >

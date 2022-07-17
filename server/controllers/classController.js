@@ -14,23 +14,23 @@ module.exports = ({ strapi }) => ({
     ctx.body = res;
   },
   async findOne(ctx) {
-    const { uid } = ctx.params;
+    const { meetingId } = ctx.params;
     const res = await strapi
       .query('plugin::bigbluebutton.class')
-      .findOne({ where: { uid }, populate: true });
+      .findOne({ where: { meetingId }, populate: true });
     ctx.body = res;
   },
 
   async invite(ctx, next) {
-    const { uid } = ctx.params;
+    const { meetingId } = ctx.params;
     const classdata = await strapi.query('plugin::bigbluebutton.class').findOne({
-      where: { uid },
+      where: { meetingId },
     });
 
     const layout = fs.readFileSync(path.resolve(__dirname, '..', 'public', 'index.html'), 'utf8');
 
     const filledLayout = _.template(layout)({
-      uid,
+      meetingId,
       className: classdata.className,
       backendUrl: strapi.config.server.url,
     });
@@ -57,17 +57,34 @@ module.exports = ({ strapi }) => ({
     ctx.body = res;
   },
   async create(ctx) {
-    const params = ctx.request.body;
-    const slug = await strapi.plugin('bigbluebutton').service('uidService').generateUIDField({
-      contentTypeUID: 'plugin::bigbluebutton.class',
-      field: 'uid',
-      data: params,
-    });
-    params.uid = slug;
-    params.meetingId = crypto
-      .sha256()
-      .update(`${slug}${Date.now() / 1000}`)
-      .digest('hex');
+    const { className, moderatorAccessCode, viewerAccessCode, bbbSettings, meetingId } =
+      ctx.request.body;
+    const params = {
+      className: className ? className : 'Demo Class',
+      moderatorAccessCode: moderatorAccessCode ? moderatorAccessCode : 'mp',
+      viewerAccessCode: viewerAccessCode ? viewerAccessCode : 'ap',
+      bbbSettings:
+        bbbSettings && bbbSettings.length > 1
+          ? bbbSettings
+          : {
+              moderatorApproval: false,
+              maxParticipants: 100,
+              logoutURL: 'https://higheredlab.com/',
+              allowModsToUnmuteUsers: false,
+              lockSettingsDisablePrivateChat: false,
+              logo: 'https://higheredlab.com/wp-content/uploads/hel.png',
+              muteOnStart: false,
+              'userdata-bbb_skip_check_audio': 'false',
+              'userdata-bbb_listen_only_mode': 'true',
+            },
+      meetingId: meetingId
+        ? meetingId
+        : crypto
+            .sha256()
+            .update(`${className}${Date.now() / 1000}`)
+            .digest('hex')
+            .slice(1, 13),
+    };
 
     const res = await strapi
       .query('plugin::bigbluebutton.class')
