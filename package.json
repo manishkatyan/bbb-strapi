@@ -11,7 +11,7 @@
     "axios": "^0.26.0",
     "fast-xml-parser": "^4.0.3",
     "hash.js": "^1.1.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "react-ace": "^10.1.0",
     "react-copy-to-clipboard": "^5.0.4"
